@@ -12,6 +12,7 @@
 - https://github.com/orgs/community/discussions/24442: "pushed_at will be updated any time a commit is pushed to any of the repository's branches."
 - https://tanstack.com/query/latest/docs/framework/react/examples/simple
 - https://tanstack.com/query/latest/docs/framework/react/guides/parallel-queries#dynamic-parallel-queries-with-usequeries
+- https://developer.mozilla.org/en-US/docs/Web/API/Headers
 
 ## Commands
 
