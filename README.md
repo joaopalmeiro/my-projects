@@ -9,6 +9,10 @@ An overview of my projects to manage their maintenance.
 Install [fnm](https://github.com/Schniz/fnm) (if necessary).
 
 ```bash
+cp .env.local.example .env.local
+```
+
+```bash
 fnm install && fnm use && node --version && npm --version
 ```
 
