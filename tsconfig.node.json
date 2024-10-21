@@ -1,0 +1,4 @@
+{
+  "extends": "create-vite-tsconfigs/react/tsconfig.node.json",
+  "include": ["vite.config.ts", "tailwind.config.ts"]
+}
