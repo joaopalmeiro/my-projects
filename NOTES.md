@@ -13,6 +13,21 @@
 - https://tanstack.com/query/latest/docs/framework/react/examples/simple
 - https://tanstack.com/query/latest/docs/framework/react/guides/parallel-queries#dynamic-parallel-queries-with-usequeries
 - https://developer.mozilla.org/en-US/docs/Web/API/Headers
+- https://tanstack.com/query/latest/docs/framework/react/guides/query-functions
+- https://tanstack.com/query/latest/docs/framework/react/guides/query-functions#usage-with-fetch-and-other-clients-that-do-not-throw-by-default
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+- https://tanstack.com/query/latest/docs/framework/react/guides/window-focus-refetching
+- https://tkdodo.eu/blog/type-safe-react-query
+- https://tkdodo.eu/blog/type-safe-react-query#validation-in-the-queryfn:
+  - "This plays so well together with React Query because `parse` throws a descriptive `Error` if something went wrong, which will make React Query go into `error` state - just as if the network call itself failed."
+- https://polvara.me/posts/effective-query-functions-for-react-query-with-zod/
+- https://www.brenelz.com/posts/using-zod-to-validate-api-responses/
+- https://github.com/ianstormtaylor/superstruct
+- https://zod.dev/?id=strings
+- https://zod.dev/?id=numbers
+- https://tanstack.com/query/latest/docs/framework/react/typescript
+- https://tanstack.com/query/latest/docs/framework/react/guides/query-retries
+- https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository
 
 ## Commands
 
@@ -21,6 +36,7 @@ npm install \
 @tanstack/react-query \
 react \
 react-dom \
+zod \
 && npm install -D \
 @biomejs/biome \
 @joaopalmeiro/biome-react-config \
