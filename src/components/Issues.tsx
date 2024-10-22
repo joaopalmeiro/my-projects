@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { issuesSchema } from "../schemas";
-import { repo2api } from "../utils";
 
-export function Issues() {
+interface Props {
+  url: string;
+}
+
+export function Issues(props: Props) {
   const { data, error } = useQuery({
-    queryKey: ["issues"],
+    queryKey: ["issues", props.url],
     queryFn: async () => {
-      const { issues } = repo2api("https://github.com/joaopalmeiro/my-projects");
-
-      const response = await fetch(issues, {
+      const response = await fetch(props.url, {
         headers: [
           ["Accept", "application/vnd.github+json"],
           ["X-GitHub-Api-Version", "2022-11-28"],

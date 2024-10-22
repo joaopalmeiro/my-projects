@@ -42,6 +42,22 @@
   - https://tanstack.com/query/latest/docs/eslint/no-rest-destructuring
   - https://tanstack.com/query/latest/docs/eslint/no-unstable-deps
   - https://tanstack.com/query/latest/docs/eslint/infinite-query-property-order
+- Grist:
+  - https://github.com/gristlabs/grist-core
+  - https://support.getgrist.com/self-managed/#how-do-i-install-grist
+  - https://support.getgrist.com/install/saml/#example-authentik
+  - https://support.getgrist.com/api/#section/Authentication
+  - https://support.getgrist.com/api/#tag/records
+- https://authjs.dev/:
+  - https://next-auth.js.org/getting-started/introduction
+  - https://next-auth.js.org/providers/authentik
+  - https://authjs.dev/getting-started/installation?framework=Next.js
+  - https://authjs.dev/getting-started/providers/authentik
+- https://tanstack.com/query/latest/docs/framework/react/guides/dependent-queries:
+  - https://tanstack.com/query/latest/docs/framework/react/guides/dependent-queries#usequeries-dependent-query
+  - https://tanstack.com/query/latest/docs/framework/react/reference/useQueries
+  - https://tanstack.com/query/v5/docs/framework/react/reference/useQueries#combine
+- https://brockherion.dev/blog/posts/data-fetching-in-nextjs/
 
 ## Commands
 
@@ -84,4 +100,22 @@ npm config ls -l
 
 ```bash
 rm -rf dist/ node_modules/
+```
+
+## Snippets
+
+```ts
+export function repo2api(repoUrl: string): { repo: URL; issues: URL } {
+  const parsedUrl = URL.parse(repoUrl);
+
+  switch (parsedUrl?.hostname) {
+    case "github.com":
+      return {
+        repo: new URL(`/repos${parsedUrl.pathname}`, BASE_GH_URL),
+        issues: new URL(`/repos${parsedUrl.pathname}/issues`, BASE_GH_URL),
+      };
+    default:
+      throw new Error(`Invalid repo URL: ${repoUrl}`);
+  }
+}
 ```

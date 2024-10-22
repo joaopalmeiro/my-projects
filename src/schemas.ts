@@ -1,9 +1,24 @@
 import { z } from "zod";
 
-export const projectSchema = z.object({
+export const projectsSchema = z.object({
+  records: z.array(
+    z.object({
+      fields: z.object({
+        Repo: z.string().url(),
+      }),
+      id: z.number().int(),
+    }),
+  ),
+});
+
+export const repoSchema = z.object({
   description: z.string(),
   html_url: z.string().url(),
   id: z.number().int(),
+  issues_url: z
+    .string()
+    .url()
+    .transform((url) => url.replace("{/number}", "")),
   name: z.string(),
   pushed_at: z.coerce.date(),
 });
