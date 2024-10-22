@@ -1,15 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { z } from "zod";
 
+import { issuesSchema } from "../schemas";
 import { repo2api } from "../utils";
-
-const issueSchema = z.object({
-  title: z.string(),
-  html_url: z.string().url(),
-  id: z.number().int(),
-  number: z.number().int(),
-});
-const issuesSchema = z.array(issueSchema);
 
 export function Issues() {
   const { data, error } = useQuery({

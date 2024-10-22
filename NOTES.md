@@ -8,6 +8,8 @@
   - https://www.reactuse.com/effect/useupdateeffect/
 - https://vite.dev/guide/env-and-mode#env-files
 - https://ark-ui.com/%5Bframework%5D/docs/components/collapsible#lazy-mount
+- https://ariakit.org/examples/disclosure-animated
+- https://www.radix-ui.com/primitives/docs/components/collapsible
 - https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already
 - https://github.com/orgs/community/discussions/24442: "pushed_at will be updated any time a commit is pushed to any of the repository's branches."
 - https://tanstack.com/query/latest/docs/framework/react/examples/simple
@@ -31,11 +33,21 @@
 - https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues: "List issues in a repository. Only open issues will be listed."
 - https://tanstack.com/query/latest/docs/framework/react/guides/query-invalidation
 - https://github.com/IonicaBizau/git-url-parse
+- https://ark-ui.com/react/docs/guides/styling#styling-with-tailwind-css
+- https://tanstack.com/query/latest/docs/eslint/eslint-plugin-query:
+  - https://github.com/TanStack/query/issues/7544
+  - https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#satisfies
+  - https://tanstack.com/query/latest/docs/eslint/exhaustive-deps
+  - https://tanstack.com/query/latest/docs/eslint/stable-query-client
+  - https://tanstack.com/query/latest/docs/eslint/no-rest-destructuring
+  - https://tanstack.com/query/latest/docs/eslint/no-unstable-deps
+  - https://tanstack.com/query/latest/docs/eslint/infinite-query-property-order
 
 ## Commands
 
 ```bash
 npm install \
+@ark-ui/react \
 @tanstack/react-query \
 react \
 react-dom \
@@ -43,6 +55,7 @@ zod \
 && npm install -D \
 @biomejs/biome \
 @joaopalmeiro/biome-react-config \
+@tanstack/eslint-plugin-query \
 @types/react \
 @types/react-dom \
 @typescript-eslint/parser \

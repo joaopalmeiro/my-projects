@@ -1,16 +1,9 @@
+import { Collapsible } from "@ark-ui/react/collapsible";
 import { useQuery } from "@tanstack/react-query";
-import { z } from "zod";
 
+import { projectSchema } from "../schemas";
 import { repo2api } from "../utils";
 import { Issues } from "./Issues";
-
-const projectSchema = z.object({
-  description: z.string(),
-  html_url: z.string().url(),
-  id: z.number().int(),
-  name: z.string(),
-  pushed_at: z.coerce.date(),
-});
 
 export function Projects() {
   const { data, error } = useQuery({
@@ -38,8 +31,17 @@ export function Projects() {
   return (
     <div>
       {error?.message}
-      {JSON.stringify(data, null, 2)}
-      <Issues />
+
+      <ul>
+        <li>
+          <Collapsible.Root lazyMount={true}>
+            <Collapsible.Trigger>{data?.name}</Collapsible.Trigger>
+            <Collapsible.Content>
+              <Issues />
+            </Collapsible.Content>
+          </Collapsible.Root>
+        </li>
+      </ul>
     </div>
   );
 }
