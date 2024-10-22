@@ -28,6 +28,8 @@
 - https://tanstack.com/query/latest/docs/framework/react/typescript
 - https://tanstack.com/query/latest/docs/framework/react/guides/query-retries
 - https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository
+- https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues: "List issues in a repository. Only open issues will be listed."
+- https://tanstack.com/query/latest/docs/framework/react/guides/query-invalidation
 
 ## Commands
 

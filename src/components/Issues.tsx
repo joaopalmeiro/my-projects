@@ -1,21 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
 
-import { Issues } from "./Issues";
-
-const projectSchema = z.object({
-  description: z.string(),
+const issueSchema = z.object({
+  title: z.string(),
   html_url: z.string().url(),
   id: z.number().int(),
-  name: z.string(),
-  pushed_at: z.coerce.date(),
+  number: z.number().int(),
 });
+const issuesSchema = z.array(issueSchema);
 
-export function Projects() {
+export function Issues() {
   const { data, error } = useQuery({
-    queryKey: ["projects"],
+    queryKey: ["issues"],
     queryFn: async () => {
-      const response = await fetch("https://api.github.com/repos/joaopalmeiro/my-projects", {
+      const response = await fetch("https://api.github.com/repos/joaopalmeiro/my-projects/issues", {
         headers: [
           ["Accept", "application/vnd.github+json"],
           ["X-GitHub-Api-Version", "2022-11-28"],
@@ -27,7 +25,7 @@ export function Projects() {
       }
 
       const rawData = await response.json();
-      return projectSchema.parse(rawData);
+      return issuesSchema.parse(rawData);
     },
     retry: false,
   });
@@ -36,7 +34,6 @@ export function Projects() {
     <div>
       {error?.message}
       {JSON.stringify(data, null, 2)}
-      <Issues />
     </div>
   );
 }
