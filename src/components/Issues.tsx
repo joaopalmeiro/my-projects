@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
 
+import { repo2api } from "../utils";
+
 const issueSchema = z.object({
   title: z.string(),
   html_url: z.string().url(),
@@ -13,7 +15,9 @@ export function Issues() {
   const { data, error } = useQuery({
     queryKey: ["issues"],
     queryFn: async () => {
-      const response = await fetch("https://api.github.com/repos/joaopalmeiro/my-projects/issues", {
+      const { issues } = repo2api("https://github.com/joaopalmeiro/my-projects");
+
+      const response = await fetch(issues, {
         headers: [
           ["Accept", "application/vnd.github+json"],
           ["X-GitHub-Api-Version", "2022-11-28"],
