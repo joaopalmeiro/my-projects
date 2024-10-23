@@ -84,8 +84,44 @@
 - https://github.com/vercel/next.js/tree/canary/examples/hello-world
 - https://www.npmjs.com/package/create-next-app
 - https://nextjs.org/docs/app/building-your-application/configuring/environment-variables#loading-environment-variables
+- https://biomejs.dev/linter/rules-sources/#nexteslint-plugin-next
+- https://fireship.io/courses/nextjs/basics-route-handlers/: "API routes will always run server-side (...)"
+- https://nextjs.org/docs/app/building-your-application/optimizing/metadata#static-metadata
+- https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadata-fields
+- https://nextjs.org/docs/14/app/api-reference/functions/generate-metadata
+- https://nextjs.org/blog/next-15#eslint-9-support
+- https://github.com/vercel/next.js/pull/71371
+- https://nextjs.org/docs/pages/building-your-application/configuring/post-css#default-behavior: "Autoprefixer automatically adds vendor prefixes to CSS rules (back to IE11)."
+- https://nextjs.org/blog/next-15#react-19
+- https://nextjs.org/blog/next-15#static-route-indicator
 
 ## Commands
+
+```bash
+npm install \
+@ark-ui/react \
+next \
+react \
+react-dom \
+zod \
+&& npm install -D \
+@biomejs/biome \
+@joaopalmeiro/biome-react-config \
+@types/react \
+@types/react-dom \
+@typescript-eslint/parser \
+eslint \
+eslint-plugin-tailwindcss \
+npm-run-all2 \
+postcss \
+sort-package-json \
+tailwindcss \
+typescript
+```
+
+```bash
+npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1-2)"
+```
 
 ```bash
 npm install \
@@ -123,11 +159,19 @@ npm config ls -l
 ```
 
 ```bash
+npx create-next-app@14.2.16 create-next-app-example
+```
+
+```bash
 npx create-next-app@15.0.1 create-next-app-example
 ```
 
 ```bash
 npx create-next-app@15.0.1 create-next-app-example --typescript --tailwind --app --use-npm --skip-install --no-eslint --src-dir --empty --no-import-alias --no-turbopack
+```
+
+```bash
+npx create-next-app@15.0.1 create-next-app-example --typescript --tailwind --app --use-npm --skip-install --eslint --src-dir --empty --no-import-alias --no-turbopack
 ```
 
 ### Clean slate
@@ -151,5 +195,210 @@ export function repo2api(repoUrl: string): { repo: URL; issues: URL } {
     default:
       throw new Error(`Invalid repo URL: ${repoUrl}`);
   }
+}
+```
+
+### `eslint.config.js`
+
+```js
+// @ts-check
+
+import pluginQuery from "@tanstack/eslint-plugin-query";
+import parser from "@typescript-eslint/parser";
+import tailwindcss from "eslint-plugin-tailwindcss";
+
+const GLOB_TSX = "**/*.tsx";
+
+/** @satisfies {import('eslint').Linter.Config[]} */
+export default [
+  {
+    files: [GLOB_TSX],
+    plugins: { tailwindcss },
+    languageOptions: { parser },
+    rules: {
+      "tailwindcss/classnames-order": "error",
+      "tailwindcss/enforces-negative-arbitrary-values": "error",
+      "tailwindcss/enforces-shorthand": "error",
+      "tailwindcss/no-arbitrary-value": "off",
+      "tailwindcss/no-contradicting-classname": "error",
+      "tailwindcss/no-custom-classname": "error",
+      "tailwindcss/no-unnecessary-arbitrary-value": "error",
+    },
+    settings: {
+      tailwindcss: {
+        callees: ["clsx"],
+        classRegex: "^className$",
+        config: "tailwind.config.ts",
+        removeDuplicates: true,
+      },
+    },
+  },
+  {
+    files: [GLOB_TSX],
+    plugins: {
+      "@tanstack/query": pluginQuery,
+    },
+    rules: {
+      "@tanstack/query/exhaustive-deps": "error",
+      "@tanstack/query/infinite-query-property-order": "error",
+      "@tanstack/query/no-rest-destructuring": "error",
+      "@tanstack/query/no-unstable-deps": "error",
+      "@tanstack/query/stable-query-client": "error",
+    },
+  },
+];
+```
+
+### `src/App.tsx`
+
+```tsx
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { Projects } from "./components/Projects";
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <header>
+        <h1>My Projects</h1>
+      </header>
+
+      <main>
+        <Projects />
+      </main>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+```
+
+### `src/components/Issues.tsx`
+
+```tsx
+import { useQuery } from "@tanstack/react-query";
+
+import { issuesSchema } from "../schemas";
+
+interface Props {
+  url: string;
+}
+
+export function Issues(props: Props) {
+  const { data, error } = useQuery({
+    queryKey: ["issues", props.url],
+    queryFn: async () => {
+      const response = await fetch(props.url, {
+        headers: [
+          ["Accept", "application/vnd.github+json"],
+          ["X-GitHub-Api-Version", "2022-11-28"],
+        ],
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const rawData = await response.json();
+      return issuesSchema.parse(rawData);
+    },
+    retry: false,
+  });
+
+  return (
+    <div>
+      {error?.message}
+      {JSON.stringify(data, null, 2)}
+    </div>
+  );
+}
+```
+
+### `src/components/Projects.tsx`
+
+```tsx
+import { Collapsible } from "@ark-ui/react/collapsible";
+import { useQueries, useQuery } from "@tanstack/react-query";
+
+import { projectsSchema, repoSchema } from "../schemas";
+import { repo2api } from "../utils";
+import { Issues } from "./Issues";
+
+export function Projects() {
+  const { data: projects } = useQuery({
+    queryKey: ["projects"],
+    queryFn: async () => {
+      const response = await fetch(
+        `http://localhost:8484/api/docs/${import.meta.env.VITE_DOC_ID}/tables/${
+          import.meta.env.VITE_TABLE_ID
+        }/records`,
+        {
+          headers: [
+            ["Authorization", `Bearer ${import.meta.env.VITE_GRIST_API_KEY}`],
+          ],
+        }
+      );
+
+      const rawData = await response.json();
+      return projectsSchema.parse(rawData);
+    },
+    select: (projects) => projects.records,
+    retry: false,
+  });
+
+  const { data: repos } = useQueries({
+    queries: projects
+      ? projects.map((project) => {
+          return {
+            queryKey: ["project", project.id],
+            queryFn: async () => {
+              const repo = repo2api(project.fields.Repo);
+
+              const response = await fetch(repo, {
+                headers: [
+                  ["Accept", "application/vnd.github+json"],
+                  ["X-GitHub-Api-Version", "2022-11-28"],
+                ],
+              });
+
+              if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+              }
+
+              const rawData = await response.json();
+              return repoSchema.parse(rawData);
+            },
+          };
+        })
+      : [],
+    combine: (results) => {
+      return {
+        data: results.flatMap((result) => (result.data ? [result.data] : [])),
+      };
+    },
+  });
+
+  return (
+    <section>
+      {repos.length > 0 && (
+        <ul>
+          {repos.map((repo) => {
+            return (
+              <li key={repo.id}>
+                <Collapsible.Root lazyMount={true}>
+                  <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
+                  <Collapsible.Content>
+                    <Issues url={repo.issues_url} />
+                  </Collapsible.Content>
+                </Collapsible.Root>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
 }
 ```

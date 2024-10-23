@@ -1,13 +1,12 @@
 // @ts-check
 
-import pluginQuery from "@tanstack/eslint-plugin-query";
 import parser from "@typescript-eslint/parser";
 import tailwindcss from "eslint-plugin-tailwindcss";
 
 const GLOB_TSX = "**/*.tsx";
 
-/** @satisfies {import('eslint').Linter.Config[]} */
-export default [
+/** @type {import('eslint').Linter.Config[]} */
+const config = [
   {
     files: [GLOB_TSX],
     plugins: { tailwindcss },
@@ -30,17 +29,6 @@ export default [
       },
     },
   },
-  {
-    files: [GLOB_TSX],
-    plugins: {
-      "@tanstack/query": pluginQuery,
-    },
-    rules: {
-      "@tanstack/query/exhaustive-deps": "error",
-      "@tanstack/query/infinite-query-property-order": "error",
-      "@tanstack/query/no-rest-destructuring": "error",
-      "@tanstack/query/no-unstable-deps": "error",
-      "@tanstack/query/stable-query-client": "error",
-    },
-  },
 ];
+
+export default config;

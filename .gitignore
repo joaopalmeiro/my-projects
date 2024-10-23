@@ -1,7 +1,8 @@
-dist/
+.next/
 node_modules/
 
 .DS_Store
-.env.local
+.env
+next-env.d.ts
 
 create-next-app-example/

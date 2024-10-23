@@ -9,7 +9,7 @@ An overview of my projects to manage their maintenance.
 Install [fnm](https://github.com/Schniz/fnm) (if necessary).
 
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env
 ```
 
 ```bash
@@ -30,10 +30,4 @@ npm run lint
 
 ```bash
 npm run format
-```
-
-## Deployment
-
-```bash
-npm run build
 ```
