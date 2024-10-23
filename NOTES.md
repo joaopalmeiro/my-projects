@@ -67,6 +67,23 @@
 - https://nextjs.org/docs/app/api-reference/components/font
 - https://fonts.google.com/specimen/Lusitana
 - https://fontsource.org/docs/guides/nextjs
+- https://nextjs.org/docs/app/building-your-application/routing/route-handlers#caching
+- https://nextjs.org/learn/dashboard-app/fetching-data#parallel-data-fetching
+- https://react.dev/reference/react/Suspense
+- https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#1-capture-the-users-input: "`"use client"` - This is a Client Component, which means you can use event listeners and hooks."
+- https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#3-keeping-the-url-and-input-in-sync:
+  - "`defaultValue` vs. `value` / Controlled vs. Uncontrolled":
+    - "If you're using state to manage the value of an input, you'd use the `value` attribute to make it a controlled component. This means React would manage the input's state."
+    - "However, since you're not using state, you can use `defaultValue`. This means the native input will manage its own state. This is okay since you're saving the search query to the URL instead of state."
+- https://www.npmjs.com/package/use-debounce
+- https://nextjs.org/learn/dashboard-app/mutating-data#type-validation-and-coercion
+- https://nextjs.org/learn/dashboard-app/mutating-data#6-revalidate-and-redirect
+- https://pocketbase.io/
+- https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache: `` fetch(`https://...`, { cache: 'force-cache' | 'no-store' }) ``
+- https://nextjs.org/docs/pages/api-reference/cli/create-next-app
+- https://github.com/vercel/next.js/tree/canary/examples/hello-world
+- https://www.npmjs.com/package/create-next-app
+- https://nextjs.org/docs/app/building-your-application/configuring/environment-variables#loading-environment-variables
 
 ## Commands
 
@@ -103,6 +120,14 @@ rm -rf node_modules/ && npm install
 
 ```bash
 npm config ls -l
+```
+
+```bash
+npx create-next-app@15.0.1 create-next-app-example
+```
+
+```bash
+npx create-next-app@15.0.1 create-next-app-example --typescript --tailwind --app --use-npm --skip-install --no-eslint --src-dir --empty --no-import-alias --no-turbopack
 ```
 
 ### Clean slate
