@@ -94,6 +94,8 @@
 - https://nextjs.org/docs/pages/building-your-application/configuring/post-css#default-behavior: "Autoprefixer automatically adds vendor prefixes to CSS rules (back to IE11)."
 - https://nextjs.org/blog/next-15#react-19
 - https://nextjs.org/blog/next-15#static-route-indicator
+- https://nextjs.org/docs/14/getting-started/project-structure
+- https://github.com/webdevcody/wdc-saas-starter-kit
 
 ## Commands
 
