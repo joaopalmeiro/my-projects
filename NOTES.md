@@ -58,6 +58,15 @@
   - https://tanstack.com/query/latest/docs/framework/react/reference/useQueries
   - https://tanstack.com/query/v5/docs/framework/react/reference/useQueries#combine
 - https://brockherion.dev/blog/posts/data-fetching-in-nextjs/
+- https://github.com/lukeed/clsx
+- https://thegraph.com/docs/en/cookbook/how-to-secure-api-keys-using-nextjs-server-components/#step-3-implement-server-side-api-request
+- https://nextjs.org/docs/app/building-your-application/deploying#docker-image
+- https://www.flightcontrol.dev/blog/secret-knowledge-to-self-host-nextjs
+- https://github.com/cerebral/overmind
+- https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#local-fonts
+- https://nextjs.org/docs/app/api-reference/components/font
+- https://fonts.google.com/specimen/Lusitana
+- https://fontsource.org/docs/guides/nextjs
 
 ## Commands
 
