@@ -1,4 +1,4 @@
-import { BASE_GH_URL } from "./constants";
+import { BASE_GH_URL } from "@/lib/constants";
 
 export function repo2api(repoUrl: string): URL {
   const parsedUrl = URL.parse(repoUrl);

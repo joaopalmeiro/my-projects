@@ -96,6 +96,8 @@
 - https://nextjs.org/blog/next-15#static-route-indicator
 - https://nextjs.org/docs/14/getting-started/project-structure
 - https://github.com/webdevcody/wdc-saas-starter-kit
+- https://biomejs.dev/internals/changelog/#v191-2024-09-15: "`noUndeclaredDependencies` now ignores `@/` imports (...)"
+- [Allow defining a different key into the final destination object after parsing](https://github.com/colinhacks/zod/issues/486) issue
 
 ## Commands
 
@@ -108,7 +110,6 @@ react-dom \
 zod \
 && npm install -D \
 @biomejs/biome \
-@joaopalmeiro/biome-react-config \
 @types/react \
 @types/react-dom \
 @typescript-eslint/parser \
