@@ -10,6 +10,7 @@ export const projectsSchema = z.object({
     }),
   ),
 });
+export type Projects = z.infer<typeof projectsSchema>;
 
 export const repoSchema = z.object({
   description: z.string(),

@@ -98,6 +98,11 @@
 - https://github.com/webdevcody/wdc-saas-starter-kit
 - https://biomejs.dev/internals/changelog/#v191-2024-09-15: "`noUndeclaredDependencies` now ignores `@/` imports (...)"
 - [Allow defining a different key into the final destination object after parsing](https://github.com/colinhacks/zod/issues/486) issue
+- https://nextjs.org/docs/14/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense
+- https://nextjs.org/docs/14/app/building-your-application/data-fetching/fetching#sequential-data-fetching:
+  - "You can use `loading.js` (for route segments) or React `<Suspense>` (for nested components) to show an instant loading state while React streams in the result."
+- https://www.reddit.com/r/nextjs/comments/1ad3q3h/comment/kjygmfb/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button: "Even though you can use server actions to fetch data, Next.js discourages it because it can only send a POST request. Instead, fetch the data from the server component and pass it down as props."
+- https://nextjs.org/docs/14/app/building-your-application/data-fetching/fetching#parallel-data-fetching
 
 ## Commands
 
