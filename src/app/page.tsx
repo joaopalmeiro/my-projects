@@ -41,6 +41,7 @@ async function ProjectList(props: ProjectListProps) {
           ["Accept", "application/vnd.github+json"],
           ["X-GitHub-Api-Version", "2022-11-28"],
         ],
+        cache: "no-store",
       });
 
       const rawData = await response.json();
@@ -76,6 +77,7 @@ async function Issues(props: Props) {
       ["Accept", "application/vnd.github+json"],
       ["X-GitHub-Api-Version", "2022-11-28"],
     ],
+    cache: "no-store",
   });
 
   const rawData = await response.json();
