@@ -1,7 +1,8 @@
+import { parse } from "node:url";
 import { BASE_GH_URL } from "@/lib/constants";
 
 export function repo2api(repoUrl: string): URL {
-  const parsedUrl = URL.parse(repoUrl);
+  const parsedUrl = parse(repoUrl);
 
   switch (parsedUrl?.hostname) {
     case "github.com":

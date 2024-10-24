@@ -1,5 +1,7 @@
-import { projectsSchema } from "@/lib/schemas";
+import { issuesSchema, projectsSchema, repoSchema } from "@/lib/schemas";
 import type { Projects } from "@/lib/schemas";
+import { repo2api } from "@/lib/utils";
+import { Collapsible } from "@ark-ui/react";
 
 export default async function Home() {
   const response = await fetch(
@@ -29,7 +31,55 @@ interface ProjectListProps {
   data: Projects;
 }
 
-function ProjectList(props: ProjectListProps) {
-  // TODO: Parallel data fetching
-  return JSON.stringify(props.data, null, 2);
+async function ProjectList(props: ProjectListProps) {
+  const repos = await Promise.all(
+    props.data.records.map(async (project) => {
+      const repo = repo2api(project.fields.Repo);
+
+      const response = await fetch(repo, {
+        headers: [
+          ["Accept", "application/vnd.github+json"],
+          ["X-GitHub-Api-Version", "2022-11-28"],
+        ],
+      });
+
+      const rawData = await response.json();
+      return repoSchema.parse(rawData);
+    }),
+  );
+
+  return (
+    <ul>
+      {repos.map((repo) => {
+        return (
+          <li key={repo.id}>
+            <Collapsible.Root>
+              <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
+              <Collapsible.Content>
+                <Issues url={repo.issues_url} />
+              </Collapsible.Content>
+            </Collapsible.Root>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+interface Props {
+  url: string;
+}
+
+async function Issues(props: Props) {
+  const response = await fetch(props.url, {
+    headers: [
+      ["Accept", "application/vnd.github+json"],
+      ["X-GitHub-Api-Version", "2022-11-28"],
+    ],
+  });
+
+  const rawData = await response.json();
+  const data = issuesSchema.parse(rawData);
+
+  return JSON.stringify(data, null, 2);
 }
