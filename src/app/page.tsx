@@ -8,6 +8,7 @@ export default async function Home() {
     `http://localhost:8484/api/docs/${process.env.DOC_ID}/tables/${process.env.TABLE_ID}/records`,
     {
       headers: [["Authorization", `Bearer ${process.env.GRIST_API_KEY}`]],
+      cache: "no-store",
     },
   );
 
@@ -45,6 +46,7 @@ async function ProjectList(props: ProjectListProps) {
       });
 
       const rawData = await response.json();
+      // TODO: Support GitLab schema
       return repoSchema.parse(rawData);
     }),
   );

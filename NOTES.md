@@ -107,6 +107,12 @@
 - https://nextjs.org/docs/app/building-your-application/routing/error-handling#handling-global-errors
 - https://nextjs.org/docs/app/building-your-application/routing/error-handling#handling-expected-errors-from-server-components
 - https://nextjs.org/docs/app/api-reference/next-config-js/optimizePackageImports
+- https://docs.gitlab.com/ee/api/rest/index.html#namespaced-paths
+- https://kilianvalkhof.com/2024/javascript/the-problem-with-new-url-and-how-url-parse-fixes-that/
+- https://www.bennadel.com/blog/2831-rethrowing-errors-in-javascript-and-node-js.htm
+- https://javascript.info/try-catch#rethrowing
+- https://eslint.org/docs/latest/rules/no-else-return
+- https://stackoverflow.com/questions/76406748/constructing-url-with-base-url-strips-the-path-in-base-url
 
 ## Commands
 
