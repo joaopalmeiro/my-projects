@@ -129,6 +129,10 @@
 - https://blog.stijnvanhulle.be/blog/mapping-of-data-with-zod
 - https://github.com/colinhacks/zod/discussions/2100
 - https://zod.dev/?id=pipe
+- https://nextjs.org/docs/app/api-reference/next-config-js/logging
+- https://nextjs.org/docs/14/app/api-reference/next-config-js/logging
+- https://www.adarsha.dev/blog/nextjs-four-caching-layers
+- https://shkspr.mobi/blog/2024/10/you-can-use-text-wrap-balance-on-icons/
 
 ## Commands
 
