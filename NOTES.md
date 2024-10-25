@@ -10,6 +10,7 @@
 - https://ark-ui.com/%5Bframework%5D/docs/components/collapsible#lazy-mount
 - https://ariakit.org/examples/disclosure-animated
 - https://www.radix-ui.com/primitives/docs/components/collapsible
+- https://ui.shadcn.com/docs/components/collapsible
 - https://tanstack.com/query/latest/docs/framework/react/overview#enough-talk-show-me-some-code-already
 - https://github.com/orgs/community/discussions/24442: "pushed_at will be updated any time a commit is pushed to any of the repository's branches."
 - https://tanstack.com/query/latest/docs/framework/react/examples/simple
@@ -113,6 +114,21 @@
 - https://javascript.info/try-catch#rethrowing
 - https://eslint.org/docs/latest/rules/no-else-return
 - https://stackoverflow.com/questions/76406748/constructing-url-with-base-url-strips-the-path-in-base-url
+- https://zod.dev/?id=unions
+- https://stackoverflow.com/questions/77427502/how-to-merge-multiple-zod-object-schema
+- https://www.chakra-ui.com/docs/components/collapsible
+- https://www.chakra-ui.com/docs/get-started/frameworks/next-app#optimize-bundle
+- https://github.com/phosphor-icons/react
+- https://github.com/adobe/react-spectrum/blob/v2.27.0/packages/%40react-aria/button/src/useButton.ts
+- https://react-spectrum.adobe.com/react-aria/useLink.html
+- https://react-spectrum.adobe.com/react-aria/Button.html#link-buttons
+- https://github.com/adobe/react-spectrum/blob/93c26d8bd2dfe48a815f08c58925a977b94d6fdd/packages/%40react-aria/link/src/useLink.ts
+- https://kittygiraudel.com/2020/12/10/accessible-icon-links/
+- https://www.sarasoueidan.com/blog/accessible-icon-buttons/
+- https://github.com/phosphor-icons/homepage
+- https://blog.stijnvanhulle.be/blog/mapping-of-data-with-zod
+- https://github.com/colinhacks/zod/discussions/2100
+- https://zod.dev/?id=pipe
 
 ## Commands
 

@@ -46,7 +46,6 @@ async function ProjectList(props: ProjectListProps) {
       });
 
       const rawData = await response.json();
-      // TODO: Support GitLab schema
       return repoSchema.parse(rawData);
     }),
   );
@@ -58,8 +57,13 @@ async function ProjectList(props: ProjectListProps) {
           <li key={repo.id}>
             <Collapsible.Root>
               <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
+              <a href={repo.url} target="_blank" rel="noreferrer">
+                Repo
+              </a>
+
               <Collapsible.Content>
-                <Issues url={repo.issues_url} />
+                TODO
+                {/* <Issues url={repo.issues_url} /> */}
               </Collapsible.Content>
             </Collapsible.Root>
           </li>
