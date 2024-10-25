@@ -12,7 +12,7 @@ export const projectsSchema = z.object({
 });
 export type Projects = z.infer<typeof projectsSchema>;
 
-const ghRepoSchema = z
+export const ghRepoSchema = z
   .object({
     description: z.string(),
     html_url: z.string().url(),
@@ -29,26 +29,27 @@ const ghRepoSchema = z
     description: data.description,
     id: data.id,
     name: data.name,
+    updatedAt: data.pushed_at,
     url: data.html_url,
     source: "github" as const,
   }));
 
-const glRepoSchema = z
+export const glRepoSchema = z
   .object({
     description: z.string(),
     id: z.number().int(),
     name: z.string(),
     web_url: z.string().url(),
+    last_activity_at: z.coerce.date(),
   })
   .transform((data) => ({
     description: data.description,
     id: data.id,
     name: data.name,
+    updatedAt: data.last_activity_at,
     url: data.web_url,
     source: "gitlab" as const,
   }));
-
-export const repoSchema = z.union([ghRepoSchema, glRepoSchema]);
 
 const issueSchema = z.object({
   title: z.string(),

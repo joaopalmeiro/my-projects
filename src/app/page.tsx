@@ -1,7 +1,9 @@
-import { issuesSchema, projectsSchema, repoSchema } from "@/lib/schemas";
+import { parse } from "node:url";
 import type { Projects } from "@/lib/schemas";
-import { repo2api } from "@/lib/utils";
 import { Collapsible } from "@ark-ui/react";
+
+import { BASE_GH_URL, BASE_GL_URL, GH_HOST, GL_HOST } from "@/lib/constants";
+import { ghRepoSchema, glRepoSchema, issuesSchema, projectsSchema } from "@/lib/schemas";
 
 export default async function Home() {
   const response = await fetch(
@@ -35,18 +37,37 @@ interface ProjectListProps {
 async function ProjectList(props: ProjectListProps) {
   const repos = await Promise.all(
     props.data.records.map(async (project) => {
-      const repo = repo2api(project.fields.Repo);
+      const parsedUrl = parse(project.fields.Repo);
 
-      const response = await fetch(repo, {
-        headers: [
-          ["Accept", "application/vnd.github+json"],
-          ["X-GitHub-Api-Version", "2022-11-28"],
-        ],
-        cache: "no-store",
-      });
+      if (parsedUrl.hostname === GH_HOST && parsedUrl.pathname) {
+        const apiUrl = new URL(`repos${parsedUrl.pathname}`, BASE_GH_URL);
 
-      const rawData = await response.json();
-      return repoSchema.parse(rawData);
+        const response = await fetch(apiUrl, {
+          headers: [
+            ["Accept", "application/vnd.github+json"],
+            ["X-GitHub-Api-Version", "2022-11-28"],
+          ],
+          cache: "no-store",
+        });
+
+        const rawData = await response.json();
+        return ghRepoSchema.parse(rawData);
+      }
+
+      if (parsedUrl.hostname === GL_HOST && parsedUrl.pathname) {
+        const projectId = encodeURIComponent(parsedUrl.pathname.slice(1));
+        const apiUrl = new URL(`projects/${projectId}`, BASE_GL_URL);
+
+        const response = await fetch(apiUrl, {
+          headers: [["Authorization", `Bearer ${process.env.GL_PAT}`]],
+          cache: "no-store",
+        });
+
+        const rawData = await response.json();
+        return glRepoSchema.parse(rawData);
+      }
+
+      throw new Error(`Invalid repo URL: ${project.fields.Repo}`);
     }),
   );
 
