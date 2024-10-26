@@ -99,6 +99,7 @@ async function ProjectList(props: ProjectListProps) {
           <li key={repo.id}>
             <Collapsible.Root>
               <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
+              <time dateTime={repo.updatedAt.toISOString()}>{repo.updatedAt.toISOString()}</time>
               <a href={repo.url} target="_blank" rel="noreferrer">
                 Repo
               </a>

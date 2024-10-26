@@ -138,6 +138,17 @@
 - https://docs.gitlab.com/ee/api/issues.html#list-issues
 - https://docs.gitea.com/development/api-usage#authentication
 - https://docs.gitea.com/api/1.22/#tag/repository/operation/repoGet
+- https://dbushell.com/2021/06/08/javascript-relative-date-time-formatting/
+- https://www.builder.io/blog/relative-time
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat
+- https://github.com/vercel/little-date
+- https://ahmadrosid.com/cheatsheet/js/getRelativeTimeString
+- https://date-fns.org/v4.1.0/docs/intlFormatDistance
+- https://www.npmjs.com/package/tiny-relative-date
+- https://github.com/formkit/tempo/issues/7
+- https://www.npmjs.com/package/javascript-time-ago
+- https://gitlab.com/catamphetamine/javascript-time-ago
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
 
 ## Commands
 
