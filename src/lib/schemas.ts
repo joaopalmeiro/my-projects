@@ -50,10 +50,18 @@ export const glRepoSchema = z
     source: "gitlab" as const,
   }));
 
-const issueSchema = z.object({
+const ghIssueSchema = z.object({
   title: z.string(),
   html_url: z.string().url(),
   id: z.number().int(),
   number: z.number().int(),
 });
-export const issuesSchema = z.array(issueSchema);
+export const ghIssuesSchema = z.array(ghIssueSchema);
+
+const glIssueSchema = z.object({
+  id: z.number().int(),
+  iid: z.number().int(),
+  title: z.string(),
+  web_url: z.string().url(),
+});
+export const glIssuesSchema = z.array(glIssueSchema);

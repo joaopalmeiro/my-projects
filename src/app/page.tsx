@@ -3,7 +3,13 @@ import type { Projects } from "@/lib/schemas";
 import { Collapsible } from "@ark-ui/react";
 
 import { BASE_GH_URL, BASE_GL_URL, GH_HOST, GL_HOST } from "@/lib/constants";
-import { ghRepoSchema, glRepoSchema, issuesSchema, projectsSchema } from "@/lib/schemas";
+import {
+  ghIssuesSchema,
+  ghRepoSchema,
+  glIssuesSchema,
+  glRepoSchema,
+  projectsSchema,
+} from "@/lib/schemas";
 
 export default async function Home() {
   const response = await fetch(
@@ -45,6 +51,7 @@ async function ProjectList(props: ProjectListProps) {
         const response = await fetch(apiUrl, {
           headers: [
             ["Accept", "application/vnd.github+json"],
+            ["Authorization", `Bearer ${process.env.GH_PAT}`],
             ["X-GitHub-Api-Version", "2022-11-28"],
           ],
           cache: "no-store",
@@ -83,8 +90,7 @@ async function ProjectList(props: ProjectListProps) {
               </a>
 
               <Collapsible.Content>
-                {repo.issuesUrl}
-                {/* <Issues url={repo.issues_url} /> */}
+                <Issues url={repo.issuesUrl} />
               </Collapsible.Content>
             </Collapsible.Root>
           </li>
@@ -98,17 +104,42 @@ interface Props {
   url: string;
 }
 
+async function fetchIssues(url: string) {
+  if (url.startsWith(BASE_GH_URL)) {
+    const response = await fetch(url, {
+      headers: [
+        ["Accept", "application/vnd.github+json"],
+        ["Authorization", `Bearer ${process.env.GH_PAT}`],
+        ["X-GitHub-Api-Version", "2022-11-28"],
+      ],
+      cache: "no-store",
+    });
+
+    const rawData = await response.json();
+    return ghIssuesSchema.parse(rawData);
+  }
+
+  if (url.startsWith(BASE_GL_URL)) {
+    const response = await fetch(`${url}?state=opened`, {
+      headers: [["Authorization", `Bearer ${process.env.GL_PAT}`]],
+      cache: "no-store",
+    });
+
+    const rawData = await response.json();
+    return glIssuesSchema.parse(rawData);
+  }
+
+  throw new Error(`Invalid issue API URL: ${url}`);
+}
+
 async function Issues(props: Props) {
-  const response = await fetch(props.url, {
-    headers: [
-      ["Accept", "application/vnd.github+json"],
-      ["X-GitHub-Api-Version", "2022-11-28"],
-    ],
-    cache: "no-store",
-  });
+  const issues = await fetchIssues(props.url);
 
-  const rawData = await response.json();
-  const data = issuesSchema.parse(rawData);
-
-  return JSON.stringify(data, null, 2);
+  return (
+    <ul>
+      {issues.map((issue) => {
+        return <li key={issue.id}>{issue.title}</li>;
+      })}
+    </ul>
+  );
 }
