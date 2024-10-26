@@ -80,6 +80,7 @@ async function ProjectList(props: ProjectListProps) {
         const apiUrl = new URL(`repos${parsedUrl.pathname}`, BASE_CB_URL);
 
         const response = await fetch(apiUrl, {
+          headers: [["Authorization", `token ${process.env.CB_PAT}`]],
           cache: "no-store",
         });
 
@@ -144,6 +145,7 @@ async function fetchIssues(url: string) {
 
   if (url.startsWith(BASE_CB_URL)) {
     const response = await fetch(`${url}?state=open`, {
+      headers: [["Authorization", `token ${process.env.CB_PAT}`]],
       cache: "no-store",
     });
 

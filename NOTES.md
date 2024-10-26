@@ -136,6 +136,8 @@
 - https://docs.gitlab.com/ee/api/rest/#personalprojectgroup-access-tokens
 - `export const repoSchema = z.union([ghRepoSchema, glRepoSchema]);`
 - https://docs.gitlab.com/ee/api/issues.html#list-issues
+- https://docs.gitea.com/development/api-usage#authentication
+- https://docs.gitea.com/api/1.22/#tag/repository/operation/repoGet
 
 ## Commands
 
