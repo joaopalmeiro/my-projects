@@ -149,12 +149,15 @@
 - https://www.npmjs.com/package/javascript-time-ago
 - https://gitlab.com/catamphetamine/javascript-time-ago
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+- https://react-spectrum.adobe.com/react-aria/Disclosure.html#example: `<h3> <Button slot="trigger"> <svg viewBox="0 0 24 24"> <path d="m8.25 4.5 7.5 7.5-7.5 7.5" /> </svg> System Requirements </Button> </h3>`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#several_ways_to_create_a_date_object: `const today = new Date();`
 
 ## Commands
 
 ```bash
 npm install \
 @ark-ui/react \
+date-fns \
 next \
 react \
 react-dom \
@@ -476,5 +479,40 @@ export function repo2api(repoUrl: string): URL {
   }
 
   throw new Error(`Invalid repo URL: ${repoUrl}`);
+}
+```
+
+```ts
+export function getRelativeTimeString(date: Date): string {
+  const timeMs = date.getTime();
+  const deltaSeconds = Math.round((timeMs - Date.now()) / 1000);
+
+  const cutoffs = [
+    60,
+    3600,
+    86400,
+    86400 * 7,
+    86400 * 30,
+    86400 * 365,
+    Number.POSITIVE_INFINITY,
+  ];
+  const units: Intl.RelativeTimeFormatUnit[] = [
+    "second",
+    "minute",
+    "hour",
+    "day",
+    "week",
+    "month",
+    "year",
+  ];
+
+  const unitIndex = cutoffs.findIndex(
+    (cutoff) => cutoff > Math.abs(deltaSeconds)
+  );
+  const divisor = unitIndex ? cutoffs[unitIndex - 1] : 1;
+
+  const rtf = new Intl.RelativeTimeFormat("en-GB", { numeric: "auto" });
+
+  return rtf.format(Math.floor(deltaSeconds / divisor), units[unitIndex]);
 }
 ```

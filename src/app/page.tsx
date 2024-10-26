@@ -1,6 +1,7 @@
 import { parse } from "node:url";
 import type { Projects } from "@/lib/schemas";
 import { Collapsible } from "@ark-ui/react";
+import { intlFormatDistance } from "date-fns";
 
 import { BASE_CB_URL, BASE_GH_URL, BASE_GL_URL, CB_HOST, GH_HOST, GL_HOST } from "@/lib/constants";
 import {
@@ -28,7 +29,7 @@ export default async function Home() {
   return (
     <>
       <header>
-        <h1>My Projects</h1>
+        <h1 className="font-semibold text-gray-950">My Projects</h1>
       </header>
 
       <main>
@@ -92,16 +93,22 @@ async function ProjectList(props: ProjectListProps) {
     }),
   );
 
+  const today = new Date();
+
   return (
     <ul>
       {repos.map((repo) => {
         return (
           <li key={repo.id}>
             <Collapsible.Root>
-              <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
-              <time dateTime={repo.updatedAt.toISOString()}>{repo.updatedAt.toISOString()}</time>
+              <h3>
+                <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
+              </h3>
+              <time dateTime={repo.updatedAt.toISOString()}>
+                {intlFormatDistance(repo.updatedAt, today, { locale: "en-GB" })}
+              </time>
               <a href={repo.url} target="_blank" rel="noreferrer">
-                Repo
+                Repo<span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
               </a>
 
               <Collapsible.Content>
