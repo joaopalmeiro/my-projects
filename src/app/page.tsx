@@ -83,7 +83,7 @@ async function ProjectList(props: ProjectListProps) {
               </a>
 
               <Collapsible.Content>
-                TODO
+                {repo.issuesUrl}
                 {/* <Issues url={repo.issues_url} /> */}
               </Collapsible.Content>
             </Collapsible.Root>

@@ -17,17 +17,14 @@ export const ghRepoSchema = z
     description: z.string(),
     html_url: z.string().url(),
     id: z.number().int(),
-    issues_url: z
-      .string()
-      .url()
-      // TODO: Move to transformed schema
-      .transform((url) => url.replace("{/number}", "")),
+    issues_url: z.string().url(),
     name: z.string(),
     pushed_at: z.coerce.date(),
   })
   .transform((data) => ({
     description: data.description,
     id: data.id,
+    issuesUrl: data.issues_url.replace("{/number}", ""),
     name: data.name,
     updatedAt: data.pushed_at,
     url: data.html_url,
@@ -36,15 +33,17 @@ export const ghRepoSchema = z
 
 export const glRepoSchema = z
   .object({
+    _links: z.object({ issues: z.string().url() }),
     description: z.string(),
     id: z.number().int(),
+    last_activity_at: z.coerce.date(),
     name: z.string(),
     web_url: z.string().url(),
-    last_activity_at: z.coerce.date(),
   })
   .transform((data) => ({
     description: data.description,
     id: data.id,
+    issuesUrl: data._links.issues,
     name: data.name,
     updatedAt: data.last_activity_at,
     url: data.web_url,

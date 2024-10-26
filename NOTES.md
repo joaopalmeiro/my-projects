@@ -135,6 +135,7 @@
 - https://shkspr.mobi/blog/2024/10/you-can-use-text-wrap-balance-on-icons/
 - https://docs.gitlab.com/ee/api/rest/#personalprojectgroup-access-tokens
 - `export const repoSchema = z.union([ghRepoSchema, glRepoSchema]);`
+- https://docs.gitlab.com/ee/api/issues.html#list-issues
 
 ## Commands
 
