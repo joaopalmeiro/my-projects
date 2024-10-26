@@ -50,6 +50,26 @@ export const glRepoSchema = z
     source: "gitlab" as const,
   }));
 
+export const cbRepoSchema = z
+  .object({
+    description: z.string(),
+    html_url: z.string().url(),
+    id: z.number().int(),
+    name: z.string(),
+    updated_at: z.coerce.date(),
+    url: z.string().url(),
+  })
+  .transform((data) => ({
+    description: data.description,
+    id: data.id,
+    // TODO: Check after authentication if issues_url exists
+    issuesUrl: `${data.url}/issues`,
+    name: data.name,
+    updatedAt: data.updated_at,
+    url: data.html_url,
+    source: "codeberg" as const,
+  }));
+
 const ghIssueSchema = z.object({
   title: z.string(),
   html_url: z.string().url(),
@@ -65,3 +85,11 @@ const glIssueSchema = z.object({
   web_url: z.string().url(),
 });
 export const glIssuesSchema = z.array(glIssueSchema);
+
+const cbIssueSchema = z.object({
+  html_url: z.string().url(),
+  id: z.number().int(),
+  number: z.number().int(),
+  title: z.string(),
+});
+export const cbIssuesSchema = z.array(cbIssueSchema);

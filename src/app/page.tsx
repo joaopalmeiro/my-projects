@@ -2,8 +2,10 @@ import { parse } from "node:url";
 import type { Projects } from "@/lib/schemas";
 import { Collapsible } from "@ark-ui/react";
 
-import { BASE_GH_URL, BASE_GL_URL, GH_HOST, GL_HOST } from "@/lib/constants";
+import { BASE_CB_URL, BASE_GH_URL, BASE_GL_URL, CB_HOST, GH_HOST, GL_HOST } from "@/lib/constants";
 import {
+  cbIssuesSchema,
+  cbRepoSchema,
   ghIssuesSchema,
   ghRepoSchema,
   glIssuesSchema,
@@ -74,6 +76,17 @@ async function ProjectList(props: ProjectListProps) {
         return glRepoSchema.parse(rawData);
       }
 
+      if (parsedUrl.hostname === CB_HOST && parsedUrl.pathname) {
+        const apiUrl = new URL(`repos${parsedUrl.pathname}`, BASE_CB_URL);
+
+        const response = await fetch(apiUrl, {
+          cache: "no-store",
+        });
+
+        const rawData = await response.json();
+        return cbRepoSchema.parse(rawData);
+      }
+
       throw new Error(`Invalid repo URL: ${project.fields.Repo}`);
     }),
   );
@@ -127,6 +140,15 @@ async function fetchIssues(url: string) {
 
     const rawData = await response.json();
     return glIssuesSchema.parse(rawData);
+  }
+
+  if (url.startsWith(BASE_CB_URL)) {
+    const response = await fetch(`${url}?state=open`, {
+      cache: "no-store",
+    });
+
+    const rawData = await response.json();
+    return cbIssuesSchema.parse(rawData);
   }
 
   throw new Error(`Invalid issue API URL: ${url}`);
