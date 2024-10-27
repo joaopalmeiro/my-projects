@@ -161,6 +161,8 @@
 - https://francoisbest.com/open-source
 - https://nextjs.org/docs/14/app/api-reference/functions/fetch#optionscache: `force-cache` or `no-store`
 - https://nextjs.org/docs/14/app/api-reference/functions/fetch#optionsnextrevalidate
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted
+- https://byby.dev/js-sort-by-date-value
 
 ## Commands
 

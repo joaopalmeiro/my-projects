@@ -1,7 +1,7 @@
 import { parse } from "node:url";
 import type { Projects } from "@/lib/schemas";
 import { Collapsible } from "@ark-ui/react";
-import { intlFormatDistance } from "date-fns";
+import { compareAsc, intlFormatDistance } from "date-fns";
 
 import {
   BASE_CB_URL,
@@ -102,10 +102,13 @@ async function ProjectList(props: ProjectListProps) {
   );
 
   const today = new Date();
+  const sortedRepos = repos.toSorted((a, b) => {
+    return compareAsc(a.updatedAt, b.updatedAt);
+  });
 
   return (
     <ul>
-      {repos.map((repo) => {
+      {sortedRepos.map((repo) => {
         return (
           <li key={repo.id}>
             <Collapsible.Root>
