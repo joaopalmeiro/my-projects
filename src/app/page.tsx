@@ -47,8 +47,8 @@ export default async function Home() {
           <Portal>
             <Dialog.Backdrop className="fixed left-0 top-0 h-screen w-screen" />
             <Dialog.Positioner className="fixed right-0 top-0 flex h-dvh w-screen items-center justify-center sm:w-96">
-              <Dialog.Content className="grid-drawer grid size-full divide-y bg-white shadow-lg [&[hidden]]:hidden">
-                <ark.div className="grid-drawer-header grid gap-1 p-4 [grid-area:header] sm:p-6">
+              <Dialog.Content className="grid size-full divide-y bg-white shadow-lg grid-drawer data-[state=closed]:animate-drawer-out-right data-[state=open]:animate-drawer-in-right [&[hidden]]:hidden">
+                <ark.div className="grid gap-1 p-4 grid-drawer-header [grid-area:header] sm:p-6">
                   <Dialog.Title className="font-semibold text-gray-950 [grid-area:title]">
                     Configuration
                   </Dialog.Title>
