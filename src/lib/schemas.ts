@@ -70,26 +70,47 @@ export const cbRepoSchema = z
     source: "codeberg" as const,
   }));
 
-const ghIssueSchema = z.object({
-  title: z.string(),
-  html_url: z.string().url(),
-  id: z.number().int(),
-  number: z.number().int(),
-});
+const ghIssueSchema = z
+  .object({
+    title: z.string(),
+    html_url: z.string().url(),
+    id: z.number().int(),
+    number: z.number().int(),
+  })
+  .transform((data) => ({
+    id: data.id,
+    number: data.number,
+    title: data.title,
+    url: data.html_url,
+  }));
 export const ghIssuesSchema = z.array(ghIssueSchema);
 
-const glIssueSchema = z.object({
-  id: z.number().int(),
-  iid: z.number().int(),
-  title: z.string(),
-  web_url: z.string().url(),
-});
+const glIssueSchema = z
+  .object({
+    id: z.number().int(),
+    iid: z.number().int(),
+    title: z.string(),
+    web_url: z.string().url(),
+  })
+  .transform((data) => ({
+    id: data.id,
+    number: data.iid,
+    title: data.title,
+    url: data.web_url,
+  }));
 export const glIssuesSchema = z.array(glIssueSchema);
 
-const cbIssueSchema = z.object({
-  html_url: z.string().url(),
-  id: z.number().int(),
-  number: z.number().int(),
-  title: z.string(),
-});
+const cbIssueSchema = z
+  .object({
+    html_url: z.string().url(),
+    id: z.number().int(),
+    number: z.number().int(),
+    title: z.string(),
+  })
+  .transform((data) => ({
+    id: data.id,
+    number: data.number,
+    title: data.title,
+    url: data.html_url,
+  }));
 export const cbIssuesSchema = z.array(cbIssueSchema);

@@ -181,7 +181,15 @@ async function Issues(props: Props) {
   return (
     <ul>
       {issues.map((issue) => {
-        return <li key={issue.id}>{issue.title}</li>;
+        return (
+          <li key={issue.id}>
+            <span className="font-mono">#{issue.number}</span>
+            <a href={issue.url} target="_blank" rel="noreferrer">
+              {issue.title}
+              <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
+            </a>
+          </li>
+        );
       })}
     </ul>
   );

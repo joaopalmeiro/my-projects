@@ -156,6 +156,7 @@
   - https://nuqs.47ng.com/docs/adapters#nextjs-app-router
   - https://github.com/47ng/nuqs?tab=readme-ov-file#accessing-searchparams-in-server-components
   - https://nuqs.47ng.com/docs/server-side
+  - https://nuqs.47ng.com/docs/tips-tricks#reusing-hooks
 - https://nextjs.org/docs/14/app/api-reference/functions/use-search-params
 - https://francoisbest.com/posts/2023/storing-react-state-in-the-url-with-nextjs
 - https://francoisbest.com/open-source
