@@ -6,3 +6,5 @@ export const GL_HOST: string = "gitlab.com";
 
 export const BASE_CB_URL: string = "https://codeberg.org/api/v1/";
 export const CB_HOST: string = "codeberg.org";
+
+export const DEV_CACHE: Pick<RequestInit, "cache"> = { cache: "force-cache" };

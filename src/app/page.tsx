@@ -3,7 +3,15 @@ import type { Projects } from "@/lib/schemas";
 import { Collapsible } from "@ark-ui/react";
 import { intlFormatDistance } from "date-fns";
 
-import { BASE_CB_URL, BASE_GH_URL, BASE_GL_URL, CB_HOST, GH_HOST, GL_HOST } from "@/lib/constants";
+import {
+  BASE_CB_URL,
+  BASE_GH_URL,
+  BASE_GL_URL,
+  CB_HOST,
+  DEV_CACHE,
+  GH_HOST,
+  GL_HOST,
+} from "@/lib/constants";
 import {
   cbIssuesSchema,
   cbRepoSchema,
@@ -19,7 +27,7 @@ export default async function Home() {
     `http://localhost:8484/api/docs/${process.env.DOC_ID}/tables/${process.env.TABLE_ID}/records`,
     {
       headers: [["Authorization", `Bearer ${process.env.GRIST_API_KEY}`]],
-      cache: "no-store",
+      ...DEV_CACHE,
     },
   );
 
@@ -57,7 +65,7 @@ async function ProjectList(props: ProjectListProps) {
             ["Authorization", `Bearer ${process.env.GH_PAT}`],
             ["X-GitHub-Api-Version", "2022-11-28"],
           ],
-          cache: "no-store",
+          ...DEV_CACHE,
         });
 
         const rawData = await response.json();
@@ -70,7 +78,7 @@ async function ProjectList(props: ProjectListProps) {
 
         const response = await fetch(apiUrl, {
           headers: [["Authorization", `Bearer ${process.env.GL_PAT}`]],
-          cache: "no-store",
+          ...DEV_CACHE,
         });
 
         const rawData = await response.json();
@@ -82,7 +90,7 @@ async function ProjectList(props: ProjectListProps) {
 
         const response = await fetch(apiUrl, {
           headers: [["Authorization", `token ${process.env.CB_PAT}`]],
-          cache: "no-store",
+          ...DEV_CACHE,
         });
 
         const rawData = await response.json();
@@ -134,7 +142,7 @@ async function fetchIssues(url: string) {
         ["Authorization", `Bearer ${process.env.GH_PAT}`],
         ["X-GitHub-Api-Version", "2022-11-28"],
       ],
-      cache: "no-store",
+      ...DEV_CACHE,
     });
 
     const rawData = await response.json();
@@ -144,7 +152,7 @@ async function fetchIssues(url: string) {
   if (url.startsWith(BASE_GL_URL)) {
     const response = await fetch(`${url}?state=opened`, {
       headers: [["Authorization", `Bearer ${process.env.GL_PAT}`]],
-      cache: "no-store",
+      ...DEV_CACHE,
     });
 
     const rawData = await response.json();
@@ -154,7 +162,7 @@ async function fetchIssues(url: string) {
   if (url.startsWith(BASE_CB_URL)) {
     const response = await fetch(`${url}?state=open`, {
       headers: [["Authorization", `token ${process.env.CB_PAT}`]],
-      cache: "no-store",
+      ...DEV_CACHE,
     });
 
     const rawData = await response.json();

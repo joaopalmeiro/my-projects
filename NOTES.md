@@ -151,6 +151,16 @@
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
 - https://react-spectrum.adobe.com/react-aria/Disclosure.html#example: `<h3> <Button slot="trigger"> <svg viewBox="0 0 24 24"> <path d="m8.25 4.5 7.5 7.5-7.5 7.5" /> </svg> System Requirements </Button> </h3>`
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#several_ways_to_create_a_date_object: `const today = new Date();`
+- https://nuqs.47ng.com/:
+  - https://github.com/47ng/nuqs
+  - https://nuqs.47ng.com/docs/adapters#nextjs-app-router
+  - https://github.com/47ng/nuqs?tab=readme-ov-file#accessing-searchparams-in-server-components
+  - https://nuqs.47ng.com/docs/server-side
+- https://nextjs.org/docs/14/app/api-reference/functions/use-search-params
+- https://francoisbest.com/posts/2023/storing-react-state-in-the-url-with-nextjs
+- https://francoisbest.com/open-source
+- https://nextjs.org/docs/14/app/api-reference/functions/fetch#optionscache: `force-cache` or `no-store`
+- https://nextjs.org/docs/14/app/api-reference/functions/fetch#optionsnextrevalidate
 
 ## Commands
 
