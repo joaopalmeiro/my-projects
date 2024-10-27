@@ -7,9 +7,6 @@ const nextConfig = {
       fullUrl: true,
     },
   },
-  experimental: {
-    optimizePackageImports: ["@ark-ui/react"],
-  },
 };
 
 export default nextConfig;

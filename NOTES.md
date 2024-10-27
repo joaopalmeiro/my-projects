@@ -164,6 +164,28 @@
 - https://nextjs.org/docs/14/app/api-reference/functions/fetch#optionsnextrevalidate
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted
 - https://byby.dev/js-sort-by-date-value
+- https://ui.shadcn.com/docs/components/dialog
+- https://ui.shadcn.com/docs/components/drawer
+- https://vaul.emilkowal.ski/
+- https://github.com/emilkowalski/vaul/blob/main/package.json
+- https://motion-primitives.com/
+- https://ui.shadcn.com/docs/components/table
+- https://tanstack.com/table/v8
+- https://ui.shadcn.com/examples/tasks:
+  - https://github.com/shadcn-ui/ui/tree/f0cff7e0eb0e7393bc7e0e02a9157fc3f1fa2f6b/apps/www/app/(app)/examples/tasks
+  - https://github.com/shadcn-ui/ui/blob/f0cff7e0eb0e7393bc7e0e02a9157fc3f1fa2f6b/apps/www/app/(app)/examples/tasks/components/data-table-faceted-filter.tsx
+- https://park-ui.com/react/docs/components/drawer
+- https://park-v2.omikor.in/docs/panda/components/drawer
+- https://arek-ui.fly.dev/?q=Drawer
+- https://github.com/arekmaz/arek-ui/blob/cbe601414e04d9bf81cf12913a3d29f27ba9a1b1/app/components/ui/drawer.tsx
+- https://github.com/arekmaz/arek-ui/blob/cbe601414e04d9bf81cf12913a3d29f27ba9a1b1/app/demo/drawer.stories.tsx
+- https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/website/src/components/theming/theme-drawer.tsx
+- https://ark-ui.com/react/docs/components/dialog#examples
+- https://github.com/rcbyr/keen-slider
+- https://ark-ui.com/react/docs/guides/composition#the-ark-factory
+- https://v2.chakra-ui.com/community/recipes/z-index
+- https://github.com/tailwindlabs/tailwindcss/discussions/10762: `hover:[&[href]]:text-gray-700`
+- https://savvywombat.com.au/tailwind-css/grid-areas
 
 ## Commands
 
@@ -528,4 +550,212 @@ export function getRelativeTimeString(date: Date): string {
 
   return rtf.format(Math.floor(deltaSeconds / divisor), units[unitIndex]);
 }
+```
+
+### `next.config.mjs`
+
+```js
+// @ts-check
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+  experimental: {
+    optimizePackageImports: ["@ark-ui/react"],
+  },
+};
+
+export default nextConfig;
+```
+
+- https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/website/src/components/theming/theme-drawer.tsx
+
+```tsx
+import { Portal } from "@ark-ui/react/portal";
+import { Settings2Icon, XIcon } from "lucide-react";
+import type { PropsWithChildren } from "react";
+import { HStack, Stack } from "styled-system/jsx";
+import { Button } from "~/components/ui/button";
+import { Drawer } from "~/components/ui/drawer";
+import { IconButton } from "~/components/ui/icon-button";
+import { AccentColorPicker } from "./accent-color-picker";
+import { BorderRadiusSlider } from "./border-radius-slider";
+import { FontFamilySelect } from "./font-family-select";
+import { GrayColorPicker } from "./gray-color-picker";
+import { ResetThemeButton } from "./reset-theme-button";
+import { ThemeConfigDialog } from "./theme-config-dialog";
+
+interface Props {
+  isHero?: boolean;
+}
+
+export const ThemeDrawer = (props: PropsWithChildren<Props>) => {
+  const { isHero } = props;
+  return (
+    <Drawer.Root variant={isHero ? "left" : "right"}>
+      <Drawer.Trigger asChild>
+        {isHero ? (
+          <Button
+            variant="outline"
+            size={isHero ? { base: "xl", md: "2xl" } : "md"}
+          >
+            <Settings2Icon />
+            Make it yours
+          </Button>
+        ) : (
+          <IconButton
+            aria-label="Open Theme Drawer"
+            variant="ghost"
+            size="sm"
+            css={{
+              color: "fg.muted",
+              _hover: { color: "fg.default" },
+              "& svg": {
+                width: "5",
+                height: "5",
+              },
+            }}
+          >
+            <Settings2Icon />
+          </IconButton>
+        )}
+      </Drawer.Trigger>
+      <Portal>
+        <Drawer.Positioner>
+          <Drawer.Content>
+            <Drawer.Header>
+              <Drawer.Title>Make it yours</Drawer.Title>
+              <Drawer.Description>
+                Pick the style you want and copy the configuration to your
+                project.
+              </Drawer.Description>
+              <Drawer.CloseTrigger asChild>
+                <IconButton
+                  aria-label="Close Sidebar"
+                  variant="ghost"
+                  position="absolute"
+                  top="3"
+                  right="4"
+                >
+                  <XIcon />
+                </IconButton>
+              </Drawer.CloseTrigger>
+            </Drawer.Header>
+            <Drawer.Body>
+              <Stack flex="1" gap="4">
+                <FontFamilySelect />
+                <GrayColorPicker />
+                <AccentColorPicker />
+                <BorderRadiusSlider />
+              </Stack>
+            </Drawer.Body>
+            <Drawer.Footer>
+              <HStack gap="3">
+                <ResetThemeButton />
+                <ThemeConfigDialog />
+              </HStack>
+            </Drawer.Footer>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Portal>
+    </Drawer.Root>
+  );
+};
+```
+
+- https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/packages/panda/src/theme/tokens/z-index.ts
+
+```ts
+import { defineTokens } from "@pandacss/dev";
+
+export const zIndex = defineTokens.zIndex({
+  hide: {
+    value: -1,
+  },
+  base: {
+    value: 0,
+  },
+  docked: {
+    value: 10,
+  },
+  dropdown: {
+    value: 1000,
+  },
+  sticky: {
+    value: 1100,
+  },
+  banner: {
+    value: 1200,
+  },
+  overlay: {
+    value: 1300,
+  },
+  modal: {
+    value: 1400,
+  },
+  popover: {
+    value: 1500,
+  },
+  skipLink: {
+    value: 1600,
+  },
+  toast: {
+    value: 1700,
+  },
+  tooltip: {
+    value: 1800,
+  },
+});
+```
+
+- https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/packages/panda/src/theme/tokens/animations.ts
+
+```ts
+import { defineTokens } from "@pandacss/dev";
+
+export const animations = defineTokens.animations({
+  "backdrop-in": {
+    value: "fade-in 250ms {easings.emphasized-in}",
+  },
+  "backdrop-out": {
+    value: "fade-out 200ms {easings.emphasized-out}",
+  },
+  "dialog-in": {
+    value: "slide-in 400ms {easings.emphasized-in}",
+  },
+  "dialog-out": {
+    value: "slide-out 200ms {easings.emphasized-out}",
+  },
+  "drawer-in-left": {
+    value: "slide-in-left 400ms {easings.emphasized-in}",
+  },
+  "drawer-out-left": {
+    value: "slide-out-left 200ms {easings.emphasized-out}",
+  },
+  "drawer-in-right": {
+    value: "slide-in-right 400ms {easings.emphasized-in}",
+  },
+  "drawer-out-right": {
+    value: "slide-out-right 200ms {easings.emphasized-out}",
+  },
+  "skeleton-pulse": {
+    value: "skeleton-pulse 2s {easings.pulse} infinite",
+  },
+  "fade-in": {
+    value: "fade-in 400ms {easings.emphasized-in}",
+  },
+  "collapse-in": {
+    value: "collapse-in 250ms {easings.emphasized-in}",
+  },
+  "collapse-out": {
+    value: "collapse-out 200ms {easings.emphasized-out}",
+  },
+  spin: {
+    value: "spin 1s linear infinite",
+  },
+});
 ```

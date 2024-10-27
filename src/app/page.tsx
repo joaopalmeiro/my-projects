@@ -1,6 +1,9 @@
 import { parse } from "node:url";
 import type { Projects } from "@/lib/schemas";
-import { Collapsible } from "@ark-ui/react";
+import { Collapsible } from "@ark-ui/react/collapsible";
+import { Dialog } from "@ark-ui/react/dialog";
+import { ark } from "@ark-ui/react/factory";
+import { Portal } from "@ark-ui/react/portal";
 import { compareAsc, intlFormatDistance } from "date-fns";
 
 import {
@@ -38,6 +41,29 @@ export default async function Home() {
     <>
       <header>
         <h1 className="font-semibold text-gray-950">My Projects</h1>
+
+        <Dialog.Root>
+          <Dialog.Trigger>Configuration</Dialog.Trigger>
+          <Portal>
+            <Dialog.Backdrop className="fixed left-0 top-0 h-screen w-screen" />
+            <Dialog.Positioner className="fixed right-0 top-0 flex h-dvh w-screen items-center justify-center sm:w-96">
+              <Dialog.Content className="grid-drawer grid size-full divide-y bg-white shadow-lg [&[hidden]]:hidden">
+                <ark.div className="grid-drawer-header grid gap-1 p-4 [grid-area:header] sm:p-6">
+                  <Dialog.Title className="font-semibold text-gray-950 [grid-area:title]">
+                    Configuration
+                  </Dialog.Title>
+                  <Dialog.Description className="text-sm text-gray-700 [grid-area:description]">
+                    Adjust project layout.
+                  </Dialog.Description>
+                  <Dialog.CloseTrigger className="[grid-area:close]">Close</Dialog.CloseTrigger>
+                </ark.div>
+                <ark.div className="flex flex-col overflow-auto p-4 [grid-area:body] sm:p-6">
+                  TODO
+                </ark.div>
+              </Dialog.Content>
+            </Dialog.Positioner>
+          </Portal>
+        </Dialog.Root>
       </header>
 
       <main>
