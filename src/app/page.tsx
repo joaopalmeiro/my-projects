@@ -39,7 +39,7 @@ export default async function Home() {
 
   return (
     <>
-      <header>
+      <header className="flex justify-between pb-12 pt-24">
         <h1 className="font-semibold text-gray-950">My Projects</h1>
 
         <Dialog.Root>
