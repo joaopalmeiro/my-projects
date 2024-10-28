@@ -62,7 +62,6 @@ export const cbRepoSchema = z
   .transform((data) => ({
     description: data.description,
     id: data.id,
-    // TODO: Check after authentication if issues_url exists
     issuesUrl: `${data.url}/issues`,
     name: data.name,
     updatedAt: data.updated_at,
