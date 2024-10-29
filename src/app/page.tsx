@@ -39,10 +39,10 @@ export default async function Home() {
 
   return (
     <>
-      <header className="flex justify-between pb-12 pt-24">
+      <header className="flex justify-between px-4 pb-12 pt-24">
         <h1 className="font-semibold text-gray-950">My Projects</h1>
 
-        <Dialog.Root preventScroll={false}>
+        <Dialog.Root preventScroll={true}>
           <Dialog.Trigger>Configuration</Dialog.Trigger>
           <Portal>
             <Dialog.Backdrop className="fixed left-0 top-0 h-screen w-screen" />
@@ -66,7 +66,7 @@ export default async function Home() {
         </Dialog.Root>
       </header>
 
-      <main>
+      <main className="px-4">
         <ProjectList data={data} />
       </main>
     </>
