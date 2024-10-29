@@ -204,6 +204,10 @@ async function fetchIssues(url: string) {
 async function Issues(props: Props) {
   const issues = await fetchIssues(props.url);
 
+  if (issues.length === 0) {
+    return <p>No open issues.</p>;
+  }
+
   return (
     <ul>
       {issues.map((issue) => {

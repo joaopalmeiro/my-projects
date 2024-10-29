@@ -273,6 +273,10 @@ npx create-next-app@15.0.1 create-next-app-example --typescript --tailwind --app
 npx create-next-app@15.0.1 create-next-app-example --typescript --tailwind --app --use-npm --skip-install --eslint --src-dir --empty --no-import-alias --no-turbopack
 ```
 
+```bash
+rm -rf .next/cache/fetch-cache/
+```
+
 ### Clean slate
 
 ```bash
