@@ -189,6 +189,10 @@
 - https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/packages/panda/src/theme/tokens/animations.ts
 - https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/packages/panda/src/theme/keyframes.ts#L28
 - https://github.com/cschroeter/park-ui/blob/53235fbaf69e5f6b8a1bb8d2518a5816475a1f3c/packages/panda/src/theme/tokens/easings.ts
+- https://react-spectrum.adobe.com/react-aria/Modal.html#custom-overlay (drawer)
+- https://nextui.org/docs/components/button
+- https://github.com/chakra-ui/zag/blob/71896fa4466bbd141d4061ed7fd386acd05402ee/packages/utilities/remove-scroll/src/index.ts#L4
+- https://ark-ui.com/react/docs/components/dialog#api-reference: `preventScroll: Whether to prevent scrolling behind the dialog when it's opened`
 
 ## Commands
 
