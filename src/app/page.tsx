@@ -39,8 +39,8 @@ export default async function Home() {
 
   return (
     <>
-      <header className="flex items-center justify-between px-4 pb-12 pt-24">
-        <h1 className="font-semibold text-gray-950">My Projects</h1>
+      <header className="flex items-center justify-between px-4 pb-12 pt-24 text-gray-950">
+        <h1 className="font-semibold">My Projects</h1>
 
         <Dialog.Root preventScroll={true}>
           <Dialog.Trigger className="group -m-2 rounded p-2 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400">
@@ -60,9 +60,9 @@ export default async function Home() {
           <Portal>
             <Dialog.Backdrop className="fixed left-0 top-0 h-screen w-screen" />
             <Dialog.Positioner className="fixed right-0 top-0 flex h-dvh w-screen items-center justify-center sm:w-96">
-              <Dialog.Content className="grid size-full divide-y bg-white shadow-lg grid-drawer data-[state=closed]:animate-drawer-out-right data-[state=open]:animate-drawer-in-right [&[hidden]]:hidden">
+              <Dialog.Content className="grid size-full divide-y bg-white text-gray-950 shadow-lg grid-drawer data-[state=closed]:animate-drawer-out-right data-[state=open]:animate-drawer-in-right [&[hidden]]:hidden">
                 <ark.div className="grid items-center gap-1 p-4 grid-drawer-header [grid-area:header] sm:p-6">
-                  <Dialog.Title className="font-semibold text-gray-950 [grid-area:title]">
+                  <Dialog.Title className="font-semibold [grid-area:title]">
                     Configuration
                   </Dialog.Title>
                   <Dialog.Description className="text-sm text-gray-700 [grid-area:description]">
@@ -88,7 +88,7 @@ export default async function Home() {
         </Dialog.Root>
       </header>
 
-      <main className="px-4">
+      <main className="px-4 text-gray-950">
         <ProjectList data={data} />
       </main>
     </>
@@ -227,15 +227,23 @@ async function Issues(props: Props) {
   const issues = await fetchIssues(props.url);
 
   if (issues.length === 0) {
-    return <p>No open issues.</p>;
+    return <p className="italic">No open issues.</p>;
   }
+
+  const maxNumberDigits = Math.max(...issues.map((issue) => issue.number)).toString().length;
 
   return (
     <ul>
       {issues.map((issue) => {
         return (
-          <li key={issue.id}>
-            <span className="font-mono">#{issue.number}</span>
+          <li key={issue.id} className="flex items-start gap-1">
+            <div className="rounded border border-gray-100 bg-gray-50 p-0.5 font-mono text-sm text-gray-700">
+              <span>#</span>
+              <span className="text-gray-400">
+                {"0".repeat(maxNumberDigits - issue.number.toString().length)}
+              </span>
+              <span>{issue.number}</span>
+            </div>
             <a href={issue.url} target="_blank" rel="noreferrer">
               {issue.title}
               <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>

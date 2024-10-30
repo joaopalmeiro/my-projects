@@ -193,6 +193,7 @@
 - https://nextui.org/docs/components/button
 - https://github.com/chakra-ui/zag/blob/71896fa4466bbd141d4061ed7fd386acd05402ee/packages/utilities/remove-scroll/src/index.ts#L4
 - https://ark-ui.com/react/docs/components/dialog#api-reference: `preventScroll: Whether to prevent scrolling behind the dialog when it's opened`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 
 ## Commands
 
