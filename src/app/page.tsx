@@ -236,17 +236,26 @@ async function Issues(props: Props) {
     <ul>
       {issues.map((issue) => {
         return (
-          <li key={issue.id} className="flex items-baseline gap-1">
-            <div className="rounded border border-gray-100 bg-gray-50 px-0.5 font-mono text-sm text-gray-700">
-              <span>#</span>
-              <span className="text-gray-300">
-                {"0".repeat(maxNumberDigits - issue.number.toString().length)}
-              </span>
-              <span>{issue.number}</span>
-            </div>
-            <a href={issue.url} target="_blank" rel="noreferrer">
-              {issue.title}
-              <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
+          <li key={issue.id}>
+            <a
+              href={issue.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-baseline gap-1"
+            >
+              <div className="rounded border border-gray-100 bg-gray-50 px-0.5 font-mono text-sm text-gray-700">
+                <span>#</span>
+                <span className="text-gray-300">
+                  {"0".repeat(maxNumberDigits - issue.number.toString().length)}
+                </span>
+                <span>{issue.number}</span>
+              </div>
+              <p>
+                <span className="group-hover:underline group-hover:decoration-from-font group-hover:underline-offset-2">
+                  {issue.title}
+                </span>
+                <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
+              </p>
             </a>
           </li>
         );
