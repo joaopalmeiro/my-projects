@@ -239,7 +239,7 @@ async function Issues(props: Props) {
           <li key={issue.id} className="flex items-start gap-1">
             <div className="rounded border border-gray-100 bg-gray-50 p-0.5 font-mono text-sm text-gray-700">
               <span>#</span>
-              <span className="text-gray-400">
+              <span className="text-gray-300">
                 {"0".repeat(maxNumberDigits - issue.number.toString().length)}
               </span>
               <span>{issue.number}</span>
