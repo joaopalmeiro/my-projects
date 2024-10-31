@@ -182,8 +182,16 @@ async function ProjectList(props: ProjectListProps) {
                 {intlFormatDistance(repo.updatedAt, today, { locale: "en-GB" })}
               </time>
 
-              <a href={repo.url} target="_blank" rel="noreferrer">
-                Repo<span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-block focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
+              >
+                <span className="decoration-from-font underline-offset-2 group-hover:underline group-focus-visible:no-underline">
+                  Repo
+                </span>
+                <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
               </a>
 
               <Collapsible.Content>
@@ -261,9 +269,9 @@ async function Issues(props: Props) {
               href={issue.url}
               target="_blank"
               rel="noreferrer"
-              className="group flex items-baseline gap-1"
+              className="group inline-flex items-start gap-1 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
             >
-              <div className="rounded border border-gray-100 bg-gray-50 px-0.5 font-mono text-sm text-gray-700">
+              <div className="mt-1 rounded border border-gray-100 bg-gray-50 px-0.5 font-mono text-xs text-gray-700">
                 <span>#</span>
                 <span className="text-gray-300">
                   {"0".repeat(maxNumberDigits - issue.number.toString().length)}
@@ -271,7 +279,7 @@ async function Issues(props: Props) {
                 <span>{issue.number}</span>
               </div>
               <p>
-                <span className="group-hover:underline group-hover:decoration-from-font group-hover:underline-offset-2">
+                <span className="decoration-from-font underline-offset-2 group-hover:underline group-focus-visible:no-underline">
                   {issue.title}
                 </span>
                 <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>

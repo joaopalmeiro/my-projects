@@ -195,6 +195,10 @@
 - https://ark-ui.com/react/docs/components/dialog#api-reference: `preventScroll: Whether to prevent scrolling behind the dialog when it's opened`
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 - https://heroicons.com/micro
+- https://www.sarasoueidan.com/blog/focus-indicators/
+- https://www.radix-ui.com/themes/playground#link
+- https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-skip-ink
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#using_the_download_attribute_to_save_a_canvas_as_a_png: `a { display: inline-block; }`
 
 ## Commands
 
