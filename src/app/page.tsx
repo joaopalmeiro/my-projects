@@ -243,7 +243,11 @@ async function Issues(props: Props) {
   const issues = await fetchIssues(props.url);
 
   if (issues.length === 0) {
-    return <p className="italic">No open issues.</p>;
+    return (
+      <p className="italic line-through decoration-gray-400 decoration-from-font">
+        No open issues.
+      </p>
+    );
   }
 
   const maxNumberDigits = Math.max(...issues.map((issue) => issue.number)).toString().length;
