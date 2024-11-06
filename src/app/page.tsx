@@ -39,7 +39,7 @@ export default async function Home() {
 
   return (
     <>
-      <header className="flex items-center justify-between px-4 pb-12 pt-24 text-gray-950">
+      <header className="flex items-center justify-between px-4 pb-12 pt-24 text-gray-900">
         <h1 className="font-semibold">My Projects</h1>
 
         <Dialog.Root preventScroll={true}>
@@ -47,7 +47,7 @@ export default async function Home() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 256 256"
-              className="size-5 fill-gray-700 group-hover:fill-gray-950 group-focus-visible:fill-gray-950"
+              className="size-5 fill-gray-700 group-hover:fill-gray-900 group-focus-visible:fill-gray-900"
               aria-hidden="true"
             >
               <path
@@ -60,7 +60,7 @@ export default async function Home() {
           <Portal>
             <Dialog.Backdrop className="fixed left-0 top-0 h-screen w-screen" />
             <Dialog.Positioner className="fixed right-0 top-0 flex h-dvh w-screen items-center justify-center sm:w-96">
-              <Dialog.Content className="grid size-full divide-y bg-white text-gray-950 shadow-lg grid-drawer data-[state=closed]:animate-drawer-out-right data-[state=open]:animate-drawer-in-right [&[hidden]]:hidden">
+              <Dialog.Content className="grid size-full divide-y bg-white text-gray-900 shadow-lg grid-drawer data-[state=closed]:animate-drawer-out-right data-[state=open]:animate-drawer-in-right [&[hidden]]:hidden">
                 <ark.div className="grid items-center gap-1 p-4 grid-drawer-header [grid-area:header] sm:p-6">
                   <Dialog.Title className="font-semibold [grid-area:title]">
                     Configuration
@@ -71,7 +71,7 @@ export default async function Home() {
                   <Dialog.CloseTrigger className="group -m-2 rounded p-2 [grid-area:close] hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="size-5 fill-gray-700 group-hover:fill-gray-950 group-focus-visible:fill-gray-950"
+                      className="size-5 fill-gray-700 group-hover:fill-gray-900 group-focus-visible:fill-gray-900"
                       viewBox="0 0 256 256"
                       aria-hidden="true"
                     >
@@ -88,7 +88,7 @@ export default async function Home() {
         </Dialog.Root>
       </header>
 
-      <main className="px-4 pb-24 text-gray-950">
+      <main className="px-4 pb-24 text-gray-900">
         <ProjectList data={data} />
       </main>
     </>
