@@ -189,12 +189,23 @@ async function ProjectList(props: ProjectListProps) {
                 href={repo.url}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-block focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
+                className="group inline-flex items-baseline gap-px focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
               >
                 <span className="decoration-from-font underline-offset-2 group-hover:underline group-focus-visible:no-underline">
                   Repo
                 </span>
-                <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  className="size-3.5 fill-gray-400"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
               </a>
 
               <Collapsible.Content>
@@ -281,11 +292,22 @@ async function Issues(props: Props) {
                 </span>
                 <span>{issue.number}</span>
               </div>
-              <p>
+              <p className="flex items-baseline gap-px">
                 <span className="decoration-from-font underline-offset-2 group-hover:underline group-focus-visible:no-underline">
                   {issue.title}
                 </span>
-                <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  className="size-3.5 fill-gray-400"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
               </p>
             </a>
           </li>
