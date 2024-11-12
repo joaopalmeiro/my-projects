@@ -285,7 +285,7 @@ async function Issues(props: Props) {
               rel="noreferrer"
               className="group inline-flex items-start gap-1 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
             >
-              <div className="mt-1 rounded border border-gray-100 bg-gray-50 px-0.5 font-mono text-xs text-gray-700">
+              <div className="mt-1 rounded border border-gray-100 bg-gradient-to-r from-gray-100 to-gray-50 px-0.5 font-mono text-xs text-gray-700">
                 <span>#</span>
                 <span className="text-gray-300">
                   {"0".repeat(maxNumberDigits - issue.number.toString().length)}

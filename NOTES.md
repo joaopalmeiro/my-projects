@@ -208,6 +208,10 @@
   - https://karthik-mudunuri.vercel.app/
   - `<a href="https://eldoraui.site/" target="_blank" class="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"><img alt="Eldora UI" src="/eldoraui.svg" class="!mr-1" width="14" height="14">Eldora UI</a>`
 - <span className="relative -left-0.5 -top-0.5 text-gray-400">⌝</span> vs. `<span className="relative -top-px select-none text-xs text-gray-400"> ↗</span>`
+- https://departuremono.com/
+- https://github.com/rektdeckard/departure-mono
+- https://imgs.so/auth/login: `background: linear-gradient(100deg, #F8E4D5 0%, #FFF5E6 100%);` + `color: #9A5421;`
+- `<div className="mt-1 rounded border border-gray-100 bg-gray-50 px-0.5 font-mono text-xs text-gray-700">` vs. `<div className="mt-1 rounded border border-gray-100 bg-gradient-to-r from-gray-100 to-gray-50 px-0.5 font-mono text-xs text-gray-700">`
 
 ## Commands
 
