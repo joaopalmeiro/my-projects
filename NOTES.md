@@ -201,6 +201,8 @@
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#using_the_download_attribute_to_save_a_canvas_as_a_png: `a { display: inline-block; }`
 - https://www.protailwind.com/tips/on-brand-text-selection-with-the-selection-modifier
 - https://tailwindcss.com/docs/hover-focus-and-other-states#highlighted-text
+- https://primitives.oku-ui.com/
+- `font-medium text-lg`
 
 ## Commands
 

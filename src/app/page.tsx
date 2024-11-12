@@ -164,17 +164,20 @@ async function ProjectList(props: ProjectListProps) {
                 <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
               </h3>
 
-              <time dateTime={repo.updatedAt.toISOString()} className="flex items-center gap-1">
+              <time
+                dateTime={repo.updatedAt.toISOString()}
+                className="flex items-center gap-1 text-sm text-gray-700"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
                   fill="currentcolor"
-                  className="size-4"
+                  className="size-3.5"
                   aria-hidden="true"
                 >
                   <path
                     fillRule="evenodd"
-                    d="M4 1.75a.75.75 0 0 1 1.5 0V3h5V1.75a.75.75 0 0 1 1.5 0V3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2V1.75ZM4.5 6a1 1 0 0 0-1 1v4.5a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-7Z"
+                    d="M13.836 2.477a.75.75 0 0 1 .75.75v3.182a.75.75 0 0 1-.75.75h-3.182a.75.75 0 0 1 0-1.5h1.37l-.84-.841a4.5 4.5 0 0 0-7.08.932.75.75 0 0 1-1.3-.75 6 6 0 0 1 9.44-1.242l.842.84V3.227a.75.75 0 0 1 .75-.75Zm-.911 7.5A.75.75 0 0 1 13.199 11a6 6 0 0 1-9.44 1.241l-.84-.84v1.371a.75.75 0 0 1-1.5 0V9.591a.75.75 0 0 1 .75-.75H5.35a.75.75 0 0 1 0 1.5H3.98l.841.841a4.5 4.5 0 0 0 7.08-.932.75.75 0 0 1 1.025-.273Z"
                     clipRule="evenodd"
                   />
                 </svg>
