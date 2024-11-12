@@ -292,14 +292,15 @@ async function Issues(props: Props) {
                 </span>
                 <span>{issue.number}</span>
               </div>
-              <p className="flex items-baseline gap-px">
-                <span className="decoration-from-font underline-offset-2 group-hover:underline group-focus-visible:no-underline">
+
+              <p className="text-balance">
+                <span className="decoration-from-font underline-offset-2 break-anywhere group-hover:underline group-focus-visible:no-underline">
                   {issue.title}
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
-                  className="size-3.5 fill-gray-400"
+                  className="ml-px inline-block size-3.5 fill-gray-400 align-baseline"
                   aria-hidden="true"
                 >
                   <path

@@ -4,7 +4,8 @@ import plugin from "tailwindcss/plugin";
 const config: Config = {
   content: ["./src/app/**/*.{ts,tsx}"],
   theme: {
-    // Source: Park UI (https://github.com/cschroeter/park-ui)
+    // Source:
+    // - Park UI (https://github.com/cschroeter/park-ui)
     extend: {
       transitionTimingFunction: {
         "emphasized-in": "cubic-bezier(0.05, 0.7, 0.1, 1.0)",
@@ -42,6 +43,13 @@ const config: Config = {
           "grid-template-columns": "1fr auto",
           "grid-template-rows": "auto auto",
           "grid-template-areas": '"title close" "description description"',
+        },
+        // Source:
+        // - https://developer.mozilla.org/en-US/docs/Web/CSS/word-break#break-word
+        // - https://tailwindcss.com/docs/word-break
+        ".break-anywhere": {
+          "overflow-wrap": "anywhere",
+          "word-break": "normal",
         },
       });
     }),

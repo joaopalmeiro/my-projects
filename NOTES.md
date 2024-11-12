@@ -215,6 +215,10 @@
 - https://ghbtns.com/
 - https://stackoverflow.com/questions/38874757/css-outline-width-not-working
 - https://buildui.com/recipes/gradient-border
+- `<p className="flex items-baseline gap-px">`
+- https://tailwindcss.com/docs/vertical-align
+- https://developer.mozilla.org/en-US/docs/Web/CSS/word-break
+- https://github.com/tailwindlabs/tailwindcss/discussions/12127 + https://github.com/tailwindlabs/tailwindcss/pull/12128 + https://github.com/tailwindlabs/tailwindcss/pull/12128#issuecomment-2225349386
 
 ## Commands
 
