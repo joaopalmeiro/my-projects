@@ -43,7 +43,7 @@ export default async function Home() {
         <h1 className="font-semibold">My Projects</h1>
 
         <Dialog.Root preventScroll={true}>
-          <Dialog.Trigger className="group -m-2 rounded p-2 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400">
+          <Dialog.Trigger className="group -m-2 rounded p-2 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 256 256"
@@ -68,7 +68,7 @@ export default async function Home() {
                   <Dialog.Description className="text-sm text-gray-700 [grid-area:description]">
                     Adjust project layout.
                   </Dialog.Description>
-                  <Dialog.CloseTrigger className="group -m-2 rounded p-2 [grid-area:close] hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400">
+                  <Dialog.CloseTrigger className="group -m-2 rounded p-2 [grid-area:close] hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="size-5 fill-gray-700 group-hover:fill-gray-900 group-focus-visible:fill-gray-900"
@@ -160,55 +160,55 @@ async function ProjectList(props: ProjectListProps) {
         return (
           <li key={repo.id}>
             <Collapsible.Root>
-              <h3 className="font-medium">
+              <h3 className="mb-1 font-medium">
                 <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
               </h3>
 
-              <time
-                dateTime={repo.updatedAt.toISOString()}
-                className="flex items-center gap-1 text-sm text-gray-700"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentcolor"
-                  className="size-3.5"
-                  aria-hidden="true"
+              <div className="flex gap-2">
+                <time
+                  dateTime={repo.updatedAt.toISOString()}
+                  className="flex items-center gap-1 text-sm text-gray-700"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M13.836 2.477a.75.75 0 0 1 .75.75v3.182a.75.75 0 0 1-.75.75h-3.182a.75.75 0 0 1 0-1.5h1.37l-.84-.841a4.5 4.5 0 0 0-7.08.932.75.75 0 0 1-1.3-.75 6 6 0 0 1 9.44-1.242l.842.84V3.227a.75.75 0 0 1 .75-.75Zm-.911 7.5A.75.75 0 0 1 13.199 11a6 6 0 0 1-9.44 1.241l-.84-.84v1.371a.75.75 0 0 1-1.5 0V9.591a.75.75 0 0 1 .75-.75H5.35a.75.75 0 0 1 0 1.5H3.98l.841.841a4.5 4.5 0 0 0 7.08-.932.75.75 0 0 1 1.025-.273Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentcolor"
+                    className="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M13.836 2.477a.75.75 0 0 1 .75.75v3.182a.75.75 0 0 1-.75.75h-3.182a.75.75 0 0 1 0-1.5h1.37l-.84-.841a4.5 4.5 0 0 0-7.08.932.75.75 0 0 1-1.3-.75 6 6 0 0 1 9.44-1.242l.842.84V3.227a.75.75 0 0 1 .75-.75Zm-.911 7.5A.75.75 0 0 1 13.199 11a6 6 0 0 1-9.44 1.241l-.84-.84v1.371a.75.75 0 0 1-1.5 0V9.591a.75.75 0 0 1 .75-.75H5.35a.75.75 0 0 1 0 1.5H3.98l.841.841a4.5 4.5 0 0 0 7.08-.932.75.75 0 0 1 1.025-.273Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
 
-                {intlFormatDistance(repo.updatedAt, today, { locale: "en-GB" })}
-              </time>
+                  {intlFormatDistance(repo.updatedAt, today, { locale: "en-GB" })}
+                </time>
 
-              <a
-                href={repo.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-baseline gap-px focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
-              >
-                <span className="decoration-from-font underline-offset-2 group-hover:underline group-focus-visible:no-underline">
-                  Repo
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  className="size-3.5 fill-gray-400"
-                  aria-hidden="true"
+                <a
+                  href={repo.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 rounded-md border border-gray-200 px-1 text-gray-700 hover:border-gray-400 hover:bg-gray-100 hover:text-gray-900 focus-visible:text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-gray-400"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentcolor"
+                    className="size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 7c3.314 0 6-1.343 6-3s-2.686-3-6-3-6 1.343-6 3 2.686 3 6 3Z" />
+                    <path d="M8 8.5c1.84 0 3.579-.37 4.914-1.037A6.33 6.33 0 0 0 14 6.78V8c0 1.657-2.686 3-6 3S2 9.657 2 8V6.78c.346.273.72.5 1.087.683C4.42 8.131 6.16 8.5 8 8.5Z" />
+                    <path d="M8 12.5c1.84 0 3.579-.37 4.914-1.037.366-.183.74-.41 1.086-.684V12c0 1.657-2.686 3-6 3s-6-1.343-6-3v-1.22c.346.273.72.5 1.087.683C4.42 12.131 6.16 12.5 8 12.5Z" />
+                  </svg>
 
-              <Collapsible.Content>
+                  <span className="text-sm">Repo</span>
+                </a>
+              </div>
+
+              <Collapsible.Content className="mt-2">
                 <Issues url={repo.issuesUrl} />
               </Collapsible.Content>
             </Collapsible.Root>
@@ -275,7 +275,7 @@ async function Issues(props: Props) {
   const maxNumberDigits = Math.max(...issues.map((issue) => issue.number)).toString().length;
 
   return (
-    <ul>
+    <ul className="space-y-0.5">
       {issues.map((issue) => {
         return (
           <li key={issue.id}>
@@ -283,7 +283,7 @@ async function Issues(props: Props) {
               href={issue.url}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-start gap-1 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
+              className="group inline-flex items-start gap-1 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400"
             >
               <div className="mt-1 rounded border border-gray-100 bg-gradient-to-r from-gray-100 to-gray-50 px-0.5 font-mono text-xs text-gray-700">
                 <span>#</span>
