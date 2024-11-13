@@ -300,7 +300,7 @@ async function Issues(props: Props) {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
-                  className="ml-px inline-block size-3.5 fill-gray-400 align-baseline"
+                  className="ml-px inline-block size-3.5 fill-gray-400 align-baseline group-hover:fill-gray-900"
                   aria-hidden="true"
                 >
                   <path
