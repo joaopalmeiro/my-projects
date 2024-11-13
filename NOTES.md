@@ -223,6 +223,10 @@
 - https://github.com/tailwindlabs/tailwindcss/discussions/12127 + https://github.com/tailwindlabs/tailwindcss/pull/12128 + https://github.com/tailwindlabs/tailwindcss/pull/12128#issuecomment-2225349386
 - https://github.com/cschroeter/park-ui/blob/b447309f7cdc7cf6d78ad3f522464cef38340831/packages/panda/src/theme/keyframes.ts#L36
 - `<h3 className="mb-1 font-medium">`
+- https://reniki.com/blog/gradient-border
+- https://gradientborder.vercel.app/
+- https://www.hyperui.dev/blog/animated-border-gradient-with-tailwindcss
+- https://www.hyperui.dev/components/application-ui/badges
 
 ## Commands
 
