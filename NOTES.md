@@ -227,6 +227,11 @@
 - https://gradientborder.vercel.app/
 - https://www.hyperui.dev/blog/animated-border-gradient-with-tailwindcss
 - https://www.hyperui.dev/components/application-ui/badges
+- https://ibelick.com/blog/create-animated-gradient-borders-with-css
+- https://github.com/pqoqubbw/icons
+- https://icons.pqoqubbw.dev/
+- https://coreui.io/react/docs/components/collapse/
+- https://coreui.io/react/docs/components/accordion/
 
 ## Commands
 
@@ -780,4 +785,69 @@ export const zIndex = defineTokens.zIndex({
     value: 1800,
   },
 });
+```
+
+- https://www.radix-vue.com/components/collapsible#animating-content-size
+- https://www.radix-vue.com/components/accordion.html#animating-content-size
+- `<CollapsibleContent class="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">`
+
+```css
+/* styles.css */
+.CollapsibleContent {
+  overflow: hidden;
+}
+.CollapsibleContent[data-state="open"] {
+  animation: slideDown 300ms ease-out;
+}
+.CollapsibleContent[data-state="closed"] {
+  animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+```
+
+- https://ark-ui.com/react/docs/components/collapsible#animation
+
+```css
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+[data-scope="collapsible"][data-part="content"][data-state="open"] {
+  animation: slideDown 250ms;
+}
+
+[data-scope="collapsible"][data-part="content"][data-state="closed"] {
+  animation: slideUp 200ms;
+}
 ```

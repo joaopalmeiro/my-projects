@@ -208,7 +208,7 @@ async function ProjectList(props: ProjectListProps) {
                 </a>
               </div>
 
-              <Collapsible.Content className="mt-2">
+              <Collapsible.Content>
                 <Issues url={repo.issuesUrl} />
               </Collapsible.Content>
             </Collapsible.Root>
@@ -275,7 +275,7 @@ async function Issues(props: Props) {
   const maxNumberDigits = Math.max(...issues.map((issue) => issue.number)).toString().length;
 
   return (
-    <ul className="space-y-0.5">
+    <ul className="mt-2 space-y-0.5">
       {issues.map((issue) => {
         return (
           <li key={issue.id}>
