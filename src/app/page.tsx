@@ -160,7 +160,7 @@ async function ProjectList(props: ProjectListProps) {
         return (
           <li key={repo.id}>
             <Collapsible.Root>
-              <h3 className="mb-1 font-medium">
+              <h3 className="mb-1 text-lg font-medium">
                 <Collapsible.Trigger>{repo.name}</Collapsible.Trigger>
               </h3>
 

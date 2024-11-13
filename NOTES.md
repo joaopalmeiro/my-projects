@@ -149,7 +149,9 @@
 - https://www.npmjs.com/package/javascript-time-ago
 - https://gitlab.com/catamphetamine/javascript-time-ago
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
-- https://react-spectrum.adobe.com/react-aria/Disclosure.html#example: `<h3> <Button slot="trigger"> <svg viewBox="0 0 24 24"> <path d="m8.25 4.5 7.5 7.5-7.5 7.5" /> </svg> System Requirements </Button> </h3>`
+- https://react-spectrum.adobe.com/react-aria/Disclosure.html:
+  - https://react-spectrum.adobe.com/react-aria/Disclosure.html#example: `<h3> <Button slot="trigger"> <svg viewBox="0 0 24 24"> <path d="m8.25 4.5 7.5 7.5-7.5 7.5" /> </svg> System Requirements </Button> </h3>`
+  - https://react-spectrum.adobe.com/react-spectrum/Disclosure.html#disclosure
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#several_ways_to_create_a_date_object: `const today = new Date();`
 - https://nuqs.47ng.com/:
   - https://github.com/47ng/nuqs
@@ -219,6 +221,8 @@
 - https://tailwindcss.com/docs/vertical-align
 - https://developer.mozilla.org/en-US/docs/Web/CSS/word-break
 - https://github.com/tailwindlabs/tailwindcss/discussions/12127 + https://github.com/tailwindlabs/tailwindcss/pull/12128 + https://github.com/tailwindlabs/tailwindcss/pull/12128#issuecomment-2225349386
+- https://github.com/cschroeter/park-ui/blob/b447309f7cdc7cf6d78ad3f522464cef38340831/packages/panda/src/theme/keyframes.ts#L36
+- `<h3 className="mb-1 font-medium">`
 
 ## Commands
 
