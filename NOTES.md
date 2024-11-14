@@ -232,6 +232,7 @@
 - https://icons.pqoqubbw.dev/
 - https://coreui.io/react/docs/components/collapse/
 - https://coreui.io/react/docs/components/accordion/
+- https://originui.com/
 
 ## Commands
 
