@@ -15,6 +15,10 @@
     - `"@tanstack/react-router-devtools": "^1.163.3",`
 - [Can't use zod v4](https://github.com/TanStack/router/issues/6138) issue
 - https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
+- https://www.youtube.com/watch?v=sFEDAkJy9Dc:
+  - https://t3.gg/sponsors
+  - "Every single tool call sends the whole history back. (...) The agent is just autocomplete. It's just generating words. It doesn't know what's happening. It doesn't know what system it is. It doesn't know how long it will take. (...) A tool call means the generation finished."
+- https://www.greptile.com/state-of-ai-coding-2025
 
 ## Commands
 
