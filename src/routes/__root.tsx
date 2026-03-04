@@ -31,9 +31,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
+
       <body>
         {children}
-
         <Scripts />
       </body>
     </html>
