@@ -2,8 +2,7 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-
-  "files.readonlyInclude": {
-    "deprecated/**": true
+  "editor.quickSuggestions": {
+    "strings": "on"
   }
 }
