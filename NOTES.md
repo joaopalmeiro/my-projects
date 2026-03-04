@@ -80,7 +80,7 @@
 - https://nextjs.org/learn/dashboard-app/mutating-data#type-validation-and-coercion
 - https://nextjs.org/learn/dashboard-app/mutating-data#6-revalidate-and-redirect
 - https://pocketbase.io/
-- https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache: `` fetch(`https://...`, { cache: 'force-cache' | 'no-store' }) ``
+- https://nextjs.org/docs/app/api-reference/functions/fetch#optionscache: ``fetch(`https://...`, { cache: 'force-cache' | 'no-store' })``
 - https://nextjs.org/docs/pages/api-reference/cli/create-next-app
 - https://github.com/vercel/next.js/tree/canary/examples/hello-world
 - https://www.npmjs.com/package/create-next-app
@@ -317,6 +317,10 @@ npx create-next-app@15.0.1 create-next-app-example --typescript --tailwind --app
 rm -rf .next/cache/fetch-cache/
 ```
 
+```bash
+oxipng -o 4 --strip safe --alpha *.png
+```
+
 ### Clean slate
 
 ```bash
@@ -506,7 +510,7 @@ export function Projects() {
           headers: [
             ["Authorization", `Bearer ${import.meta.env.VITE_GRIST_API_KEY}`],
           ],
-        }
+        },
       );
 
       const rawData = await response.json();
@@ -618,7 +622,7 @@ export function getRelativeTimeString(date: Date): string {
   ];
 
   const unitIndex = cutoffs.findIndex(
-    (cutoff) => cutoff > Math.abs(deltaSeconds)
+    (cutoff) => cutoff > Math.abs(deltaSeconds),
   );
   const divisor = unitIndex ? cutoffs[unitIndex - 1] : 1;
 
