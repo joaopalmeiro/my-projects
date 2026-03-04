@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import type { Repo } from "./types";
+import type { ActiveRepo, Repo } from "./types";
 
 export const getRepos = createServerFn({ method: "GET" }).handler(
   async (): Promise<Repo[]> => {
@@ -14,6 +14,39 @@ export const getRepos = createServerFn({ method: "GET" }).handler(
       },
     );
 
-    return response.json();
+    const activeRepos: ActiveRepo[] = await response.json();
+
+    return Promise.all(
+      activeRepos.map(async (activeRepo) => {
+        const url = new URL(activeRepo.url);
+
+        if (url.hostname === "github.com") {
+          const apiUrl = new URL(
+            `repos${url.pathname}`,
+            "https://api.github.com/",
+          );
+
+          const response = await fetch(apiUrl, {
+            headers: {
+              Accept: "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+            },
+          });
+
+          const rawData = await response.json();
+
+          return {
+            id: rawData.id,
+            name: rawData.name,
+            updatedAt: rawData.pushed_at,
+            url: rawData.html_url,
+            openIssues: rawData.open_issues_count,
+          };
+        }
+
+        // TODO
+        return { id: 0, name: "", updatedAt: "", url: "", openIssues: 0 };
+      }),
+    );
   },
 );
