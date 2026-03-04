@@ -37,9 +37,9 @@ export const getRepos = createServerFn({ method: "GET" }).handler(
 
           return {
             id: rawData.id,
-            name: rawData.name,
+            name: activeRepo.name,
             updatedAt: rawData.pushed_at,
-            url: rawData.html_url,
+            url: activeRepo.url,
             openIssues: rawData.open_issues_count,
           };
         }
