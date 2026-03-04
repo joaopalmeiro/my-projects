@@ -1,5 +1,7 @@
+.tanstack/
 node_modules/
 
 .DS_Store
 
 start-bare/
+start-tailwind-v4/

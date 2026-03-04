@@ -3,7 +3,12 @@
     "*.css": "tailwindcss"
   },
 
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  },
+
   "files.readonlyInclude": {
-    "deprecated/**": true
+    "deprecated/**": true,
+    "**/routeTree.gen.ts": true
   }
 }

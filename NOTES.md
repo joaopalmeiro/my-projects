@@ -9,9 +9,41 @@
 - Templates:
   - https://github.com/TanStack/router/tree/main/examples/react/start-tailwind-v4
   - https://github.com/TanStack/router/tree/main/examples/react/start-bare
+    - `"include": ["**/*.ts", "**/*.tsx", "public/script*.js"],`
+    - `"start": "pnpx srvx --prod -s ../client dist/server/server.js"`
+    - `"@tanstack/react-router-devtools": "^1.163.3",`
+- [Can't use zod v4](https://github.com/TanStack/router/issues/6138) issue
 
 ## Commands
 
 ```bash
 npx gitpick TanStack/router/tree/main/examples/react/start-bare start-bare
+```
+
+```bash
+npx gitpick TanStack/router/tree/main/examples/react/start-tailwind-v4 start-tailwind-v4
+```
+
+```bash
+npm install \
+@tanstack/react-router \
+@tanstack/react-start \
+react \
+react-dom \
+zod@3 \
+&& npm install -D \
+@types/react \
+@types/react-dom \
+@vitejs/plugin-react@4 \
+typescript \
+vite \
+vite-tsconfig-paths@5
+```
+
+```bash
+npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1)"
+```
+
+```bash
+npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1-2)"
 ```
