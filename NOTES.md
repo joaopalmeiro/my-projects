@@ -14,6 +14,7 @@
     - `"start": "pnpx srvx --prod -s ../client dist/server/server.js"`
     - `"@tanstack/react-router-devtools": "^1.163.3",`
 - [Can't use zod v4](https://github.com/TanStack/router/issues/6138) issue
+- https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
 
 ## Commands
 
