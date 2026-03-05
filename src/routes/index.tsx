@@ -17,18 +17,41 @@ function Home() {
   );
 
   return (
-    <main>
-      <h1>My Projects</h1>
+    <>
+      <header>
+        <h1>My Projects</h1>
+      </header>
 
-      <dl>
-        <dt>Projects</dt>
-        <dd>{totalRepos}</dd>
+      <main>
+        <dl>
+          <dt>Projects</dt>
+          <dd>{totalRepos}</dd>
 
-        <dt>Open issues</dt>
-        <dd>{totalOpenIssues}</dd>
-      </dl>
+          <dt>Open issues</dt>
+          <dd>{totalOpenIssues}</dd>
+        </dl>
 
-      <pre>{JSON.stringify(repos, null, 2)}</pre>
-    </main>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Repo</th>
+              <th scope="col">Last updated</th>
+              <th scope="col">Open issues</th>
+            </tr>
+          </thead>
+          <tbody>
+            {repos.map((repo) => {
+              return (
+                <tr key={repo.id}>
+                  <th scope="row">{repo.name}</th>
+                  <td>{repo.updatedAt}</td>
+                  <td>{repo.openIssues}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </main>
+    </>
   );
 }
