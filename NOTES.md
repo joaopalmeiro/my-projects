@@ -25,6 +25,11 @@
   - https://blocks.tremor.so/blocks/kpi-cards
     - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl
   - https://blocks.tremor.so/blocks/badges
+- "TanStack Query would cache results in each user's browser, so repeated requests within the same session won't hit the server function again. But since each new user or browser session would still trigger the server function and hit the GitHub API, TanStack Query alone won't fully solve the rate-limiting issue—you'd need server-side caching for that. That said, TanStack Query does help by reducing redundant requests from the same client."
+- https://tanstack.com/start/latest/docs/framework/react/guide/isr#cache-header-strategies
+  - https://tanstack.com/start/latest/docs/framework/react/guide/isr#cloudflare-workers
+- https://tanstack.com/start/latest/docs/framework/react/start-vs-nextjs#tanstack-start-rscs-are-just-data
+- https://tanstack.com/start/latest/docs/framework/react/examples/start-basic-auth
 
 ## Commands
 
