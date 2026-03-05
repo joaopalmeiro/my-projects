@@ -20,6 +20,11 @@
   - "Every single tool call sends the whole history back. (...) The agent is just autocomplete. It's just generating words. It doesn't know what's happening. It doesn't know what system it is. It doesn't know how long it will take. (...) A tool call means the generation finished."
 - https://www.greptile.com/state-of-ai-coding-2025
 - https://tanstack.com/store
+- https://www.tremor.so/
+  - https://blocks.tremor.so/
+  - https://blocks.tremor.so/blocks/kpi-cards
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl
+  - https://blocks.tremor.so/blocks/badges
 
 ## Commands
 
