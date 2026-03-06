@@ -14,6 +14,7 @@
     - `"start": "pnpx srvx --prod -s ../client dist/server/server.js"`
     - `"@tanstack/react-router-devtools": "^1.163.3",`
 - [Can't use zod v4](https://github.com/TanStack/router/issues/6138) issue
+  - https://v3.zod.dev/
 - https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
 - https://www.youtube.com/watch?v=sFEDAkJy9Dc:
   - https://t3.gg/sponsors
@@ -30,6 +31,7 @@
   - https://tanstack.com/start/latest/docs/framework/react/guide/isr#cloudflare-workers
 - https://tanstack.com/start/latest/docs/framework/react/start-vs-nextjs#tanstack-start-rscs-are-just-data
 - https://tanstack.com/start/latest/docs/framework/react/examples/start-basic-auth
+- https://tailwindcss.com/plus/ui-blocks/application-ui/lists/tables
 
 ## Commands
 

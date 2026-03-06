@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
+import { ghRepoSchema } from "./schemas";
 import type { ActiveRepo, Repo } from "./types";
 
 export const getRepos = createServerFn({ method: "GET" }).handler(
@@ -34,18 +35,18 @@ export const getRepos = createServerFn({ method: "GET" }).handler(
           });
 
           const rawData = await response.json();
+          const parsedData = ghRepoSchema.parse(rawData);
 
           return {
-            id: rawData.id,
+            id: parsedData.id,
             name: activeRepo.name,
-            updatedAt: rawData.pushed_at,
+            openIssues: parsedData.open_issues_count,
+            updatedAt: parsedData.pushed_at,
             url: activeRepo.url,
-            openIssues: rawData.open_issues_count,
           };
         }
 
-        // TODO
-        return { id: 0, name: "", updatedAt: "", url: "", openIssues: 0 };
+        throw new Error(`Invalid repo URL: ${activeRepo.url}`);
       }),
     );
   },

@@ -34,17 +34,25 @@ function Home() {
         <table>
           <thead>
             <tr>
-              <th scope="col">Repo</th>
-              <th scope="col">Last updated</th>
-              <th scope="col">Open issues</th>
+              <th scope="col" className="font-medium">
+                Repo
+              </th>
+              <th scope="col" className="font-medium">
+                Last updated
+              </th>
+              <th scope="col" className="font-medium">
+                Open issues
+              </th>
             </tr>
           </thead>
           <tbody>
             {repos.map((repo) => {
               return (
                 <tr key={repo.id}>
-                  <th scope="row">{repo.name}</th>
-                  <td>{repo.updatedAt}</td>
+                  <th scope="row" className="font-normal">
+                    {repo.name}
+                  </th>
+                  <td>{repo.updatedAt.toISOString()}</td>
                   <td>{repo.openIssues}</td>
                 </tr>
               );

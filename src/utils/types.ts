@@ -9,7 +9,7 @@ export interface ActiveRepo {
 export interface Repo {
   id: number;
   name: string;
-  updatedAt: string;
-  url: string;
   openIssues: number;
+  updatedAt: Date;
+  url: string;
 }
