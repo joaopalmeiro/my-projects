@@ -19,6 +19,7 @@
 - https://www.youtube.com/watch?v=sFEDAkJy9Dc:
   - https://t3.gg/sponsors
   - "Every single tool call sends the whole history back. (...) The agent is just autocomplete. It's just generating words. It doesn't know what's happening. It doesn't know what system it is. It doesn't know how long it will take. (...) A tool call means the generation finished."
+  - "(...) the cache is just compute reduction method. It is not changing what traffic has to be sent at all."
 - https://www.greptile.com/state-of-ai-coding-2025
 - https://tanstack.com/store
 - https://www.tremor.so/
@@ -36,6 +37,11 @@
 - https://date-fns.org/v4.1.0/docs/startOfWeek
 - https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion=2022-11-28
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Link
+- https://sweetfont.com/
+- https://cloudfour.com/topics/accessibility/
+  - https://cloudfour.com/thinks/write-alt-text-like-youre-talking-to-a-friend/
+  - https://thoughtbot.com/blog/add-punctuation-to-your-alt-text
+    - Add a period even in single-sentence descriptions.
 
 ## Commands
 

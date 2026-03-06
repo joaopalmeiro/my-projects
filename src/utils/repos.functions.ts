@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { startOfWeek } from "date-fns";
 
-import { ghRepoSchema } from "./schemas";
+import { ghIssuesSchema, ghRepoSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
 export const getRepos = createServerFn({ method: "GET" }).handler(
@@ -57,12 +57,12 @@ export const getClosedIssues = createServerFn({ method: "GET" }).handler(
   async (): Promise<ClosedIssues> => {
     const weekStart = startOfWeek(new Date(), {
       weekStartsOn: 1,
-    }).toISOString();
+    });
 
     const firstApiUrl = new URL("issues", "https://api.github.com/");
     firstApiUrl.searchParams.set("filter", "assigned");
     firstApiUrl.searchParams.set("state", "closed");
-    firstApiUrl.searchParams.set("since", weekStart);
+    firstApiUrl.searchParams.set("since", weekStart.toISOString());
     firstApiUrl.searchParams.set("per_page", "100");
     firstApiUrl.searchParams.set("page", "1");
 
@@ -79,6 +79,11 @@ export const getClosedIssues = createServerFn({ method: "GET" }).handler(
     // TODO
     // const linkHeader = firstResponse.headers.get("Link");
 
-    return { total: firstPage.length };
+    const issues = ghIssuesSchema.parse(firstPage);
+    const closedThisWeek = issues.filter(
+      (issue) => !issue.pull_request && issue.closed_at >= weekStart,
+    );
+
+    return { total: closedThisWeek.length };
   },
 );

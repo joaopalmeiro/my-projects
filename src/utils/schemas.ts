@@ -5,3 +5,18 @@ export const ghRepoSchema = z.object({
   open_issues_count: z.number().int(),
   pushed_at: z.coerce.date(),
 });
+
+const ghIssueSchema = z.object({
+  pull_request: z
+    .object({
+      merged_at: z.string().nullable().optional(),
+      diff_url: z.string().nullable(),
+      html_url: z.string().nullable(),
+      patch_url: z.string().nullable(),
+      url: z.string().nullable(),
+    })
+    .optional(),
+  closed_at: z.coerce.date(),
+});
+
+export const ghIssuesSchema = z.array(ghIssueSchema);
