@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { getRepos } from "~/utils/repos.functions";
+import { getClosedIssues, getRepos } from "~/utils/repos.functions";
 
 export const Route = createFileRoute("/")({
-  loader: () => getRepos(),
+  loader: () => Promise.all([getRepos(), getClosedIssues()]),
   component: Home,
 });
 
 function Home() {
-  const repos = Route.useLoaderData();
+  const [repos, closedIssues] = Route.useLoaderData();
 
   const totalRepos = repos.length;
   const totalOpenIssues = repos.reduce(
@@ -29,6 +29,9 @@ function Home() {
 
           <dt>Open issues</dt>
           <dd>{totalOpenIssues}</dd>
+
+          <dt>Issues closed this week</dt>
+          <dd>{closedIssues.total}</dd>
         </dl>
 
         <table>

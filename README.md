@@ -4,6 +4,10 @@ An overview of my projects to manage their maintenance.
 
 ## Development
 
+```bash
+cp .env.example .env
+```
+
 Install [fnm](https://github.com/Schniz/fnm) (if necessary).
 
 ```bash

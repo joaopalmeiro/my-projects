@@ -13,3 +13,7 @@ export interface Repo {
   updatedAt: Date;
   url: string;
 }
+
+export interface ClosedIssues {
+  total: number;
+}

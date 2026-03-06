@@ -1,7 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
+import { startOfWeek } from "date-fns";
 
 import { ghRepoSchema } from "./schemas";
-import type { ActiveRepo, Repo } from "./types";
+import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
 export const getRepos = createServerFn({ method: "GET" }).handler(
   async (): Promise<Repo[]> => {
@@ -49,5 +50,35 @@ export const getRepos = createServerFn({ method: "GET" }).handler(
         throw new Error(`Invalid repo URL: ${activeRepo.url}`);
       }),
     );
+  },
+);
+
+export const getClosedIssues = createServerFn({ method: "GET" }).handler(
+  async (): Promise<ClosedIssues> => {
+    const weekStart = startOfWeek(new Date(), {
+      weekStartsOn: 1,
+    }).toISOString();
+
+    const firstApiUrl = new URL("issues", "https://api.github.com/");
+    firstApiUrl.searchParams.set("filter", "assigned");
+    firstApiUrl.searchParams.set("state", "closed");
+    firstApiUrl.searchParams.set("since", weekStart);
+    firstApiUrl.searchParams.set("per_page", "100");
+    firstApiUrl.searchParams.set("page", "1");
+
+    const firstResponse = await fetch(firstApiUrl, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${process.env.GH_TOKEN}`,
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    });
+
+    const firstPage = await firstResponse.json();
+
+    // TODO
+    // const linkHeader = firstResponse.headers.get("Link");
+
+    return { total: firstPage.length };
   },
 );

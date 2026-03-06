@@ -32,6 +32,10 @@
 - https://tanstack.com/start/latest/docs/framework/react/start-vs-nextjs#tanstack-start-rscs-are-just-data
 - https://tanstack.com/start/latest/docs/framework/react/examples/start-basic-auth
 - https://tailwindcss.com/plus/ui-blocks/application-ui/lists/tables
+- https://www.monomodular.de/wim-r12.html
+- https://date-fns.org/v4.1.0/docs/startOfWeek
+- https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion=2022-11-28
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Link
 
 ## Commands
 
@@ -47,6 +51,7 @@ npx gitpick TanStack/router/tree/main/examples/react/start-tailwind-v4 start-tai
 npm install \
 @tanstack/react-router \
 @tanstack/react-start \
+date-fns \
 react \
 react-dom \
 zod@3 \

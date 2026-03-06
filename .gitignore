@@ -2,6 +2,7 @@
 node_modules/
 
 .DS_Store
+.env
 
 start-bare/
 start-tailwind-v4/
