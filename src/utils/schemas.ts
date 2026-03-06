@@ -17,6 +17,9 @@ const ghIssueSchema = z.object({
     })
     .optional(),
   closed_at: z.coerce.date(),
+  repository: z.object({
+    name: z.string(),
+  }),
 });
 
 export const ghIssuesSchema = z.array(ghIssueSchema);

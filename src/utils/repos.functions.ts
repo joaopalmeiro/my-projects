@@ -4,22 +4,28 @@ import { startOfWeek } from "date-fns";
 import { ghIssuesSchema, ghRepoSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
-export const getRepos = createServerFn({ method: "GET" }).handler(
-  async (): Promise<Repo[]> => {
+export const getActiveRepos = createServerFn({ method: "GET" }).handler(
+  async (): Promise<ActiveRepo[]> => {
     const response = await fetch(
       "https://api.github.com/repos/joaopalmeiro/joaopalmeiro/contents/data.json",
       {
         headers: {
           Accept: "application/vnd.github.raw+json",
+          Authorization: `Bearer ${process.env.GH_TOKEN}`,
           "X-GitHub-Api-Version": "2022-11-28",
         },
       },
     );
 
-    const activeRepos: ActiveRepo[] = await response.json();
+    return response.json();
+  },
+);
 
+export const getRepos = createServerFn({ method: "GET" })
+  .inputValidator((data: ActiveRepo[]) => data)
+  .handler(async ({ data }): Promise<Repo[]> => {
     return Promise.all(
-      activeRepos.map(async (activeRepo) => {
+      data.map(async (activeRepo) => {
         const url = new URL(activeRepo.url);
 
         if (url.hostname === "github.com") {
@@ -31,6 +37,7 @@ export const getRepos = createServerFn({ method: "GET" }).handler(
           const response = await fetch(apiUrl, {
             headers: {
               Accept: "application/vnd.github+json",
+              Authorization: `Bearer ${process.env.GH_TOKEN}`,
               "X-GitHub-Api-Version": "2022-11-28",
             },
           });
@@ -50,11 +57,13 @@ export const getRepos = createServerFn({ method: "GET" }).handler(
         throw new Error(`Invalid repo URL: ${activeRepo.url}`);
       }),
     );
-  },
-);
+  });
 
-export const getClosedIssues = createServerFn({ method: "GET" }).handler(
-  async (): Promise<ClosedIssues> => {
+export const getClosedIssues = createServerFn({ method: "GET" })
+  .inputValidator((data: ActiveRepo[]) => data)
+  .handler(async ({ data }): Promise<ClosedIssues> => {
+    const activeRepoNames = new Set(data.map((activeRepo) => activeRepo.name));
+
     const weekStart = startOfWeek(new Date(), {
       weekStartsOn: 1,
     });
@@ -81,9 +90,11 @@ export const getClosedIssues = createServerFn({ method: "GET" }).handler(
 
     const issues = ghIssuesSchema.parse(firstPage);
     const closedThisWeek = issues.filter(
-      (issue) => !issue.pull_request && issue.closed_at >= weekStart,
+      (issue) =>
+        !issue.pull_request &&
+        issue.closed_at >= weekStart &&
+        activeRepoNames.has(issue.repository.name),
     );
 
     return { total: closedThisWeek.length };
-  },
-);
+  });

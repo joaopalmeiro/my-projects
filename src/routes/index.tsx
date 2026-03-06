@@ -1,9 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { getClosedIssues, getRepos } from "~/utils/repos.functions";
+import {
+  getClosedIssues,
+  getRepos,
+  getActiveRepos,
+} from "~/utils/repos.functions";
 
 export const Route = createFileRoute("/")({
-  loader: () => Promise.all([getRepos(), getClosedIssues()]),
+  loader: async () => {
+    const activeRepos = await getActiveRepos();
+
+    return Promise.all([
+      getRepos({ data: activeRepos }),
+      getClosedIssues({ data: activeRepos }),
+    ]);
+  },
   component: Home,
 });
 

@@ -42,6 +42,8 @@
   - https://cloudfour.com/thinks/write-alt-text-like-youre-talking-to-a-friend/
   - https://thoughtbot.com/blog/add-punctuation-to-your-alt-text
     - Add a period even in single-sentence descriptions.
+- https://tanstack.com/start/latest/docs/framework/react/guide/server-functions#basic-parameters
+- https://stackoverflow.com/questions/55057200/is-the-set-has-method-o1-and-array-indexof-on
 
 ## Commands
 
