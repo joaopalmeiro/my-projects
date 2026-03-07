@@ -20,6 +20,7 @@
   - https://t3.gg/sponsors
   - "Every single tool call sends the whole history back. (...) The agent is just autocomplete. It's just generating words. It doesn't know what's happening. It doesn't know what system it is. It doesn't know how long it will take. (...) A tool call means the generation finished."
   - "(...) the cache is just compute reduction method. It is not changing what traffic has to be sent at all."
+  - https://github.com/openresponses/openresponses
 - https://www.greptile.com/state-of-ai-coding-2025
 - https://tanstack.com/store
 - https://www.tremor.so/
@@ -44,6 +45,16 @@
     - Add a period even in single-sentence descriptions.
 - https://tanstack.com/start/latest/docs/framework/react/guide/server-functions#basic-parameters
 - https://stackoverflow.com/questions/55057200/is-the-set-has-method-o1-and-array-indexof-on
+- https://www.youtube.com/watch?v=hDn8-fK3XaU:
+  - https://t3.codes/
+    - https://github.com/pingdotgg/t3code: "T3 Code is a minimal web GUI for coding agents."
+    - https://www.npmjs.com/package/t3
+    - https://openai.com/codex/
+      - https://developers.openai.com/codex/
+      - https://developers.openai.com/codex/pricing
+    - https://github.com/anomalyco/opencode
+      - https://opencode.ai/zen
+  - https://macroscope.com/
 
 ## Commands
 
