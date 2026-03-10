@@ -9,6 +9,7 @@
 
   "files.readonlyInclude": {
     "deprecated/**": true,
-    "**/routeTree.gen.ts": true
+    "src/routeTree.gen.ts": true,
+    "worker-configuration.d.ts": true
   }
 }

@@ -77,7 +77,9 @@
 - https://www.npmjs.com/package/create-cloudflare
 - https://developers.cloudflare.com/pages/get-started/c3/
 - https://github.com/cloudflare/workers-sdk/tree/main/packages/create-cloudflare/templates/tanstack-start
-- https://www.npmjs.com/package/@cloudflare/workers-types: "We now recommend using the Wrangler CLI and the `wrangler types` command to generate types based on your compatibility date and compatibility flags."
+- https://www.npmjs.com/package/@cloudflare/workers-types:
+  - "We now recommend using the Wrangler CLI and the `wrangler types` command to generate types based on your compatibility date and compatibility flags."
+  - "Remember to rerun 'wrangler types' after you change your wrangler.json file."
 - https://adamkinney.com/writing/cloudflare-d1-setup/
 - https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/
   - https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/#bindings:
