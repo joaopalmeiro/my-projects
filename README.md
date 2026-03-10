@@ -19,9 +19,19 @@ npm install
 ```
 
 ```bash
-npm run dev
+npm run cf-typegen
 ```
 
 ```bash
+npm run dev
+```
+
+## Deployment
+
+```bash
 npm run build
+```
+
+```bash
+npm run deploy
 ```

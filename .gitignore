@@ -5,6 +5,8 @@ node_modules/
 .env
 
 start-bare/
+start-basic-cloudflare/
+start-cloudflare/
 start-tailwind-v4/
 
 playground.json

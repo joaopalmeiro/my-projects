@@ -74,6 +74,18 @@
 - https://honwhy.wang/posts/2025-08-18-cf-worker-full-stack-en/: `import { db } from "@/db"; // your drizzle instance`
 - https://www.firdausng.com/posts/integrating-better-auth-better-sqlite3-drizzle-pnpm
 - https://orm.drizzle.team/docs/connect-cloudflare-do
+- https://www.npmjs.com/package/create-cloudflare
+- https://developers.cloudflare.com/pages/get-started/c3/
+- https://github.com/cloudflare/workers-sdk/tree/main/packages/create-cloudflare/templates/tanstack-start
+- https://www.npmjs.com/package/@cloudflare/workers-types: "We now recommend using the Wrangler CLI and the `wrangler types` command to generate types based on your compatibility date and compatibility flags."
+- https://adamkinney.com/writing/cloudflare-d1-setup/
+- https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/
+  - https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/#bindings:
+    - "Access bindings by importing the `env` object in your server-side code:"
+    - `import { env } from "cloudflare:workers";`
+- https://tanstack.com/start/latest/docs/framework/react/guide/hosting#cloudflare-workers--official-partner
+- https://developers.cloudflare.com/workers/configuration/environment-variables/#local-development-with-secrets
+- https://developers.cloudflare.com/workers/configuration/environment-variables/#environment-variables-and-nodejs-compatibility: "When you enable `nodejs_compat` and the `nodejs_compat_populate_process_env` compatibility flag (enabled by default for compatibility dates on or after 2025-04-01), environment variables are available via the global `process.env`."
 
 ## Commands
 
@@ -86,6 +98,14 @@ npx gitpick TanStack/router/tree/main/examples/react/start-tailwind-v4 start-tai
 ```
 
 ```bash
+npx gitpick TanStack/router/tree/main/examples/react/start-basic-cloudflare start-basic-cloudflare
+```
+
+```bash
+npm create cloudflare@latest start-cloudflare -- --framework=tanstack-start
+```
+
+```bash
 npm install \
 @tanstack/react-router \
 @tanstack/react-start \
@@ -94,6 +114,7 @@ react \
 react-dom \
 zod@3 \
 && npm install -D \
+@cloudflare/vite-plugin \
 @tailwindcss/vite \
 @types/react \
 @types/react-dom \
@@ -101,7 +122,8 @@ zod@3 \
 tailwindcss \
 typescript \
 vite \
-vite-tsconfig-paths@5
+vite-tsconfig-paths@5 \
+wrangler
 ```
 
 ```bash
