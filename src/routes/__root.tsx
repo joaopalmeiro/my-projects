@@ -32,7 +32,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
 
-      <body>
+      <body className="max-w-prose mx-auto">
         {children}
         <Scripts />
       </body>

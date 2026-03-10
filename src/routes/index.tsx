@@ -45,16 +45,16 @@ function Home() {
           <dd>{closedIssues.total}</dd>
         </dl>
 
-        <table>
+        <table className="w-full">
           <thead>
             <tr>
-              <th scope="col" className="font-medium">
+              <th scope="col" className="font-medium text-left px-6 py-3">
                 Repo
               </th>
-              <th scope="col" className="font-medium">
+              <th scope="col" className="font-medium text-left px-6 py-3">
                 Last updated
               </th>
-              <th scope="col" className="font-medium">
+              <th scope="col" className="font-medium text-right px-6 py-3">
                 Open issues
               </th>
             </tr>
@@ -63,11 +63,13 @@ function Home() {
             {repos.map((repo) => {
               return (
                 <tr key={repo.id}>
-                  <th scope="row" className="font-normal">
-                    {repo.name}
+                  <th scope="row" className="text-left px-6 py-4">
+                    <a href={repo.url}>{repo.name}</a>
                   </th>
-                  <td>{repo.updatedAt.toISOString()}</td>
-                  <td>{repo.openIssues}</td>
+                  <td className="text-left px-6 py-4">
+                    {repo.updatedAt.toISOString()}
+                  </td>
+                  <td className="text-right px-6 py-4">{repo.openIssues}</td>
                 </tr>
               );
             })}

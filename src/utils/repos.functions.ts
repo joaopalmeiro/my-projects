@@ -13,6 +13,7 @@ export const getActiveRepos = createServerFn({ method: "GET" }).handler(
           Accept: "application/vnd.github.raw+json",
           Authorization: `Bearer ${process.env.GH_TOKEN}`,
           "X-GitHub-Api-Version": "2022-11-28",
+          "User-Agent": "my-projects",
         },
       },
     );
@@ -39,6 +40,7 @@ export const getRepos = createServerFn({ method: "GET" })
               Accept: "application/vnd.github+json",
               Authorization: `Bearer ${process.env.GH_TOKEN}`,
               "X-GitHub-Api-Version": "2022-11-28",
+              "User-Agent": "my-projects",
             },
           });
 
@@ -80,6 +82,7 @@ export const getClosedIssues = createServerFn({ method: "GET" })
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${process.env.GH_TOKEN}`,
         "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "my-projects",
       },
     });
 

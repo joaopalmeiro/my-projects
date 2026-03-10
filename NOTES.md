@@ -93,6 +93,12 @@
   - "Requests with no `User-Agent` header will be rejected. If you provide an invalid `User-Agent` header, you will receive a `403 Forbidden` response."
 - https://nodejs.org/en/learn/getting-started/fetch
   - https://github.com/nodejs/undici/blob/v7.22.0/docs/docs/best-practices/crawling.md: "In undici, the default user agent is `'undici'`. Since undici is integrated into Node.js core as the implementation of `fetch()`, requests made via `fetch()` use `'node'` as the default user agent."
+- https://ui.nuxt.com/docs/components/table#columns
+- https://flowbite.com/docs/components/tables/
+- https://github.com/paper-design/paper-mono
+- https://shaders.com/
+- https://shaders.paper.design/
+- [Vite hot reload with bindings causes "promise was resolved or rejected from a different request context"](https://github.com/cloudflare/workers-sdk/issues/12731) issue
 
 ## Commands
 
