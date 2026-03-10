@@ -55,6 +55,25 @@
     - https://github.com/anomalyco/opencode
       - https://opencode.ai/zen
   - https://macroscope.com/
+- https://www.youtube.com/watch?v=Atev8Nxpw7c
+  - https://github.com/jherr/tanstack-better-auth
+  - https://better-auth.com/docs/installation
+  - https://better-auth.com/docs/integrations/tanstack
+- https://github.com/daveyplate/better-auth-tanstack-starter
+- https://github.com/chao800404/better-auth-d1-cloudflare-tanstack-start
+- https://github.com/zpg6/better-auth-cloudflare
+- https://orm.drizzle.team/docs/get-started-sqlite#better-sqlite3
+- https://orm.drizzle.team/docs/connect-cloudflare-d1
+- https://orm.drizzle.team/docs/get-started/d1-new
+- https://developers.cloudflare.com/d1/get-started/
+  - https://developers.cloudflare.com/d1/best-practices/local-development/
+- https://better-auth.com/docs/concepts/database#core-schema
+- https://better-auth.com/docs/adapters/drizzle
+- https://www.youtube.com/watch?v=M6Xwl7IyRpI
+  - https://orm.drizzle.team/drizzle-studio/overview
+- https://honwhy.wang/posts/2025-08-18-cf-worker-full-stack-en/: `import { db } from "@/db"; // your drizzle instance`
+- https://www.firdausng.com/posts/integrating-better-auth-better-sqlite3-drizzle-pnpm
+- https://orm.drizzle.team/docs/connect-cloudflare-do
 
 ## Commands
 
