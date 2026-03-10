@@ -88,6 +88,9 @@
 - https://tanstack.com/start/latest/docs/framework/react/guide/hosting#cloudflare-workers--official-partner
 - https://developers.cloudflare.com/workers/configuration/environment-variables/#local-development-with-secrets
 - https://developers.cloudflare.com/workers/configuration/environment-variables/#environment-variables-and-nodejs-compatibility: "When you enable `nodejs_compat` and the `nodejs_compat_populate_process_env` compatibility flag (enabled by default for compatibility dates on or after 2025-04-01), environment variables are available via the global `process.env`."
+- https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent:
+  - "By default, GitHub CLI sends a valid `User-Agent` header. However, GitHub recommends using your GitHub username, or the name of your application, for the `User-Agent` header value. This allows GitHub to contact you if there are problems."
+  - "Requests with no `User-Agent` header will be rejected. If you provide an invalid `User-Agent` header, you will receive a `403 Forbidden` response."
 
 ## Commands
 
