@@ -134,6 +134,9 @@
   - `import { hashPassword, verifyPassword } from "../crypto/password";`
 - [Default user](https://github.com/better-auth/better-auth/issues/3323) issue
 - `disableSignUp: process.env.NODE_ENV !== "development"`
+- https://helium.computer/ (browser)
+  - https://github.com/imputnet/helium
+  - https://formulae.brew.sh/cask/helium-browser
 
 ## Commands
 
