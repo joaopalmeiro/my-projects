@@ -45,16 +45,25 @@ function Home() {
           <dd>{closedIssues.total}</dd>
         </dl>
 
-        <table className="w-full">
-          <thead className="border-b bg-mist-50 border-mist-400">
+        <table className="w-full border border-mist-200 border-separate border-spacing-0 rounded-lg overflow-hidden shadow-xs">
+          <thead className="bg-mist-50">
             <tr>
-              <th scope="col" className="font-medium text-left px-6 py-3">
+              <th
+                scope="col"
+                className="border-b border-mist-200 font-medium text-left px-6 py-3"
+              >
                 Repo
               </th>
-              <th scope="col" className="font-medium text-left px-6 py-3">
+              <th
+                scope="col"
+                className="border-b border-mist-200 font-medium text-left px-6 py-3"
+              >
                 Last updated
               </th>
-              <th scope="col" className="font-medium text-right px-6 py-3">
+              <th
+                scope="col"
+                className="border-b border-mist-200 font-medium text-right px-6 py-3"
+              >
                 Open issues
               </th>
             </tr>

@@ -99,6 +99,8 @@
 - https://shaders.com/
 - https://shaders.paper.design/
 - [Vite hot reload with bindings causes "promise was resolved or rejected from a different request context"](https://github.com/cloudflare/workers-sdk/issues/12731) issue
+- https://www.chakra-ui.com/docs/components/table
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius: "The `border-radius` property does not apply to table elements when `border-collapse` is `collapse`."
 
 ## Commands
 
@@ -145,4 +147,53 @@ npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1)"
 
 ```bash
 npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1-2)"
+```
+
+## Snippets
+
+```html
+<table
+  class="block w-full overflow-x-auto md:table min-w-full border-separate border-spacing-0 rounded-lg border border-gray-300 text-left text-sm text-gray-700"
+>
+  <thead class="bg-gray-100">
+    <tr>
+      <th
+        scope="col"
+        class="rounded-tl-lg border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap"
+      >
+        Name
+      </th>
+      <th
+        scope="col"
+        class="border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap"
+      >
+        Role
+      </th>
+      <th
+        scope="col"
+        class="rounded-tr-lg border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap"
+      >
+        Email
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">
+        Alice Johnson
+      </td>
+      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">
+        Developer
+      </td>
+      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">
+        alice@example.com
+      </td>
+    </tr>
+    <tr>
+      <td class="rounded-bl-lg px-6 py-4 whitespace-nowrap">Bob Smith</td>
+      <td class="px-6 py-4 whitespace-nowrap">Designer</td>
+      <td class="rounded-br-lg px-6 py-4 whitespace-nowrap">bob@example.com</td>
+    </tr>
+  </tbody>
+</table>
 ```
