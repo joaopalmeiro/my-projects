@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { getSession } from "~/utils/auth.functions";
 
 import {
   getClosedIssues,
@@ -7,6 +8,15 @@ import {
 } from "~/utils/repos.functions";
 
 export const Route = createFileRoute("/")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (!session) {
+      throw redirect({ to: "/login" });
+    }
+
+    return { user: session.user };
+  },
   loader: async () => {
     const activeRepos = await getActiveRepos();
 
@@ -19,6 +29,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { user } = Route.useRouteContext();
   const [repos, closedIssues] = Route.useLoaderData();
 
   const totalRepos = repos.length;
@@ -31,6 +42,7 @@ function Home() {
     <>
       <header>
         <h1>My Projects</h1>
+        <p>{user}</p>
       </header>
 
       <main>

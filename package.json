@@ -14,27 +14,36 @@
     "build": "vite build && tsc --noEmit",
     "dev": "vite dev",
     "deploy": "wrangler deploy",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "db:create": "wrangler d1 create my-projects-prod",
+    "db:schema": "auth generate --output ./src/db/schema.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply my-projects-prod --local",
+    "db:migrate:remote": "wrangler d1 migrations apply my-projects-prod --remote"
   },
   "dependencies": {
-    "@tanstack/react-router": "1.163.3",
-    "@tanstack/react-start": "1.166.1",
+    "@better-auth/drizzle-adapter": "1.5.4",
+    "@tanstack/react-router": "1.166.7",
+    "@tanstack/react-start": "1.166.7",
+    "better-auth": "1.5.4",
     "date-fns": "4.1.0",
+    "drizzle-orm": "0.45.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "zod": "3.25.76"
+    "zod": "4.3.6"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.26.1",
+    "@cloudflare/vite-plugin": "1.27.0",
     "@tailwindcss/vite": "4.2.1",
-    "@types/node": "24.11.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "4.7.0",
+    "auth": "1.5.4",
+    "drizzle-kit": "0.31.9",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
     "vite": "7.3.1",
     "vite-tsconfig-paths": "5.1.4",
-    "wrangler": "4.71.0"
+    "wrangler": "4.72.0"
   }
 }

@@ -101,6 +101,19 @@
 - [Vite hot reload with bindings causes "promise was resolved or rejected from a different request context"](https://github.com/cloudflare/workers-sdk/issues/12731) issue
 - https://www.chakra-ui.com/docs/components/table
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius: "The `border-radius` property does not apply to table elements when `border-collapse` is `collapse`."
+- https://tanstack.com/builder?file=src%2Froutes%2F__root.tsx&pm=npm&features=cloudflare%2Cstart%2Cdrizzle%2Cbetter-auth&drizzle.database=sqlite
+- https://better-auth.com/docs/authentication/email-password#configuration
+- https://kevinkipp.com/blog/going-full-stack-on-astro-with-cloudflare-d1-and-drizzle/
+  - https://github.com/third774/astro-d1-drizzle-demo
+- https://orm.drizzle.team/docs/guides/d1-http-with-drizzle-kit
+- https://github.com/cloudflare/workers-sdk/issues/12769: "I'm curious why you want to treat the `database_id` as a secret? They are not sensitive and can be included directly in the config."
+- https://ygwyg.org/local-d1-drizzle-studio
+- https://developers.cloudflare.com/d1/get-started/#3-bind-your-worker-to-your-d1-database: `"binding": "prod_d1_tutorial", // available in your Worker on env.DB`
+- [1.3.10 and later does not work on zod 3 projects](https://github.com/better-auth/better-auth/issues/4837) issue
+- https://better-auth.com/docs/reference/options#baseurl
+- https://developers.cloudflare.com/workers/development-testing/local-data/#how-it-works: "When you run either `wrangler dev` or `vite`, Miniflare automatically creates local versions of your resources (like KV, D1, or R2). This means you don't need to manually set up separate local instances for each service. However, newly created local resources won't contain any data — you'll need to use Wrangler commands with the `--local` flag to populate them. Changes made to local resources won't affect production data."
+  - https://developers.cloudflare.com/workers/development-testing/local-data/#d1-databases
+- https://mastra.ai/reference/storage/cloudflare-d1
 
 ## Commands
 
@@ -121,19 +134,28 @@ npm create cloudflare@latest start-cloudflare -- --framework=tanstack-start
 ```
 
 ```bash
+npm install zod@3
+```
+
+```bash
 npm install \
 @tanstack/react-router \
 @tanstack/react-start \
 date-fns \
+drizzle-orm \
+better-auth \
+@better-auth/drizzle-adapter \
 react \
 react-dom \
-zod@3 \
+zod \
 && npm install -D \
 @cloudflare/vite-plugin \
 @tailwindcss/vite \
 @types/react \
 @types/react-dom \
 @vitejs/plugin-react@4 \
+auth \
+drizzle-kit \
 tailwindcss \
 typescript \
 vite \
@@ -147,6 +169,14 @@ npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1)"
 
 ```bash
 npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1-2)"
+```
+
+```bash
+openssl rand -base64 32
+```
+
+```bash
+npx @better-auth/cli secret
 ```
 
 ## Snippets
@@ -196,4 +226,70 @@ npm install -D "@types/node@$(cat .nvmrc | cut -d . -f 1-2)"
     </tr>
   </tbody>
 </table>
+```
+
+- https://github.com/daniel-d7a/hono-drizzle-cloudflare_d1-better_auth-starter/blob/8ee4cc366c7eecfefa4120e0330d83f3ecce4b0f/drizzle.config.ts
+
+```ts
+import { Config, defineConfig } from "drizzle-kit";
+import fs from "fs";
+import path from "path";
+import { env } from "./src/env";
+
+function getLocalD1DB() {
+  try {
+    const basePath = path.resolve(
+      ".wrangler/state/v3/d1/miniflare-D1DatabaseObject",
+    );
+    const dbFile = fs.readdirSync(basePath).find((x) => x.endsWith(".sqlite"));
+
+    if (!dbFile) {
+      throw new Error(`.sqlite file not found in ${basePath}`);
+    }
+
+    const url = path.resolve(basePath, dbFile);
+    return url;
+  } catch (err: any) {
+    console.log(`Error resolving local D1 DB: ${err.message}`);
+    return "";
+  }
+}
+
+const devConfig = {
+  schema: "./src/db/schema/*",
+  out: "./src/db/migrations",
+  dialect: "sqlite",
+  dbCredentials: {
+    url: getLocalD1DB(),
+  },
+} satisfies Config;
+
+const prodConfig = {
+  schema: "./src/db/schema/*",
+  out: "./src/db/migrations",
+  dialect: "sqlite",
+  driver: "d1-http",
+  dbCredentials: {
+    accountId: env.CLOUDFLARE_ACCOUNT_ID,
+    databaseId: env.CLOUDFLARE_D1_DB_ID,
+    token: env.CLOUDFLARE_API_TOKEN,
+  },
+} satisfies Config;
+
+const testConfig = {
+  schema: "./src/db/schema/*",
+  out: "./src/db/migrations",
+  dialect: "sqlite",
+  dbCredentials: {
+    url: env.TEST_DB_URL || "testing.sqlite",
+  },
+} satisfies Config;
+
+export default defineConfig(
+  env.NODE_ENV === "test"
+    ? testConfig
+    : env.NODE_ENV === "dev"
+      ? devConfig
+      : prodConfig,
+);
 ```

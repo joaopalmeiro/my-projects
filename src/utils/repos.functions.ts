@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { startOfWeek } from "date-fns";
+import { env } from "cloudflare:workers";
 
 import { USER_AGENT } from "./constants";
 import { ghIssuesSchema, ghRepoSchema } from "./schemas";
@@ -12,7 +13,7 @@ export const getActiveRepos = createServerFn({ method: "GET" }).handler(
       {
         headers: {
           Accept: "application/vnd.github.raw+json",
-          Authorization: `Bearer ${process.env.GH_TOKEN}`,
+          Authorization: `Bearer ${env.GH_TOKEN}`,
           "X-GitHub-Api-Version": "2022-11-28",
           "User-Agent": USER_AGENT,
         },
@@ -39,7 +40,7 @@ export const getRepos = createServerFn({ method: "GET" })
           const response = await fetch(apiUrl, {
             headers: {
               Accept: "application/vnd.github+json",
-              Authorization: `Bearer ${process.env.GH_TOKEN}`,
+              Authorization: `Bearer ${env.GH_TOKEN}`,
               "X-GitHub-Api-Version": "2022-11-28",
               "User-Agent": USER_AGENT,
             },
@@ -81,7 +82,7 @@ export const getClosedIssues = createServerFn({ method: "GET" })
     const firstResponse = await fetch(firstApiUrl, {
       headers: {
         Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${process.env.GH_TOKEN}`,
+        Authorization: `Bearer ${env.GH_TOKEN}`,
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": USER_AGENT,
       },
