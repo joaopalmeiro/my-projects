@@ -12,14 +12,15 @@
   "type": "module",
   "scripts": {
     "build": "vite build && tsc --noEmit",
-    "dev": "vite dev",
-    "deploy": "wrangler deploy",
     "cf-typegen": "wrangler types",
     "db:create": "wrangler d1 create my-projects-prod",
-    "db:schema": "auth generate --output ./src/db/schema.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply my-projects-prod --local",
-    "db:migrate:remote": "wrangler d1 migrations apply my-projects-prod --remote"
+    "db:migrate:remote": "wrangler d1 migrations apply my-projects-prod --remote",
+    "db:schema": "auth generate --output ./src/db/schema.ts",
+    "db:studio": "drizzle-kit studio --verbose",
+    "deploy": "wrangler deploy",
+    "dev": "vite dev"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "1.5.4",
@@ -39,6 +40,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "4.7.0",
     "auth": "1.5.4",
+    "better-sqlite3": "12.6.2",
     "drizzle-kit": "0.31.9",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",

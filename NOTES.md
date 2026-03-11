@@ -114,6 +114,14 @@
 - https://developers.cloudflare.com/workers/development-testing/local-data/#how-it-works: "When you run either `wrangler dev` or `vite`, Miniflare automatically creates local versions of your resources (like KV, D1, or R2). This means you don't need to manually set up separate local instances for each service. However, newly created local resources won't contain any data — you'll need to use Wrangler commands with the `--local` flag to populate them. Changes made to local resources won't affect production data."
   - https://developers.cloudflare.com/workers/development-testing/local-data/#d1-databases
 - https://mastra.ai/reference/storage/cloudflare-d1
+- https://nodejs.org/en/learn/command-line/how-to-read-environment-variables-from-nodejs
+- https://www.youtube.com/watch?v=wpaioC9RtOA
+  - Use `debugger;` instead of `console.log();`
+- https://ente.io/blog/ensu
+- https://www.cloudflare.com/en-gb/developer-platform/products/workers-ai/
+- https://rsbuild.rs/guide/advanced/env-vars#processenvnode_env
+- https://betterstack.com/community/guides/scaling-nodejs/node-environment-variables/
+- https://aiwan.run/posts/cloudflare-d1-local-dev
 
 ## Commands
 
@@ -155,6 +163,7 @@ zod \
 @types/react-dom \
 @vitejs/plugin-react@4 \
 auth \
+better-sqlite3 \
 drizzle-kit \
 tailwindcss \
 typescript \

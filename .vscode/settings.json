@@ -12,6 +12,7 @@
 
   "files.readonlyInclude": {
     "deprecated/**": true,
+    "drizzle/**": true,
     "src/db/schema.ts": true,
     "src/routeTree.gen.ts": true,
     "worker-configuration.d.ts": true

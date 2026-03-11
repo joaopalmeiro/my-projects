@@ -9,7 +9,8 @@
     {
       "binding": "DB",
       "database_name": "my-projects-prod",
-      "database_id": "a352e6c2-7f04-42d1-aeb1-d1d0c0d32657"
+      "database_id": "a352e6c2-7f04-42d1-aeb1-d1d0c0d32657",
+      "migrations_dir": "drizzle"
     }
   ]
 }
