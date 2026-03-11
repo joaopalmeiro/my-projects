@@ -46,7 +46,7 @@ function Home() {
         </dl>
 
         <table className="w-full">
-          <thead>
+          <thead className="border-b bg-mist-50 border-mist-400">
             <tr>
               <th scope="col" className="font-medium text-left px-6 py-3">
                 Repo

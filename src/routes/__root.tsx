@@ -4,7 +4,7 @@ import {
   HeadContent,
   Outlet,
   Scripts,
-  createRootRoute
+  createRootRoute,
 } from "@tanstack/react-router";
 import * as React from "react";
 
@@ -32,7 +32,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
 
-      <body className="max-w-prose mx-auto">
+      <body className="max-w-prose mx-auto text-mist-900">
         {children}
         <Scripts />
       </body>
