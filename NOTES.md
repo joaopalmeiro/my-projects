@@ -126,6 +126,14 @@
 - https://andrewdavidkay.com/blog/level/tanstack-start-better-auth
 - https://github.com/nrjdalal/better-start
 - https://better-auth.com/docs/basic-usage#server-side-authentication: "To authenticate a user on the server, you can use the `auth.api` methods." + `import { auth } from "./auth"; // path to your Better Auth server instance`
+- https://better-auth.com/docs/installation#create-client-instance
+- https://github.com/better-auth/better-auth/blob/v1.5.5/packages/better-auth/src/crypto/password.ts
+  - https://www.npmjs.com/package/@noble/hashes
+- https://better-auth.com/docs/authentication/email-password#configuration
+  - https://github.com/better-auth/better-auth/blob/v1.5.5/packages/better-auth/src/context/create-context.ts#L339-L340
+  - `import { hashPassword, verifyPassword } from "../crypto/password";`
+- [Default user](https://github.com/better-auth/better-auth/issues/3323) issue
+- `disableSignUp: process.env.NODE_ENV !== "development"`
 
 ## Commands
 
