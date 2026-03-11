@@ -1,10 +1,10 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { getSession } from "~/utils/auth.functions";
 
+import { getSession } from "~/utils/auth.functions";
 import {
+  getActiveRepos,
   getClosedIssues,
   getRepos,
-  getActiveRepos,
 } from "~/utils/repos.functions";
 
 export const Route = createFileRoute("/")({

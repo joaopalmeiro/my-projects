@@ -122,6 +122,10 @@
 - https://rsbuild.rs/guide/advanced/env-vars#processenvnode_env
 - https://betterstack.com/community/guides/scaling-nodejs/node-environment-variables/
 - https://aiwan.run/posts/cloudflare-d1-local-dev
+- https://github.com/Simo10469/tanstack-start-better-auth
+- https://andrewdavidkay.com/blog/level/tanstack-start-better-auth
+- https://github.com/nrjdalal/better-start
+- https://better-auth.com/docs/basic-usage#server-side-authentication: "To authenticate a user on the server, you can use the `auth.api` methods." + `import { auth } from "./auth"; // path to your Better Auth server instance`
 
 ## Commands
 
