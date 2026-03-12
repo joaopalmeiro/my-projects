@@ -137,6 +137,15 @@
 - https://helium.computer/ (browser)
   - https://github.com/imputnet/helium
   - https://formulae.brew.sh/cask/helium-browser
+- https://akselmo.dev/posts/they-broke-my-server/
+  - https://linkhut.org/
+    - https://sr.ht/~mlb/linkhut/
+  - https://scalie.computer/
+- `Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default ESM loader. Received protocol 'cloudflare:'`
+- https://better-auth.com/docs/concepts/database#option-1-let-database-generate-ids or https://better-auth.com/docs/concepts/database#option-3-consistent-custom-id-generator
+- https://awjunaid.com/sqlite/the-autoincrement-keyword-in-sqlite/
+- https://github.com/better-auth/better-auth/blob/764f63e1278aa8a1ab1c7a33c752ff045ed7bf75/packages/core/src/db/get-tables.ts
+  - `✘ [ERROR] NOT NULL constraint failed: account.updated_at: SQLITE_CONSTRAINT`
 
 ## Commands
 

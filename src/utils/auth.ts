@@ -15,5 +15,10 @@ export const auth = betterAuth({
     disableSignUp: true,
     requireEmailVerification: false,
   },
+  advanced: {
+    database: {
+      generateId: () => crypto.randomUUID(),
+    },
+  },
   plugins: [tanstackStartCookies()],
 });

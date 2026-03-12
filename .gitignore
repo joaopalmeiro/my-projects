@@ -11,3 +11,4 @@ start-cloudflare/
 start-tailwind-v4/
 
 playground.json
+scripts/*.sql

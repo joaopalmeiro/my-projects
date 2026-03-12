@@ -14,6 +14,8 @@
     "build": "vite build && tsc --noEmit",
     "cf-typegen": "wrangler types",
     "db:create": "wrangler d1 create my-projects-prod",
+    "db:create:user:generate": "node scripts/generate-create-user-query.ts",
+    "db:create:user:local": "wrangler d1 execute my-projects-prod --local --file ./scripts/insert-user-local.sql",
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply my-projects-prod --local",
     "db:migrate:remote": "wrangler d1 migrations apply my-projects-prod --remote",
