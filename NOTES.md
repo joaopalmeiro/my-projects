@@ -615,3 +615,75 @@ function Login() {
   );
 }
 ```
+
+```tsx
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useFormStatus } from "react-dom";
+
+import { authClient } from "~/utils/auth-client";
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  component: Login,
+});
+
+function Login() {
+  const navigate = Route.useNavigate();
+
+  async function handleLogin(formData: FormData): Promise<void> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    // 1. Await the authentication request instead of using callbacks
+    // (Assuming you are using Better Auth which returns { data, error })
+    const { error } = await authClient.signIn.email({
+      email,
+      password,
+    });
+
+    if (error) {
+      alert(error.message);
+      return; // Exits early on error, which sets 'pending' back to false
+    }
+
+    // 2. Await the navigation
+    // This keeps the form action "pending" until the '/' route loaders finish.
+    await navigate({ to: "/" });
+  }
+
+  return (
+    <main>
+      <form action={handleLogin}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+
+        <div>
+          <label htmlFor="password">Password</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+
+        <SubmitButton />
+      </form>
+    </main>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button type="submit" disabled={pending}>
+      {pending ? "Logging in..." : "Login"}
+    </button>
+  );
+}
+```
