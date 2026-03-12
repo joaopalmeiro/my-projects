@@ -146,6 +146,10 @@
 - https://awjunaid.com/sqlite/the-autoincrement-keyword-in-sqlite/
 - https://github.com/better-auth/better-auth/blob/764f63e1278aa8a1ab1c7a33c752ff045ed7bf75/packages/core/src/db/get-tables.ts
   - `✘ [ERROR] NOT NULL constraint failed: account.updated_at: SQLITE_CONSTRAINT`
+- https://tanstack.com/form/latest/docs/overview
+  - https://tanstack.com/form/latest/docs/framework/react/guides/ssr#using-tanstack-form-in-tanstack-start
+  - https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype: "`multipart/form-data`: The type that allows file `<input>` element(s) to upload file data."
+- https://github.com/better-auth/examples/tree/main/tanstack-example
 
 ## Commands
 
