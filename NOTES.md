@@ -330,3 +330,21 @@ export default defineConfig(
       : prodConfig,
 );
 ```
+
+- https://github.com/stolinski/graffiti/blob/b949842b74d7a5f7a58467e7f185143d18b41af0/src/lib/drop-in.css#L218-L227
+- https://graffiti-ui.com/base
+
+```css
+--teal: oklch(0.82 0.08 185);
+
+/* Teal scale */
+--teal-1: oklch(from var(--teal) l c h / 0.1);
+--teal-2: oklch(from var(--teal) l c h / 0.2);
+--teal-3: oklch(from var(--teal) l c h / 0.3);
+--teal-4: oklch(from var(--teal) l c h / 0.4);
+--teal-5: oklch(from var(--teal) l c h / 0.5);
+--teal-6: oklch(from var(--teal) l c h / 0.6);
+--teal-7: oklch(from var(--teal) l c h / 0.75);
+--teal-8: oklch(from var(--teal) l c h / 0.9);
+--teal-9: var(--teal);
+```
