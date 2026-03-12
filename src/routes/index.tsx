@@ -42,7 +42,7 @@ function Home() {
     <>
       <header>
         <h1>My Projects</h1>
-        <p>{user}</p>
+        <p>{user.name}</p>
       </header>
 
       <main>

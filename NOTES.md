@@ -150,6 +150,32 @@
   - https://tanstack.com/form/latest/docs/framework/react/guides/ssr#using-tanstack-form-in-tanstack-start
   - https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/enctype: "`multipart/form-data`: The type that allows file `<input>` element(s) to upload file data."
 - https://github.com/better-auth/examples/tree/main/tanstack-example
+- https://www.youtube.com/watch?v=Xn-gtHDsaPY
+  - https://github.com/msitarzewski/agency-agents
+  - https://www.promptfoo.dev/
+    - https://www.promptfoo.dev/blog/promptfoo-joining-openai/
+  - https://github.com/666ghj/MiroFish
+  - https://github.com/pbakaus/impeccable
+  - https://github.com/volcengine/OpenViking
+  - https://github.com/p-e-w/heretic
+    - https://github.com/YingfanWang/PaCMAP
+  - https://github.com/karpathy/nanochat
+  - https://www.recall.ai/
+- https://tomasaltrui.dev/blog/tanstack-start-app-with-better-auth/: "The official recommendation by the better-auth team (and mine, of course) is to handle auth flow in the client side."
+- https://github.com/TheOrcDev/tanstack-start-better-auth-starter
+- https://github.com/mugnavo/tanstarter
+  - https://github.com/mugnavo/tanstarter/blob/bae60cf90fcdc76ed87f14056e1869911697b6b4/src/routes/_guest/login.tsx
+- https://catalins.tech/better-auth-with-hono-bun-typescript-react-vite/
+- https://github.com/badlogic/pi-mono
+- https://ui.shadcn.com/blocks/login
+- https://react.dev/reference/react-dom/components/form#handle-form-submission-on-the-client
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
+- https://www.w3.org/WAI/tutorials/forms/labels/
+- https://www.deque.com/blog/anatomy-of-accessible-forms-best-practices/
+- https://a11y-guidelines.orange.com/en/articles/form/part1/
+- https://barker.codes/blog/forms-in-react-19/#form-actions
+- https://www.robinwieruch.de/react-form-data/
+- `navigate({ to: "/" });` or `await navigate({ to: "/" });`
 
 ## Commands
 
@@ -214,6 +240,10 @@ openssl rand -base64 32
 
 ```bash
 npx @better-auth/cli secret
+```
+
+```bash
+rsync -a --exclude={'.git','.DS_Store','.env'} ~/Documents/GitHub/my-projects/ ~/Documents/my-projects-open-code
 ```
 
 ## Snippets
@@ -365,4 +395,223 @@ box-shadow:
   0 0 0 3px color-mix(in oklch, var(--success) 20%, transparent),
   0 4px 12px -2px color-mix(in oklch, var(--success) 40%, transparent),
   0 8px 20px -4px color-mix(in oklch, var(--success) 25%, transparent);
+```
+
+- https://react.dev/reference/react-dom/components/form#display-a-pending-state-during-form-submission
+
+```jsx
+import { useFormStatus } from "react-dom";
+import { submitForm } from "./actions.js";
+
+function Submit() {
+  const { pending } = useFormStatus();
+  return (
+    <button type="submit" disabled={pending}>
+      {pending ? "Submitting..." : "Submit"}
+    </button>
+  );
+}
+
+function Form({ action }) {
+  return (
+    <form action={action}>
+      <Submit />
+    </form>
+  );
+}
+
+export default function App() {
+  return <Form action={submitForm} />;
+}
+```
+
+```tsx
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
+import { useFormStatus } from "react-dom";
+
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  component: Login,
+});
+
+function Login() {
+  const navigate = useNavigate();
+
+  async function handleSignIn(formData: FormData) {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { authClient } = await import("~/utils/auth-client");
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          navigate({ to: "/" });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <main className="flex min-h-screen items-center justify-center">
+      <form
+        action={handleSignIn}
+        className="flex w-full max-w-xs flex-col gap-4 rounded-lg border p-6"
+      >
+        <h1 className="text-2xl font-bold">Login</h1>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="rounded border p-2"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            className="rounded border p-2"
+            aria-describedby="password-help"
+          />
+          <span id="password-help" className="text-sm text-gray-600">
+            Must be at least 8 characters
+          </span>
+        </div>
+
+        <SubmitButton />
+      </form>
+    </main>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-blue-400"
+    >
+      {pending ? "Logging in..." : "Login"}
+    </button>
+  );
+}
+```
+
+```tsx
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
+import { useTransition } from "react";
+
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  component: Login,
+});
+
+function Login() {
+  const navigate = useNavigate();
+  const [isPending, startTransition] = useTransition();
+
+  async function handleSignIn(formData: FormData) {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { authClient } = await import("~/utils/auth-client");
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          startTransition(() => {
+            navigate({ to: "/" });
+          });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <main className="flex min-h-screen items-center justify-center">
+      <form
+        action={handleSignIn}
+        className="flex w-full max-w-xs flex-col gap-4 rounded-lg border p-6"
+      >
+        <h1 className="text-2xl font-bold">Login</h1>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="rounded border p-2"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            className="rounded border p-2"
+            aria-describedby="password-help"
+          />
+          <span id="password-help" className="text-sm text-gray-600">
+            Must be at least 8 characters
+          </span>
+        </div>
+
+        <button
+          type="submit"
+          disabled={isPending}
+          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-blue-400"
+        >
+          {isPending ? "Logging in..." : "Login"}
+        </button>
+      </form>
+    </main>
+  );
+}
 ```
