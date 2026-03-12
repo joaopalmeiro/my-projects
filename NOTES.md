@@ -348,3 +348,21 @@ export default defineConfig(
 --teal-8: oklch(from var(--teal) l c h / 0.9);
 --teal-9: var(--teal);
 ```
+
+- https://graffiti-ui.com/ui-blocks
+
+```css
+--timeline-marker-color: var(--success);
+background: linear-gradient(
+  to bottom,
+  oklch(from var(--success) calc(l + 0.08) c h),
+  var(--success)
+);
+border-color: oklch(from var(--success) calc(l - 0.08) calc(c * 1.1) h);
+color: var(--white);
+box-shadow:
+  inset 0 1px 2px #ffffff4d,
+  0 0 0 3px color-mix(in oklch, var(--success) 20%, transparent),
+  0 4px 12px -2px color-mix(in oklch, var(--success) 40%, transparent),
+  0 8px 20px -4px color-mix(in oklch, var(--success) 25%, transparent);
+```
