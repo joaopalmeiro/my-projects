@@ -1,5 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
+import { authClient } from "~/utils/auth-client";
 import { getSession } from "~/utils/auth.functions";
 import {
   getActiveRepos,
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { user } = Route.useRouteContext();
+  const navigate = Route.useNavigate();
   const [repos, closedIssues] = Route.useLoaderData();
 
   const totalRepos = repos.length;
@@ -38,11 +39,23 @@ function Home() {
     0,
   );
 
+  async function handleLogout(): Promise<void> {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          navigate({ to: "/login" });
+        },
+      },
+    });
+  }
+
   return (
     <>
-      <header>
+      <header className="flex justify-between">
         <h1>My Projects</h1>
-        <p>{user.name}</p>
+        <button type="button" onClick={handleLogout}>
+          Logout
+        </button>
       </header>
 
       <main>

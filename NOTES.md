@@ -188,6 +188,9 @@
 - https://tanstack.com/router/latest/docs/api/router/RouterType#invalidate-method
   - "if `sync` is true, the promise returned by this function will only resolve once all loaders have finished."
 - https://tanstack.com/router/latest/docs/api/router/matchRouteComponent
+- https://robbiebartlett.github.io/a11y/html/development/links-and-buttons.html
+- `const { user } = Route.useRouteContext();`
+- https://better-auth.com/docs/authentication/email-password#sign-out
 
 ## Commands
 
