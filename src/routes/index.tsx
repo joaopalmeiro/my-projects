@@ -61,14 +61,26 @@ function Home() {
 
       <main className="flex flex-col gap-4">
         <dl className="flex gap-2">
-          <dt>Projects</dt>
-          <dd>{totalRepos}</dd>
+          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Projects</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {totalRepos}
+            </dd>
+          </div>
 
-          <dt>Open issues</dt>
-          <dd>{totalOpenIssues}</dd>
+          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Open issues</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {totalOpenIssues}
+            </dd>
+          </div>
 
-          <dt>Issues closed this week</dt>
-          <dd>{closedIssues.total}</dd>
+          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Issues closed this week</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {closedIssues.total}
+            </dd>
+          </div>
         </dl>
 
         <table className="w-full border border-mist-200 border-separate border-spacing-0 rounded-lg overflow-hidden shadow-xs">
@@ -88,7 +100,7 @@ function Home() {
               </th>
               <th
                 scope="col"
-                className="border-b border-mist-200 font-medium text-right px-6 py-3"
+                className="border-b border-mist-200 font-medium text-right px-6 py-3 tabular-nums"
               >
                 Open issues
               </th>

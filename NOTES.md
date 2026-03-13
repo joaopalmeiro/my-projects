@@ -202,6 +202,8 @@
   - https://github.com/niri-wm/niri
     - https://niri-wm.github.io/niri/Getting-Started.html
   - https://github.com/mogenson/PaperWM.spoon
+- https://getuikit.com/docs/description-list
+- `<dl className="flex gap-2 flex-wrap">` + `<div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2 whitespace-nowrap">`
 
 ## Commands
 
