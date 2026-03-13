@@ -102,7 +102,7 @@ function Home() {
               </th>
               <th
                 scope="col"
-                className="border-b border-mist-200 font-medium text-right px-6 py-3 tabular-nums"
+                className="border-b border-mist-200 font-medium text-right px-6 py-3"
               >
                 Open issues
               </th>
@@ -122,7 +122,7 @@ function Home() {
                       })}
                     </time>
                   </td>
-                  <td className="text-right px-6 py-4">{repo.openIssues}</td>
+                  <td className="text-right px-6 py-4 tabular-nums">{repo.openIssues}</td>
                 </tr>
               );
             })}
