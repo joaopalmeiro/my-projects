@@ -1,4 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { intlFormatDistance } from "date-fns";
 
 import { authClient } from "~/utils/auth-client";
 import { getSession } from "~/utils/auth.functions";
@@ -38,6 +39,7 @@ function Home() {
     (total, repo) => total + repo.openIssues,
     0,
   );
+  const today = new Date();
 
   async function handleLogout(): Promise<void> {
     await authClient.signOut({
@@ -114,7 +116,11 @@ function Home() {
                     <a href={repo.url}>{repo.name}</a>
                   </th>
                   <td className="text-left px-6 py-4">
-                    {repo.updatedAt.toISOString()}
+                    <time dateTime={repo.updatedAt.toISOString()}>
+                      {intlFormatDistance(repo.updatedAt, today, {
+                        locale: "en-US",
+                      })}
+                    </time>
                   </td>
                   <td className="text-right px-6 py-4">{repo.openIssues}</td>
                 </tr>
