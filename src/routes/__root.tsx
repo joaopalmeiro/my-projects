@@ -10,6 +10,26 @@ import appCss from "~/styles/app.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
+    meta: [
+      {
+        charSet: "utf-8",
+      },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1",
+      },
+      {
+        title: "My Projects",
+      },
+      {
+        name: "author",
+        content: "João Palmeiro",
+      },
+      {
+        name: "description",
+        content: "An overview of my projects to manage their maintenance.",
+      },
+    ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
   component: RootComponent,
@@ -25,7 +45,7 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
