@@ -179,6 +179,12 @@
 - https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form
 - https://upscrolled.com/en/
 - https://repomix.com/
+- https://better-auth.com/docs/authentication/email-password#sign-in
+  - `const { data, error } = await authClient.signIn.email({`
+  - `callbackURL: "https://example.com/callback"` + "An optional URL to redirect to after the user signs in. (optional)"
+- https://tanstack.com/router/latest/docs/guide/data-loading#showing-a-pending-component:
+  - "By default, TanStack Router will show a pending component for loaders that take longer than 1 second to resolve. This is an optimistic threshold that can be configured via: `routeOptions.pendingMs` or `routerOptions.defaultPendingMs`"
+- https://tanstack.com/router/latest/docs/guide/data-loading#avoiding-pending-component-flash: "If you're using a pending component, the last thing you want is for your pending time threshold to be met, then have your data resolve immediately after, resulting in a jarring flash of your pending component. To avoid this, TanStack Router by default will show your pending component for at least 500ms."
 
 ## Commands
 
@@ -688,5 +694,50 @@ function SubmitButton() {
       {pending ? "Logging in..." : "Login"}
     </button>
   );
+}
+```
+
+```tsx
+export const Route = createFileRoute("/")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (!session) {
+      throw redirect({ to: "/login" });
+    }
+
+    return { user: session.user };
+  },
+  loader: async () => {
+    const activeRepos = await getActiveRepos();
+
+    return Promise.all([
+      getRepos({ data: activeRepos }),
+      getClosedIssues({ data: activeRepos }),
+    ]);
+  },
+  component: Home,
+  pendingComponent: () => (
+    <main>
+      <p>Loading...</p>
+    </main>
+  ),
+  pendingMs: 0,
+});
+```
+
+```tsx
+async function handleLogin(formData: FormData): Promise<void> {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  const { data, error } = await authClient.signIn.email({
+    email,
+    password,
+  });
+
+  console.log(data, error);
+
+  await navigate({ to: "/" });
 }
 ```
