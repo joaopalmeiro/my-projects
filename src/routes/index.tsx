@@ -53,10 +53,14 @@ function Home() {
 
   return (
     <>
-      <header className="flex justify-between">
+      <header className="flex justify-between items-center">
         <h1 className="font-medium">My Projects</h1>
 
-        <button type="button" onClick={handleLogout}>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 hover:bg-mist-950/5"
+        >
           Logout
         </button>
       </header>
@@ -113,7 +117,12 @@ function Home() {
               return (
                 <tr key={repo.id}>
                   <th scope="row" className="text-left px-6 py-4">
-                    <a href={repo.url}>{repo.name}</a>
+                    <a
+                      href={repo.url}
+                      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-xs"
+                    >
+                      {repo.name}
+                    </a>
                   </th>
                   <td className="text-left px-6 py-4">
                     <time dateTime={repo.updatedAt.toISOString()}>
@@ -122,7 +131,9 @@ function Home() {
                       })}
                     </time>
                   </td>
-                  <td className="text-right px-6 py-4 tabular-nums">{repo.openIssues}</td>
+                  <td className="text-right px-6 py-4 tabular-nums">
+                    {repo.openIssues}
+                  </td>
                 </tr>
               );
             })}
