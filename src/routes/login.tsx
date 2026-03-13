@@ -41,6 +41,8 @@ function Login() {
   return (
     <main>
       <form action={handleLogin}>
+        <h1>Login</h1>
+
         <div>
           <label htmlFor="email">Email</label>
           <input id="email" name="email" type="email" required />

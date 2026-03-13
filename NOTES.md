@@ -176,6 +176,7 @@
 - https://barker.codes/blog/forms-in-react-19/#form-actions
 - https://www.robinwieruch.de/react-form-data/
 - `navigate({ to: "/" });` or `await navigate({ to: "/" });`
+- https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form
 
 ## Commands
 
