@@ -185,6 +185,8 @@
 - https://tanstack.com/router/latest/docs/guide/data-loading#showing-a-pending-component:
   - "By default, TanStack Router will show a pending component for loaders that take longer than 1 second to resolve. This is an optimistic threshold that can be configured via: `routeOptions.pendingMs` or `routerOptions.defaultPendingMs`"
 - https://tanstack.com/router/latest/docs/guide/data-loading#avoiding-pending-component-flash: "If you're using a pending component, the last thing you want is for your pending time threshold to be met, then have your data resolve immediately after, resulting in a jarring flash of your pending component. To avoid this, TanStack Router by default will show your pending component for at least 500ms."
+- https://tanstack.com/router/latest/docs/api/router/RouterType#invalidate-method
+  - "if `sync` is true, the promise returned by this function will only resolve once all loaders have finished."
 
 ## Commands
 
@@ -739,5 +741,78 @@ async function handleLogin(formData: FormData): Promise<void> {
   console.log(data, error);
 
   await navigate({ to: "/" });
+}
+```
+
+```tsx
+import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
+import { useFormStatus } from "react-dom";
+
+import { authClient } from "~/utils/auth-client";
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  component: Login,
+});
+
+function Login() {
+  const router = useRouter();
+
+  async function handleLogin(formData: FormData): Promise<void> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: async () => {
+          await router.invalidate({ sync: true });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <main>
+      <form action={handleLogin}>
+        <h1>Login</h1>
+
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+
+        <div>
+          <label htmlFor="password">Password</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+
+        <SubmitButton />
+      </form>
+    </main>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button type="submit" disabled={pending}>
+      {pending ? "Logging in..." : "Login"}
+    </button>
+  );
 }
 ```

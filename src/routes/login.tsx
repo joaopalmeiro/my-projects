@@ -28,8 +28,8 @@ function Login() {
         password,
       },
       {
-        onSuccess: () => {
-          navigate({ to: "/" });
+        onSuccess: async () => {
+          await navigate({ to: "/" });
         },
         onError: (ctx) => {
           alert(ctx.error.message);
