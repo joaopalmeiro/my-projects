@@ -30,8 +30,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
 
-      <body className="max-w-prose mx-auto text-mist-900">
-        {children}
+      <body className="px-6 py-12 text-mist-900 selection:bg-mist-900 selection:text-white">
+        <div className="mx-auto flex max-w-prose flex-col gap-8">
+          {children}
+        </div>
         <Scripts />
       </body>
     </html>

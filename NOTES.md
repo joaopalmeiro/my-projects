@@ -191,6 +191,17 @@
 - https://robbiebartlett.github.io/a11y/html/development/links-and-buttons.html
 - `const { user } = Route.useRouteContext();`
 - https://better-auth.com/docs/authentication/email-password#sign-out
+- https://www.youtube.com/watch?v=EUE8N6mqtGg
+  - https://ghostty.org/docs/config/keybind: `ghostty +list-keybinds --default`
+  - <kbd>cmd+d</kbd>: new_split:right
+    - https://github.com/ghostty-org/ghostty/discussions/6687
+    - <kbd>cmd+w</kbd>: close_surface (a.k.a. close split)
+  - https://manaflow.com/
+    - https://www.cmux.dev/
+      - https://github.com/manaflow-ai/cmux
+  - https://github.com/niri-wm/niri
+    - https://niri-wm.github.io/niri/Getting-Started.html
+  - https://github.com/mogenson/PaperWM.spoon
 
 ## Commands
 

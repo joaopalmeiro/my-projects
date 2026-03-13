@@ -52,14 +52,15 @@ function Home() {
   return (
     <>
       <header className="flex justify-between">
-        <h1>My Projects</h1>
+        <h1 className="font-medium">My Projects</h1>
+
         <button type="button" onClick={handleLogout}>
           Logout
         </button>
       </header>
 
-      <main>
-        <dl>
+      <main className="flex flex-col gap-4">
+        <dl className="flex gap-2">
           <dt>Projects</dt>
           <dd>{totalRepos}</dd>
 
