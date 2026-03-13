@@ -19,6 +19,7 @@ const ghIssueSchema = z.object({
   closed_at: z.coerce.date(),
   repository: z.object({
     name: z.string(),
+    html_url: z.httpUrl(),
   }),
 });
 

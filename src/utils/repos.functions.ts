@@ -66,7 +66,7 @@ export const getRepos = createServerFn({ method: "GET" })
 export const getClosedIssues = createServerFn({ method: "GET" })
   .inputValidator((data: ActiveRepo[]) => data)
   .handler(async ({ data }): Promise<ClosedIssues> => {
-    const activeRepoNames = new Set(data.map((activeRepo) => activeRepo.name));
+    const activeRepoUrls = new Set(data.map((activeRepo) => activeRepo.url));
 
     const weekStart = startOfWeek(new Date(), {
       weekStartsOn: 1,
@@ -98,7 +98,7 @@ export const getClosedIssues = createServerFn({ method: "GET" })
       (issue) =>
         !issue.pull_request &&
         issue.closed_at >= weekStart &&
-        activeRepoNames.has(issue.repository.name),
+        activeRepoUrls.has(issue.repository.html_url),
     );
 
     return { total: closedThisWeek.length };
