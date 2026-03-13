@@ -187,6 +187,7 @@
 - https://tanstack.com/router/latest/docs/guide/data-loading#avoiding-pending-component-flash: "If you're using a pending component, the last thing you want is for your pending time threshold to be met, then have your data resolve immediately after, resulting in a jarring flash of your pending component. To avoid this, TanStack Router by default will show your pending component for at least 500ms."
 - https://tanstack.com/router/latest/docs/api/router/RouterType#invalidate-method
   - "if `sync` is true, the promise returned by this function will only resolve once all loaders have finished."
+- https://tanstack.com/router/latest/docs/api/router/matchRouteComponent
 
 ## Commands
 
@@ -813,6 +814,88 @@ function SubmitButton() {
     <button type="submit" disabled={pending}>
       {pending ? "Logging in..." : "Login"}
     </button>
+  );
+}
+```
+
+```tsx
+function Login() {
+  const navigate = Route.useNavigate();
+  const [userName, setUserName] = useState<string | undefined>();
+
+  async function handleLogin(formData: FormData): Promise<void> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: (ctx) => {
+          setUserName(ctx.data.user.name);
+          navigate({ to: "/" });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <MatchRoute to="/" pending>
+      {(match) =>
+        match ? (
+          <HomeLoading name={userName} />
+        ) : (
+          <main>
+            <form action={handleLogin}>{/* ... */}</form>
+          </main>
+        )
+      }
+    </MatchRoute>
+  );
+}
+
+function Login() {
+  const navigate = Route.useNavigate();
+  let userName: string | undefined;
+
+  async function handleLogin(formData: FormData): Promise<void> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: (ctx) => {
+          userName = ctx.data.user.name;
+          navigate({ to: "/" });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <MatchRoute to="/" pending>
+      {(match) =>
+        match ? (
+          <HomeLoading name={userName} />
+        ) : (
+          <main>
+            <form action={handleLogin}>{/* ... */}</form>
+          </main>
+        )
+      }
+    </MatchRoute>
   );
 }
 ```

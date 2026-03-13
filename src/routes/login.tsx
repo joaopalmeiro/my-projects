@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect, MatchRoute } from "@tanstack/react-router";
 import { useFormStatus } from "react-dom";
 
 import { authClient } from "~/utils/auth-client";
@@ -28,8 +28,8 @@ function Login() {
         password,
       },
       {
-        onSuccess: async () => {
-          await navigate({ to: "/" });
+        onSuccess: () => {
+          navigate({ to: "/" });
         },
         onError: (ctx) => {
           alert(ctx.error.message);
@@ -39,23 +39,33 @@ function Login() {
   }
 
   return (
-    <main>
-      <form action={handleLogin}>
-        <h1>Login</h1>
+    <MatchRoute to="/" pending>
+      {(match) =>
+        match ? (
+          <main>
+            <p>Loading...</p>
+          </main>
+        ) : (
+          <main>
+            <form action={handleLogin}>
+              <h1>Login</h1>
 
-        <div>
-          <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" required />
-        </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" required />
-        </div>
+              <div>
+                <label htmlFor="password">Password</label>
+                <input id="password" name="password" type="password" required />
+              </div>
 
-        <SubmitButton />
-      </form>
-    </main>
+              <SubmitButton />
+            </form>
+          </main>
+        )
+      }
+    </MatchRoute>
   );
 }
 
