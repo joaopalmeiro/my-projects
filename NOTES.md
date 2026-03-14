@@ -208,6 +208,20 @@
 - https://headlessui.com/react/button
 - https://catalyst.tailwindui.com/docs/button
 - https://react-aria.adobe.com/Link
+- https://www.canirun.ai/
+  - https://ollama.com/library/qwen2.5-coder
+  - https://ollama.com/library/qwen3.5: `ollama launch opencode --model qwen3.5:4b-q4_K_M`
+  - https://www.canirun.ai/model/qwen2.5-coder-1.5b
+  - https://www.canirun.ai/why
+- https://www.youtube.com/watch?v=l8pQeVVaqpY
+  - https://www.blacksmith.sh/
+  - https://github.com/mitchellh/vouch
+  - https://github.com/peakoss/anti-slop
+  - https://github.com/AnswerOverflow/AnswerOverflow
+  - https://agentscan.netlify.app/
+- https://github.com/charmbracelet/crush
+  - https://synthetic.new/landing/home
+  - https://z.ai/subscribe
 
 ## Commands
 
