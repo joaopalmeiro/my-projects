@@ -222,6 +222,8 @@
 - https://github.com/charmbracelet/crush
   - https://synthetic.new/landing/home
   - https://z.ai/subscribe
+- https://rattler-build.prefix.dev/latest/: Moranga and Inter
+- https://fonts.google.com/specimen/Podkova
 
 ## Commands
 
