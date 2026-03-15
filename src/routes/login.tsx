@@ -59,7 +59,7 @@ function Login() {
 
             <main>
               <form action={handleLogin}>
-                <h2>Welcome back</h2>
+                <h2>Sign in to your account</h2>
 
                 <div>
                   <label htmlFor="email">Email</label>

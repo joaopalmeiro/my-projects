@@ -207,6 +207,10 @@
 - https://react-aria.adobe.com/Button
 - https://headlessui.com/react/button
 - https://catalyst.tailwindui.com/docs/button
+- https://catalyst.tailwindui.com/docs/auth-layout
+  - https://catalyst.tailwindui.com/demos/auth/login
+  - "Welcome back"
+  - "Sign in to your account"
 - https://react-aria.adobe.com/Link
 - https://www.canirun.ai/
   - https://ollama.com/library/qwen2.5-coder
@@ -234,6 +238,10 @@
   - https://www.typescriptlang.org/tsconfig/#noUncheckedSideEffectImports
   - https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js#fonts
 - https://tableplus.com/blog/2018/04/sqlite-delete-all-records-table.html: `DELETE FROM table_name;`
+- https://www.youtube.com/watch?v=iG4AGQqbA6I:
+  - https://chrome.dev/css-wrapped-2025/
+  - https://open-ui.org/components/popover-hint.research.explainer/
+  - https://developer.chrome.com/blog/popover-hint (for tooltips)
 
 ## Commands
 
