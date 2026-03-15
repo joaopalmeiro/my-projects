@@ -42,27 +42,44 @@ function Login() {
     <MatchRoute to="/" pending>
       {(match) =>
         match ? (
-          <main>
-            <p>Loading...</p>
-          </main>
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <p>Loading...</p>
+            </main>
+          </>
         ) : (
-          <main>
-            <form action={handleLogin}>
-              <h1>Login</h1>
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-medium text-mist-900">My Projects</h1>
+            </header>
 
-              <div>
-                <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" required />
-              </div>
+            <main>
+              <form action={handleLogin}>
+                <h2>Welcome back</h2>
 
-              <div>
-                <label htmlFor="password">Password</label>
-                <input id="password" name="password" type="password" required />
-              </div>
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input id="email" name="email" type="email" required />
+                </div>
 
-              <SubmitButton />
-            </form>
-          </main>
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                  />
+                </div>
+
+                <SubmitButton />
+              </form>
+            </main>
+          </>
         )
       }
     </MatchRoute>
