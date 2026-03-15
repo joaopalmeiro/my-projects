@@ -251,6 +251,9 @@
   - https://tailwindcss.com/docs/hover-focus-and-other-states#quick-reference: "`hover`: `@media (hover: hover) { &:hover }`"
 - https://tailwindcss.com/docs/outline-style#hiding-an-outline: `<input class="focus:border-indigo-600 focus:outline-hidden ..." type="text" />`
 - `<div className="flex flex-col gap-1">`
+- https://next.chakra-ui.com/docs/components/password-input
+  - https://github.com/chakra-ui/chakra-ui/blob/771457bfa86ea45c4c3a0f17a10256d16db090cc/apps/compositions/src/ui/password-input.tsx#L68
+  - `type={visible ? "text" : "password"}`
 
 ## Commands
 
