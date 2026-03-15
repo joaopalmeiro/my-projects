@@ -224,6 +224,12 @@
   - https://z.ai/subscribe
 - https://rattler-build.prefix.dev/latest/: Moranga and Inter
 - https://fonts.google.com/specimen/Podkova
+- https://www.youtube.com/watch?v=ZM2c33qy16U
+  - https://x.com/thdxr/status/2022574719694758147
+  - https://en.wikipedia.org/wiki/Jevons_paradox
+  - https://www.youtube.com/shorts/9EofCAVqghI
+  - https://fortune.com/2026/02/13/tech-giant-ibm-tripling-gen-z-entry-level-hiring-according-to-chro-rewriting-jobs-ai-era/: "IBM is tripling the number of Gen Z entry-level jobs after finding the limits of AI adoption"
+  - https://fortune.com/2026/02/19/sam-altman-confirms-ai-washing-job-displacement-layoffs/: "Sam Altman says the quiet part out loud, confirming some companies are 'AI washing' by blaming unrelated layoffs on the technology"
 
 ## Commands
 
