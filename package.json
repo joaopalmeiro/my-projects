@@ -25,7 +25,8 @@
     "db:studio:local": "drizzle-kit studio --verbose",
     "db:studio:remote": "NODE_ENV=production drizzle-kit studio --verbose",
     "deploy": "wrangler deploy",
-    "dev": "vite dev"
+    "dev": "vite dev",
+    "secrets": "wrangler secret put GH_TOKEN && wrangler secret put BETTER_AUTH_SECRET && wrangler secret put BETTER_AUTH_URL"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "1.5.4",
