@@ -59,7 +59,7 @@ function Home() {
         <button
           type="button"
           onClick={handleLogout}
-          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 -my-1 -mx-2 hover:bg-mist-950/5"
+          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 -my-1 -mx-2 hover:bg-mist-950/5 transition-transform duration-200 active:scale-95 will-change-[scale]"
         >
           Logout
         </button>
