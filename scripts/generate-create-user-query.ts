@@ -2,7 +2,7 @@ import { hashPassword } from "better-auth/crypto";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 
-async function main(name: string, email: string, password: string) {
+async function main(name: string, email: string, password: string): Promise<void> {
   const userId: string = crypto.randomUUID();
   const now: number = Date.now();
   const passwordHash: string = await hashPassword(password);

@@ -233,6 +233,7 @@
 - https://fontsource.org/docs/getting-started/faq#cannot-find-module-fontsourcefont-name-or-its-corresponding-type-declarations
   - https://www.typescriptlang.org/tsconfig/#noUncheckedSideEffectImports
   - https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js#fonts
+- https://tableplus.com/blog/2018/04/sqlite-delete-all-records-table.html: `DELETE FROM table_name;`
 
 ## Commands
 
