@@ -1,5 +1,6 @@
 {
   "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["deprecated"],
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,

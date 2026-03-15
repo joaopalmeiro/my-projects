@@ -22,7 +22,8 @@
     "db:migrate:local": "wrangler d1 migrations apply my-projects-prod --local",
     "db:migrate:remote": "wrangler d1 migrations apply my-projects-prod --remote",
     "db:schema": "auth generate --output ./src/db/schema.ts",
-    "db:studio": "drizzle-kit studio --verbose",
+    "db:studio:local": "drizzle-kit studio --verbose",
+    "db:studio:remote": "NODE_ENV=production drizzle-kit studio --verbose",
     "deploy": "wrangler deploy",
     "dev": "vite dev"
   },
