@@ -53,13 +53,13 @@ function Home() {
 
   return (
     <>
-      <header className="flex justify-between items-center">
-        <h1 className="font-medium">My Projects</h1>
+      <header className="flex justify-between">
+        <h1 className="font-medium text-mist-900">My Projects</h1>
 
         <button
           type="button"
           onClick={handleLogout}
-          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 hover:bg-mist-950/5"
+          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 -my-1 -mx-2 hover:bg-mist-950/5"
         >
           Logout
         </button>

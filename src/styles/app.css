@@ -1,7 +1,13 @@
 @import "tailwindcss" source("../");
 
+@import "@fontsource-variable/inter";
+
 @layer base {
   th {
     font-weight: inherit;
   }
+}
+
+@theme {
+  --font-sans: "Inter Variable", sans-serif;
 }

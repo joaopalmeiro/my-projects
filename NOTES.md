@@ -230,6 +230,9 @@
   - https://www.youtube.com/shorts/9EofCAVqghI
   - https://fortune.com/2026/02/13/tech-giant-ibm-tripling-gen-z-entry-level-hiring-according-to-chro-rewriting-jobs-ai-era/: "IBM is tripling the number of Gen Z entry-level jobs after finding the limits of AI adoption"
   - https://fortune.com/2026/02/19/sam-altman-confirms-ai-washing-job-displacement-layoffs/: "Sam Altman says the quiet part out loud, confirming some companies are 'AI washing' by blaming unrelated layoffs on the technology"
+- https://fontsource.org/docs/getting-started/faq#cannot-find-module-fontsourcefont-name-or-its-corresponding-type-declarations
+  - https://www.typescriptlang.org/tsconfig/#noUncheckedSideEffectImports
+  - https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js#fonts
 
 ## Commands
 
@@ -255,12 +258,13 @@ npm install zod@3
 
 ```bash
 npm install \
+@better-auth/drizzle-adapter \
+@fontsource-variable/inter \
 @tanstack/react-router \
 @tanstack/react-start \
+better-auth \
 date-fns \
 drizzle-orm \
-better-auth \
-@better-auth/drizzle-adapter \
 react \
 react-dom \
 zod \
