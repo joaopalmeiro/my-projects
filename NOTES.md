@@ -254,6 +254,8 @@
 - https://next.chakra-ui.com/docs/components/password-input
   - https://github.com/chakra-ui/chakra-ui/blob/771457bfa86ea45c4c3a0f17a10256d16db090cc/apps/compositions/src/ui/password-input.tsx#L68
   - `type={visible ? "text" : "password"}`
+- https://bomb.sh/docs/clack/guides/examples/#form-validation-with-complex-types
+- https://bomb.sh/docs/clack/packages/prompts/#password-input
 
 ## Commands
 
@@ -290,6 +292,7 @@ react \
 react-dom \
 zod \
 && npm install -D \
+@clack/prompts \
 @cloudflare/vite-plugin \
 @tailwindcss/vite \
 @types/react \

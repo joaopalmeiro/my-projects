@@ -13,11 +13,13 @@
   "scripts": {
     "build": "vite build && tsc --noEmit",
     "cf-typegen": "wrangler types",
+    "db:cleanup": "node scripts/generate-cleanup-query.ts",
+    "db:cleanup:local": "wrangler d1 execute my-projects-prod --local --file ./scripts/cleanup.sql",
+    "db:cleanup:remote": "wrangler d1 execute my-projects-prod --remote --file ./scripts/cleanup.sql",
     "db:create": "wrangler d1 create my-projects-prod",
-    "db:create:user:cleanup": "node scripts/generate-cleanup-query.ts",
-    "db:create:user:cleanup:local": "wrangler d1 execute my-projects-prod --local --file ./scripts/cleanup-local.sql",
-    "db:create:user:create": "node scripts/generate-create-user-query.ts",
-    "db:create:user:create:local": "wrangler d1 execute my-projects-prod --local --file ./scripts/insert-user-local.sql",
+    "db:create:user": "node scripts/generate-create-user-query.ts",
+    "db:create:user:local": "wrangler d1 execute my-projects-prod --local --file ./scripts/insert-user.sql",
+    "db:create:user:remote": "wrangler d1 execute my-projects-prod --remote --file ./scripts/insert-user.sql",
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply my-projects-prod --local",
     "db:migrate:remote": "wrangler d1 migrations apply my-projects-prod --remote",
@@ -41,6 +43,7 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
+    "@clack/prompts": "1.1.0",
     "@cloudflare/vite-plugin": "1.27.0",
     "@tailwindcss/vite": "4.2.1",
     "@types/react": "19.2.14",
