@@ -110,6 +110,9 @@
 - https://ygwyg.org/local-d1-drizzle-studio
 - https://developers.cloudflare.com/d1/get-started/#3-bind-your-worker-to-your-d1-database: `"binding": "prod_d1_tutorial", // available in your Worker on env.DB`
 - [1.3.10 and later does not work on zod 3 projects](https://github.com/better-auth/better-auth/issues/4837) issue
+- https://better-auth.com/docs/reference/options#emailandpassword
+  - "`minPasswordLength`: Minimum password length (default: `8`)"
+  - "`maxPasswordLength`: Maximum password length (default: `128`)"
 - https://better-auth.com/docs/reference/options#baseurl
 - https://developers.cloudflare.com/workers/development-testing/local-data/#how-it-works: "When you run either `wrangler dev` or `vite`, Miniflare automatically creates local versions of your resources (like KV, D1, or R2). This means you don't need to manually set up separate local instances for each service. However, newly created local resources won't contain any data — you'll need to use Wrangler commands with the `--local` flag to populate them. Changes made to local resources won't affect production data."
   - https://developers.cloudflare.com/workers/development-testing/local-data/#d1-databases
@@ -242,6 +245,12 @@
   - https://chrome.dev/css-wrapped-2025/
   - https://open-ui.org/components/popover-hint.research.explainer/
   - https://developer.chrome.com/blog/popover-hint (for tooltips)
+- https://piccalil.li/blog/squishy-button/: `.button:active { transform: scale(0.95); }`
+- https://react-aria.adobe.com/usePress
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/hover#examples: `@media (hover: hover)`
+  - https://tailwindcss.com/docs/hover-focus-and-other-states#quick-reference: "`hover`: `@media (hover: hover) { &:hover }`"
+- https://tailwindcss.com/docs/outline-style#hiding-an-outline: `<input class="focus:border-indigo-600 focus:outline-hidden ..." type="text" />`
+- `<div className="flex flex-col gap-1">`
 
 ## Commands
 
@@ -1319,4 +1328,16 @@ function Login() {
     margin-inline-start: var(--spacing-3);
   }
 }
+```
+
+- https://tailwindcss.com/docs/hover-focus-and-other-states#before-and-after
+
+```html
+<input
+  type="email"
+  id="email-3"
+  class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline focus:outline-sky-500 sm:text-sm"
+  placeholder="you@example.com"
+  name="email"
+/>
 ```

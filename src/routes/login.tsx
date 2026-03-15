@@ -58,12 +58,19 @@ function Login() {
             </header>
 
             <main>
-              <form action={handleLogin}>
+              <form action={handleLogin} className="flex flex-col gap-4">
                 <h2>Sign in to your account</h2>
 
                 <div>
                   <label htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" required />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="hello@world.com"
+                    required
+                    className="w-full rounded-lg py-2 px-4 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                  />
                 </div>
 
                 <div>
@@ -72,7 +79,11 @@ function Login() {
                     id="password"
                     name="password"
                     type="password"
+                    placeholder="No 123456, please"
+                    minLength={8}
+                    maxLength={128}
                     required
+                    className="w-full rounded-lg py-2 px-4 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
                   />
                 </div>
 
@@ -90,7 +101,11 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button type="submit" disabled={pending}>
+    <button
+      type="submit"
+      disabled={pending}
+      className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-lg py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white transition-transform duration-200 active:scale-95 will-change-[scale]"
+    >
       {pending ? "Logging in..." : "Login"}
     </button>
   );
