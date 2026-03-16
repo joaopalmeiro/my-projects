@@ -59,7 +59,7 @@ function Home() {
         <button
           type="button"
           onClick={handleLogout}
-          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 -my-1 -mx-2 hover:bg-mist-950/5 transition-transform duration-200 active:scale-95 will-change-[scale]"
+          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-1 px-2 -my-1 -mx-2 hover:bg-mist-900/5"
         >
           Logout
         </button>
@@ -67,21 +67,21 @@ function Home() {
 
       <main className="flex flex-col gap-4">
         <dl className="flex gap-2">
-          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="border-mist-200 border py-1 px-2 flex gap-2">
             <dt className="text-mist-500">Projects</dt>
             <dd className="border-l border-mist-200 pl-2 tabular-nums">
               {totalRepos}
             </dd>
           </div>
 
-          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="border-mist-200 border py-1 px-2 flex gap-2">
             <dt className="text-mist-500">Open issues</dt>
             <dd className="border-l border-mist-200 pl-2 tabular-nums">
               {totalOpenIssues}
             </dd>
           </div>
 
-          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="border-mist-200 border py-1 px-2 flex gap-2">
             <dt className="text-mist-500">Issues closed this week</dt>
             <dd className="border-l border-mist-200 pl-2 tabular-nums">
               {closedIssues.total}
@@ -89,7 +89,7 @@ function Home() {
           </div>
         </dl>
 
-        <table className="w-full border border-mist-200 border-separate border-spacing-0 rounded-lg overflow-hidden shadow-xs">
+        <table className="w-full border border-mist-200 border-separate border-spacing-0 overflow-hidden">
           <thead className="bg-mist-50">
             <tr>
               <th
@@ -119,7 +119,7 @@ function Home() {
                   <th scope="row" className="text-left px-6 py-4">
                     <a
                       href={repo.url}
-                      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-xs"
+                      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     >
                       {repo.name}
                     </a>

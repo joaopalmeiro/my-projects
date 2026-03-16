@@ -258,6 +258,7 @@
 - https://bomb.sh/docs/clack/packages/prompts/#password-input
 - https://www.loadership.com/
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:autofill: "Note that the user agent style sheets of many browsers use `!important` in their style declarations, making some styles non-overridable. For example, Chrome has the following in its internal stylesheet: (...) This means that you cannot override the default `background-color`, `background-image`, or `color` values on selected autofilled input elements in your own rules, but you can override the `appearance`, and you can override these properties for the autofilled elements that aren't currently focused."
+- `transition-transform duration-200 active:scale-95 will-change-[scale]`
 
 ## Commands
 
@@ -1348,4 +1349,267 @@ function Login() {
   placeholder="you@example.com"
   name="email"
 />
+```
+
+```tsx
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { intlFormatDistance } from "date-fns";
+
+import { authClient } from "~/utils/auth-client";
+import { getSession } from "~/utils/auth.functions";
+import {
+  getActiveRepos,
+  getClosedIssues,
+  getRepos,
+} from "~/utils/repos.functions";
+
+export const Route = createFileRoute("/")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (!session) {
+      throw redirect({ to: "/login" });
+    }
+
+    return { user: session.user };
+  },
+  loader: async () => {
+    const activeRepos = await getActiveRepos();
+
+    return Promise.all([
+      getRepos({ data: activeRepos }),
+      getClosedIssues({ data: activeRepos }),
+    ]);
+  },
+  component: Home,
+});
+
+function Home() {
+  const navigate = Route.useNavigate();
+  const [repos, closedIssues] = Route.useLoaderData();
+
+  const totalRepos = repos.length;
+  const totalOpenIssues = repos.reduce(
+    (total, repo) => total + repo.openIssues,
+    0,
+  );
+  const today = new Date();
+
+  async function handleLogout(): Promise<void> {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          navigate({ to: "/login" });
+        },
+      },
+    });
+  }
+
+  return (
+    <>
+      <header className="flex justify-between">
+        <h1 className="font-medium text-mist-900">My Projects</h1>
+
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded py-1 px-2 -my-1 -mx-2 hover:bg-mist-950/5 transition-transform duration-200 active:scale-95 will-change-[scale]"
+        >
+          Logout
+        </button>
+      </header>
+
+      <main className="flex flex-col gap-4">
+        <dl className="flex gap-2">
+          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Projects</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {totalRepos}
+            </dd>
+          </div>
+
+          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Open issues</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {totalOpenIssues}
+            </dd>
+          </div>
+
+          <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Issues closed this week</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {closedIssues.total}
+            </dd>
+          </div>
+        </dl>
+
+        <table className="w-full border border-mist-200 border-separate border-spacing-0 rounded-lg overflow-hidden shadow-xs">
+          <thead className="bg-mist-50">
+            <tr>
+              <th
+                scope="col"
+                className="border-b border-mist-200 font-medium text-left px-6 py-3"
+              >
+                Repo
+              </th>
+              <th
+                scope="col"
+                className="border-b border-mist-200 font-medium text-left px-6 py-3"
+              >
+                Last updated
+              </th>
+              <th
+                scope="col"
+                className="border-b border-mist-200 font-medium text-right px-6 py-3"
+              >
+                Open issues
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {repos.map((repo) => {
+              return (
+                <tr key={repo.id}>
+                  <th scope="row" className="text-left px-6 py-4">
+                    <a
+                      href={repo.url}
+                      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-xs"
+                    >
+                      {repo.name}
+                    </a>
+                  </th>
+                  <td className="text-left px-6 py-4">
+                    <time dateTime={repo.updatedAt.toISOString()}>
+                      {intlFormatDistance(repo.updatedAt, today, {
+                        locale: "en-US",
+                      })}
+                    </time>
+                  </td>
+                  <td className="text-right px-6 py-4 tabular-nums">
+                    {repo.openIssues}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </main>
+    </>
+  );
+}
+```
+
+```tsx
+import { createFileRoute, redirect, MatchRoute } from "@tanstack/react-router";
+import { useFormStatus } from "react-dom";
+
+import { authClient } from "~/utils/auth-client";
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  component: Login,
+});
+
+function Login() {
+  const navigate = Route.useNavigate();
+
+  async function handleLogin(formData: FormData): Promise<void> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          navigate({ to: "/" });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <MatchRoute to="/" pending>
+      {(match) =>
+        match ? (
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <p>Loading...</p>
+            </main>
+          </>
+        ) : (
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <form action={handleLogin} className="flex flex-col gap-4">
+                <h2>Sign in to your account</h2>
+
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="hello@world.com"
+                    required
+                    className="w-full rounded-lg py-2 px-4 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="No 123456, please"
+                    minLength={8}
+                    maxLength={128}
+                    required
+                    className="w-full rounded-lg py-2 px-4 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                  />
+                </div>
+
+                <SubmitButton />
+              </form>
+            </main>
+          </>
+        )
+      }
+    </MatchRoute>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-lg py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white transition-transform duration-200 active:scale-95 will-change-[scale]"
+    >
+      {pending ? "Logging in..." : "Login"}
+    </button>
+  );
+}
 ```
