@@ -258,7 +258,30 @@
 - https://bomb.sh/docs/clack/packages/prompts/#password-input
 - https://www.loadership.com/
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:autofill: "Note that the user agent style sheets of many browsers use `!important` in their style declarations, making some styles non-overridable. For example, Chrome has the following in its internal stylesheet: (...) This means that you cannot override the default `background-color`, `background-image`, or `color` values on selected autofilled input elements in your own rules, but you can override the `appearance`, and you can override these properties for the autofilled elements that aren't currently focused."
-- `transition-transform duration-200 active:scale-95 will-change-[scale]`
+- `transform: scale(.98);`
+- `hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-shadow duration-150`
+- https://huggingface.co/Tesslate/OmniCoder-9B
+- https://evilmartians.com/chronicles/hire-better-10x-faster-how-we-screen-50-engineers-weekly-with-no-hr
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete
+  - https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+- https://kittygiraudel.com/2024/03/29/on-disabled-and-aria-disabled-attributes/
+  - https://www.stefanjudis.com/notes/disabled-vs-aria-disabled-on-form-elements/
+- https://css-tricks.com/making-disabled-buttons-more-inclusive/
+- https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter
+- https://docs.cypress.io/app/guides/accessibility-testing
+  - https://docs.cypress.io/app/guides/accessibility-testing#In-test-plugins
+  - https://www.npmjs.com/package/wick-a11y
+  - https://github.com/sclavijosuero/wick-a11y
+- https://github.com/dequelabs/axe-core-npm
+  - https://www.npmjs.com/package/@axe-core/cli
+  - https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md
+  - https://github.com/dequelabs/axe-core-npm/blob/develop/packages/react/README.md
+  - https://playwright.dev/docs/accessibility-testing
+  - https://playwright.dev/docs/auth
+- https://react.dev/reference/react/useActionState#use-with-a-form
+- https://www.sajadevo.com/blog/form-handling-in-react-19
+- https://reactuse.com/blog/react-19-hooks-guide/
+- https://github.com/childrentime/reactuse
 
 ## Commands
 
