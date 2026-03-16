@@ -256,6 +256,8 @@
   - `type={visible ? "text" : "password"}`
 - https://bomb.sh/docs/clack/guides/examples/#form-validation-with-complex-types
 - https://bomb.sh/docs/clack/packages/prompts/#password-input
+- https://www.loadership.com/
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:autofill: "Note that the user agent style sheets of many browsers use `!important` in their style declarations, making some styles non-overridable. For example, Chrome has the following in its internal stylesheet: (...) This means that you cannot override the default `background-color`, `background-image`, or `color` values on selected autofilled input elements in your own rules, but you can override the `appearance`, and you can override these properties for the autofilled elements that aren't currently focused."
 
 ## Commands
 
