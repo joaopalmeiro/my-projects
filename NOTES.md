@@ -287,6 +287,8 @@
   - "Add `transform: scale(0.97)` on `:active`. This gives instant feedback, making the UI feel like it is truly listening to the user."
     - `.button { transition: transform 160ms ease-out; }`
     - `.button:active { transform: scale(0.97); }`
+  - `.button { transition: transform 160ms ease-out; } .button:active { transform: scale(0.97); } .button-content { transition: filter 200ms ease, opacity 200ms ease; } .button-content.transitioning { filter: blur(2px); opacity: 0.7; }`
+  - "| Button press feedback | 100-160ms |"
 
 ## Commands
 

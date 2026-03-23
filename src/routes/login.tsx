@@ -104,7 +104,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-98 transition-transform duration-100 will-change-transform"
+      className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-97 transition-transform duration-160 ease-out will-change-transform disabled:cursor-not-allowed"
     >
       {pending ? "Logging in..." : "Login"}
     </button>
