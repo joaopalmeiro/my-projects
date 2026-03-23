@@ -282,6 +282,11 @@
 - https://www.sajadevo.com/blog/form-handling-in-react-19
 - https://reactuse.com/blog/react-19-hooks-guide/
 - https://github.com/childrentime/reactuse
+- https://github.com/emilkowalski/skill/blob/7ebc9b7a6c62a027caf6f4eafede288495c05dda/skills/emil-design-eng/SKILL.md
+  - "| No `:active` state on button | `transform: scale(0.97)` on `:active` | Buttons must feel responsive to press |"
+  - "Add `transform: scale(0.97)` on `:active`. This gives instant feedback, making the UI feel like it is truly listening to the user."
+    - `.button { transition: transform 160ms ease-out; }`
+    - `.button:active { transform: scale(0.97); }`
 
 ## Commands
 
@@ -1632,6 +1637,28 @@ function SubmitButton() {
       className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-lg py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white transition-transform duration-200 active:scale-95 will-change-[scale]"
     >
       {pending ? "Logging in..." : "Login"}
+    </button>
+  );
+}
+```
+
+```tsx
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="mt-2 w-full cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-[0.97] transition-transform duration-100 ease-out will-change-transform"
+    >
+      <span
+        className={`transition-[filter,opacity] duration-150 ease-out ${
+          pending ? "blur-sm opacity-50" : "blur-0 opacity-100"
+        }`}
+      >
+        {pending ? "Logging in..." : "Login"}
+      </span>
     </button>
   );
 }
