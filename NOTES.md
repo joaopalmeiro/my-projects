@@ -87,6 +87,7 @@
     - `import { env } from "cloudflare:workers";`
 - https://tanstack.com/start/latest/docs/framework/react/guide/hosting#cloudflare-workers--official-partner
 - https://developers.cloudflare.com/workers/configuration/environment-variables/#local-development-with-secrets
+  - "Put secrets for use in local development in either a `.dev.vars` file or a `.env` file, in the same directory as the Wrangler configuration file."
 - https://developers.cloudflare.com/workers/configuration/environment-variables/#environment-variables-and-nodejs-compatibility: "When you enable `nodejs_compat` and the `nodejs_compat_populate_process_env` compatibility flag (enabled by default for compatibility dates on or after 2025-04-01), environment variables are available via the global `process.env`."
 - https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent:
   - "By default, GitHub CLI sends a valid `User-Agent` header. However, GitHub recommends using your GitHub username, or the name of your application, for the `User-Agent` header value. This allows GitHub to contact you if there are problems."
@@ -290,6 +291,15 @@
   - `.button { transition: transform 160ms ease-out; } .button:active { transform: scale(0.97); } .button-content { transition: filter 200ms ease, opacity 200ms ease; } .button-content.transitioning { filter: blur(2px); opacity: 0.7; }`
   - "| Button press feedback | 100-160ms |"
 - https://github.com/lirantal/npm-security-best-practices?tab=readme-ov-file#1-disable-post-install-scripts
+- https://www.npmjs.com/package/cross-keychain
+  - https://github.com/magarcia/cross-keychain
+- https://www.npmjs.com/package/native-keychain
+  - https://github.com/Mikescops/node-native-keychain
+- https://github.com/dotenvx/dotenvx
+- https://developer.1password.com/docs/cli/secret-references/
+  - https://github.com/lirantal/npm-security-best-practices?tab=readme-ov-file#7-no-plaintext-secrets-in-env-files
+  - https://developer.1password.com/docs/cli/get-started/
+  - https://developers.cloudflare.com/workers/configuration/environment-variables/#local-development-with-secrets
 
 ## Commands
 
