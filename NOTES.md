@@ -1715,3 +1715,14 @@ function SubmitButton() {
   );
 }
 ```
+
+- https://github.com/facebook/react/blob/733d3aaf99e30627ec25174da9d39efbaa97dba3/compiler/apps/playground/hooks/useMountEffect.ts
+
+```ts
+import type { EffectCallback } from "react";
+import { useEffect } from "react";
+
+export default function useMountEffect(effect: EffectCallback) {
+  return useEffect(effect, []);
+}
+```
