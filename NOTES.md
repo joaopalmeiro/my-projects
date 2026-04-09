@@ -318,6 +318,8 @@
 - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner
   - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/npm/introduction
   - https://github.com/SonarSource/SonarJS
+    - https://www.npmjs.com/package/eslint-plugin-sonarjs
+    - https://github.com/SonarSource/SonarJS/blob/master/packages/analysis/src/jsts/rules/README.md
     - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/javascript-typescript-css
   - https://docs.sonarsource.com/sonarqube-for-vs-code
 - https://www.aihero.dev/getting-started-with-ralph
