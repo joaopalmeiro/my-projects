@@ -30,7 +30,10 @@ export const Route = createRootRoute({
         content: "An overview of my projects to manage their maintenance.",
       },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+    ],
   }),
   component: RootComponent,
 });

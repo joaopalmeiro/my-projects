@@ -300,6 +300,11 @@
   - https://github.com/lirantal/npm-security-best-practices?tab=readme-ov-file#7-no-plaintext-secrets-in-env-files
   - https://developer.1password.com/docs/cli/get-started/
   - https://developers.cloudflare.com/workers/configuration/environment-variables/#local-development-with-secrets
+- Favicon:
+  - https://pinhead.ink/
+    - Current: `pixel_three_inch_floppy_disk` (https://github.com/waysidemapping/pinhead/blob/5971004e1534f54260d918b05ec78e2231c369cb/icons/pixel_style/pixel_three_inch_floppy_disk.svg)
+    - `activity_panel`, `anvil`, `bowling_pins`, `box_truck`, `boxes_on_pallet`, `digital_totem_with_info_i`, `flagstick_with_pennant_in_hole`, `golf_green`, `hospital_h`, `map_outline_with_info_i`, `parking_p`, `parking_p_under_roof`
+- https://tanstack.com/start/latest/docs/framework/react/guide/seo#static-robotstxt
 
 ## Commands
 
