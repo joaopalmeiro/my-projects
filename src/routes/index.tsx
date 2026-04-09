@@ -19,6 +19,14 @@ export const Route = createFileRoute("/")({
 
     return { user: session.user };
   },
+  head: () => ({
+    links: [
+      {
+        rel: "canonical",
+        href: "https://myprojects.joao.tools/",
+      },
+    ],
+  }),
   loader: async () => {
     const activeRepos = await getActiveRepos();
 

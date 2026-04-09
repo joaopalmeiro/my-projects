@@ -12,6 +12,19 @@ export const Route = createFileRoute("/login")({
       throw redirect({ to: "/" });
     }
   },
+  head: () => ({
+    meta: [
+      {
+        title: "Login | My Projects",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://myprojects.joao.tools/login",
+      },
+    ],
+  }),
   component: Login,
 });
 

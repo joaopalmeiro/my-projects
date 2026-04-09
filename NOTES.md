@@ -305,6 +305,12 @@
     - Current: `pixel_three_inch_floppy_disk` (https://github.com/waysidemapping/pinhead/blob/5971004e1534f54260d918b05ec78e2231c369cb/icons/pixel_style/pixel_three_inch_floppy_disk.svg)
     - `activity_panel`, `anvil`, `bowling_pins`, `box_truck`, `boxes_on_pallet`, `digital_totem_with_info_i`, `flagstick_with_pennant_in_hole`, `golf_green`, `hospital_h`, `map_outline_with_info_i`, `parking_p`, `parking_p_under_roof`
 - https://tanstack.com/start/latest/docs/framework/react/guide/seo#static-robotstxt
+- https://tanstack.com/start/latest/docs/framework/react/guide/seo#canonical-urls
+- https://tanstack.com/router/latest/docs/guide/document-head-management
+  - "(...) for full-stack applications that use Start and for single-page applications that use TanStack Router."
+  - "Out of the box, TanStack Router will dedupe `title` and `meta` tags, preferring the last occurrence of each tag found in nested routes."
+  - https://tanstack.com/router/latest/docs/guide/document-head-management#startfull-stack-applications
+- https://tanstack.com/start/latest/docs/framework/react/guide/llmo
 
 ## Commands
 
@@ -375,6 +381,14 @@ npx @better-auth/cli secret
 
 ```bash
 rsync -a --exclude={'.git','.DS_Store','.env'} ~/Documents/GitHub/my-projects/ ~/Documents/my-projects-open-code
+```
+
+```bash
+mkdir -p ~/Documents/kiro-my-projects && rsync -a --exclude={'.git','.DS_Store','.env','NOTES.md'} ~/Documents/GitHub/my-projects/ ~/Documents/kiro-my-projects
+```
+
+```bash
+kiro ~/Documents/kiro-my-projects
 ```
 
 ## Snippets
