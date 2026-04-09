@@ -327,6 +327,8 @@
   - https://github.com/kucherenko/jscpd
   - https://docs.docker.com/ai/sandboxes/
   - https://github.com/docker/sbx-releases
+- https://github.com/deckardger/tanstack-agent-skills
+  - https://github.com/DeckardGer/tanstack-agent-skills/tree/main/skills/tanstack-start
 
 ## Commands
 
