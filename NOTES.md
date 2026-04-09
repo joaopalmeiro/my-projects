@@ -312,6 +312,19 @@
   - https://tanstack.com/router/latest/docs/guide/document-head-management#startfull-stack-applications
 - https://tanstack.com/start/latest/docs/framework/react/guide/llmo
 - `Issues closed today`
+- https://semgrep.dev/docs/getting-started/quickstart-ce
+  - https://semgrep.dev/docs/getting-started/cli#scan-your-project
+  - https://semgrep.dev/docs/semgrep-ce-languages
+- https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner
+  - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/npm/introduction
+  - https://github.com/SonarSource/SonarJS
+    - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/javascript-typescript-css
+  - https://docs.sonarsource.com/sonarqube-for-vs-code
+- https://www.aihero.dev/getting-started-with-ralph
+  - https://github.com/kucherenko/jscpd/tree/master/apps/jscpd
+  - https://github.com/kucherenko/jscpd
+  - https://docs.docker.com/ai/sandboxes/
+  - https://github.com/docker/sbx-releases
 
 ## Commands
 
