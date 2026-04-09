@@ -311,6 +311,7 @@
   - "Out of the box, TanStack Router will dedupe `title` and `meta` tags, preferring the last occurrence of each tag found in nested routes."
   - https://tanstack.com/router/latest/docs/guide/document-head-management#startfull-stack-applications
 - https://tanstack.com/start/latest/docs/framework/react/guide/llmo
+- `Issues closed today`
 
 ## Commands
 

@@ -16,4 +16,5 @@ export interface Repo {
 
 export interface ClosedIssues {
   total: number;
+  today: number;
 }

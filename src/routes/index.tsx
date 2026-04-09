@@ -95,6 +95,13 @@ function Home() {
               {closedIssues.total}
             </dd>
           </div>
+
+          <div className="border-mist-200 border py-1 px-2 flex gap-2">
+            <dt className="text-mist-500">Today</dt>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">
+              {closedIssues.today}
+            </dd>
+          </div>
         </dl>
 
         <table className="w-full border border-mist-200 border-separate border-spacing-0 overflow-hidden">

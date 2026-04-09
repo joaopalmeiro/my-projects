@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
-import { startOfWeek } from "date-fns";
 import { env } from "cloudflare:workers";
+import { startOfDay, startOfWeek } from "date-fns";
 
 import { USER_AGENT } from "./constants";
 import { ghIssuesSchema, ghRepoSchema } from "./schemas";
@@ -68,9 +68,11 @@ export const getClosedIssues = createServerFn({ method: "GET" })
   .handler(async ({ data }): Promise<ClosedIssues> => {
     const activeRepoUrls = new Set(data.map((activeRepo) => activeRepo.url));
 
-    const weekStart = startOfWeek(new Date(), {
+    const today = new Date();
+    const weekStart = startOfWeek(today, {
       weekStartsOn: 1,
     });
+    const dayStart = startOfDay(today);
 
     const firstApiUrl = new URL("issues", "https://api.github.com/");
     firstApiUrl.searchParams.set("filter", "assigned");
@@ -100,6 +102,9 @@ export const getClosedIssues = createServerFn({ method: "GET" })
         issue.closed_at >= weekStart &&
         activeRepoUrls.has(issue.repository.html_url),
     );
+    const closedToday = closedThisWeek.filter(
+      (issue) => issue.closed_at >= dayStart,
+    );
 
-    return { total: closedThisWeek.length };
+    return { total: closedThisWeek.length, today: closedToday.length };
   });
