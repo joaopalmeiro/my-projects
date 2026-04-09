@@ -407,6 +407,10 @@ mkdir -p ~/Documents/kiro-my-projects && rsync -a --exclude={'.git','.DS_Store',
 kiro ~/Documents/kiro-my-projects
 ```
 
+```bash
+magick -density 288 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/Resources/cursors/openhand/cursor.pdf ~/Desktop/pointinghand.png
+```
+
 ## Snippets
 
 ```html
