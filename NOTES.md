@@ -172,7 +172,11 @@
 - https://catalins.tech/better-auth-with-hono-bun-typescript-react-vite/
 - https://github.com/badlogic/pi-mono
 - https://ui.shadcn.com/blocks/login
-- https://react.dev/reference/react-dom/components/form#handle-form-submission-on-the-client
+- https://react.dev/reference/react-dom/components/form
+  - https://react.dev/reference/react-dom/components/form#handle-form-submission-on-the-client
+  - https://www.w3.org/TR/WCAG20-TECHS/ARIA19.html: `<p id="errors" role="alert" aria-atomic="true"></p>`
+  - https://www.w3.org/WAI/WCAG20/Techniques/working-examples/ARIA19/aria-alert-validation.html
+  - https://www.a11y-collective.com/blog/aria-alert/
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
 - https://www.w3.org/WAI/tutorials/forms/labels/
 - https://www.deque.com/blog/anatomy-of-accessible-forms-best-practices/
@@ -1728,4 +1732,374 @@ import { useEffect } from "react";
 export default function useMountEffect(effect: EffectCallback) {
   return useEffect(effect, []);
 }
+```
+
+- https://react.dev/reference/react/useActionState#useactionstate
+
+```jsx
+import { useActionState } from "react";
+
+function reducerAction(previousState, actionPayload) {
+  // ...
+}
+
+function MyCart({ initialState }) {
+  const [state, dispatchAction, isPending] = useActionState(
+    reducerAction,
+    initialState,
+  );
+  // ...
+}
+```
+
+```tsx
+import { createFileRoute, redirect, MatchRoute } from "@tanstack/react-router";
+import { useFormStatus } from "react-dom";
+
+import { authClient } from "~/utils/auth-client";
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  head: () => ({
+    meta: [
+      {
+        title: "Login | My Projects",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://myprojects.joao.tools/login",
+      },
+    ],
+  }),
+  component: Login,
+});
+
+function Login() {
+  const navigate = Route.useNavigate();
+
+  async function handleLogin(formData: FormData): Promise<void> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          navigate({ to: "/" });
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
+  }
+
+  return (
+    <MatchRoute to="/" pending>
+      {(match) =>
+        match ? (
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <p>Loading...</p>
+            </main>
+          </>
+        ) : (
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <form action={handleLogin} className="flex flex-col gap-4">
+                <h2>Sign in to your account</h2>
+
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="hello@world.com"
+                    required
+                    className="w-full py-2 px-3 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="No 123456, please"
+                    minLength={8}
+                    maxLength={128}
+                    required
+                    className="w-full py-2 px-3 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                  />
+                </div>
+
+                <SubmitButton />
+              </form>
+            </main>
+          </>
+        )
+      }
+    </MatchRoute>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-97 transition-transform duration-160 ease-out will-change-transform disabled:cursor-not-allowed"
+    >
+      {pending ? "Logging in..." : "Login"}
+    </button>
+  );
+}
+```
+
+- https://github.com/TanStack/router/blob/24cc08f87e954f2f2f891cf6870349553c9d4eb0/examples/solid/start-convex-better-auth/src/components/login-signup-form.tsx#L6 (`navigate({ to: "/dashboard" });`)
+
+```tsx
+import { useNavigate } from "@tanstack/solid-router";
+import { createSignal } from "solid-js";
+import { authClient } from "~/library/auth-client";
+import { refreshAuth } from "~/library/convex-client";
+
+export default function LoginSignupForm() {
+  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = createSignal(true);
+  const [name, setName] = createSignal("");
+  const [email, setEmail] = createSignal("");
+  const [password, setPassword] = createSignal("");
+  const [error, setError] = createSignal("");
+  const [loading, setLoading] = createSignal(false);
+
+  const handleSubmit = async (e: Event) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      if (isLogin()) {
+        await authClient.signIn.email({
+          email: email(),
+          password: password(),
+        });
+      } else {
+        await authClient.signUp.email({
+          name: name(),
+          email: email(),
+          password: password(),
+        });
+      }
+
+      refreshAuth();
+
+      navigate({ to: "/dashboard" });
+    } catch (err: any) {
+      setError(err?.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <main class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <div class="w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+          <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+              {isLogin() ? "Welcome Back" : "Create Account"}
+            </h1>
+            <p class="text-gray-600 text-sm">
+              {isLogin()
+                ? "Sign in to continue to your account"
+                : "Get started with your free account"}
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} class="space-y-5">
+            {!isLogin() && (
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name()}
+                  onInput={(e) => setName(e.currentTarget.value)}
+                  required={!isLogin()}
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-gray-900 placeholder-gray-400"
+                  placeholder="John Doe"
+                />
+              </div>
+            )}
+
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email()}
+                onInput={(e) => setEmail(e.currentTarget.value)}
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-gray-900 placeholder-gray-400"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password()}
+                onInput={(e) => setPassword(e.currentTarget.value)}
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-gray-900 placeholder-gray-400"
+                placeholder="••••••••"
+              />
+            </div>
+
+            {error() && (
+              <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{error()}</span>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading()}
+              class={`w-full px-4 py-3 rounded-lg font-semibold text-white transition-all duration-200 ${
+                loading()
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              }`}
+            >
+              {loading() ? (
+                <span class="flex items-center justify-center gap-2">
+                  <svg
+                    class="animate-spin h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Processing...
+                </span>
+              ) : isLogin() ? (
+                "Sign In"
+              ) : (
+                "Create Account"
+              )}
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <button
+              onClick={() => {
+                setIsLogin(!isLogin());
+                setError("");
+              }}
+              class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200 font-medium"
+            >
+              {isLogin() ? (
+                <>
+                  Don't have an account?{" "}
+                  <span class="text-blue-600 hover:underline">Sign up</span>
+                </>
+              ) : (
+                <>
+                  Already have an account?{" "}
+                  <span class="text-blue-600 hover:underline">Sign in</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+```
+
+```tsx
+{
+  error && (
+    <p role="alert" className="text-rose-600">
+      {error}
+    </p>
+  );
+}
+
+// or
+
+return (
+  <p role="alert" className="text-rose-600">
+    {error}
+  </p>
+);
 ```

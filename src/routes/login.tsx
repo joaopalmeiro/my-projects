@@ -1,5 +1,5 @@
-import { createFileRoute, redirect, MatchRoute } from "@tanstack/react-router";
-import { useFormStatus } from "react-dom";
+import { createFileRoute, MatchRoute, redirect } from "@tanstack/react-router";
+import { useActionState } from "react";
 
 import { authClient } from "~/utils/auth-client";
 import { getSession } from "~/utils/auth.functions";
@@ -31,25 +31,24 @@ export const Route = createFileRoute("/login")({
 function Login() {
   const navigate = Route.useNavigate();
 
-  async function handleLogin(formData: FormData): Promise<void> {
+  async function handleLogin(
+    _prevState: string | undefined,
+    formData: FormData,
+  ): Promise<string | undefined> {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    await authClient.signIn.email(
-      {
-        email,
-        password,
-      },
-      {
-        onSuccess: () => {
-          navigate({ to: "/" });
-        },
-        onError: (ctx) => {
-          alert(ctx.error.message);
-        },
-      },
-    );
+    const { error } = await authClient.signIn.email({
+      email,
+      password,
+      rememberMe: true,
+    });
+    if (error) return error.message;
+
+    navigate({ to: "/" });
   }
+
+  const [error, formAction, isPending] = useActionState(handleLogin, undefined);
 
   return (
     <MatchRoute to="/" pending>
@@ -71,7 +70,7 @@ function Login() {
             </header>
 
             <main>
-              <form action={handleLogin} className="flex flex-col gap-4">
+              <form action={formAction} className="flex flex-col gap-4">
                 <h2>Sign in to your account</h2>
 
                 <div>
@@ -102,26 +101,22 @@ function Login() {
                   />
                 </div>
 
-                <SubmitButton />
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-97 transition-transform duration-160 ease-out will-change-transform disabled:cursor-not-allowed"
+                >
+                  {isPending ? "Logging in..." : "Login"}
+                </button>
+
+                <p role="alert" aria-atomic="true" className="text-rose-600">
+                  {error}
+                </p>
               </form>
             </main>
           </>
         )
       }
     </MatchRoute>
-  );
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-97 transition-transform duration-160 ease-out will-change-transform disabled:cursor-not-allowed"
-    >
-      {pending ? "Logging in..." : "Login"}
-    </button>
   );
 }
