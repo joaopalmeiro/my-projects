@@ -6,23 +6,18 @@ import { USER_AGENT } from "./constants";
 import { ghIssuesSchema, ghRepoSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
-export const getActiveRepos = createServerFn({ method: "GET" }).handler(
-  async (): Promise<ActiveRepo[]> => {
-    const response = await fetch(
-      "https://api.github.com/repos/joaopalmeiro/joaopalmeiro/contents/data.json",
-      {
-        headers: {
-          Accept: "application/vnd.github.raw+json",
-          Authorization: `Bearer ${env.GH_TOKEN}`,
-          "X-GitHub-Api-Version": "2022-11-28",
-          "User-Agent": USER_AGENT,
-        },
-      },
-    );
+export const getActiveRepos = createServerFn({ method: "GET" }).handler(async (): Promise<ActiveRepo[]> => {
+  const response = await fetch("https://api.github.com/repos/joaopalmeiro/joaopalmeiro/contents/data.json", {
+    headers: {
+      Accept: "application/vnd.github.raw+json",
+      Authorization: `Bearer ${env.GH_TOKEN}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": USER_AGENT,
+    },
+  });
 
-    return response.json();
-  },
-);
+  return response.json();
+});
 
 export const getRepos = createServerFn({ method: "GET" })
   .inputValidator((data: ActiveRepo[]) => data)
@@ -32,10 +27,7 @@ export const getRepos = createServerFn({ method: "GET" })
         const url = new URL(activeRepo.url);
 
         if (url.hostname === "github.com") {
-          const apiUrl = new URL(
-            `repos${url.pathname}`,
-            "https://api.github.com/",
-          );
+          const apiUrl = new URL(`repos${url.pathname}`, "https://api.github.com/");
 
           const response = await fetch(apiUrl, {
             headers: {
@@ -97,14 +89,9 @@ export const getClosedIssues = createServerFn({ method: "GET" })
 
     const issues = ghIssuesSchema.parse(firstPage);
     const closedThisWeek = issues.filter(
-      (issue) =>
-        !issue.pull_request &&
-        issue.closed_at >= weekStart &&
-        activeRepoUrls.has(issue.repository.html_url),
+      (issue) => !issue.pull_request && issue.closed_at >= weekStart && activeRepoUrls.has(issue.repository.html_url),
     );
-    const closedToday = closedThisWeek.filter(
-      (issue) => issue.closed_at >= dayStart,
-    );
+    const closedToday = closedThisWeek.filter((issue) => issue.closed_at >= dayStart);
 
     return { total: closedThisWeek.length, today: closedToday.length };
   });

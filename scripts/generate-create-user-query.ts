@@ -1,7 +1,8 @@
-import { intro, isCancel, outro, password, text } from "@clack/prompts";
-import { hashPassword } from "better-auth/crypto";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
+
+import { intro, isCancel, outro, password, text } from "@clack/prompts";
+import { hashPassword } from "better-auth/crypto";
 
 async function main(): Promise<void> {
   intro("My Projects");

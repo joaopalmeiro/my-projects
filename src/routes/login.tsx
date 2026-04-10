@@ -31,10 +31,7 @@ export const Route = createFileRoute("/login")({
 function Login() {
   const navigate = Route.useNavigate();
 
-  async function handleLogin(
-    _prevState: string | undefined,
-    formData: FormData,
-  ): Promise<string | undefined> {
+  async function handleLogin(_prevState: string | undefined, formData: FormData): Promise<string | undefined> {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
@@ -82,7 +79,7 @@ function Login() {
                     autoComplete="email"
                     placeholder="hello@world.com"
                     required
-                    className="w-full py-2 px-3 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                    className="w-full border border-mist-200 px-3 py-2 placeholder:text-mist-400 focus:border-blue-500 focus:outline focus:outline-blue-500"
                   />
                 </div>
 
@@ -97,14 +94,14 @@ function Login() {
                     minLength={8}
                     maxLength={128}
                     required
-                    className="w-full py-2 px-3 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
+                    className="w-full border border-mist-200 px-3 py-2 placeholder:text-mist-400 focus:border-blue-500 focus:outline focus:outline-blue-500"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="mt-2 w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-2 hover:bg-mist-900/95 bg-mist-900 font-medium text-white active:scale-97 transition-transform duration-160 ease-out will-change-transform disabled:cursor-not-allowed"
+                  className="mt-2 w-full cursor-pointer bg-mist-900 py-2 font-medium text-white transition-transform duration-160 ease-out will-change-transform hover:bg-mist-900/95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-97 disabled:cursor-not-allowed"
                 >
                   {isPending ? "Logging in..." : "Login"}
                 </button>

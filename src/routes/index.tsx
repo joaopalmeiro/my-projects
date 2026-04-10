@@ -3,11 +3,7 @@ import { intlFormatDistance } from "date-fns";
 
 import { authClient } from "~/utils/auth-client";
 import { getSession } from "~/utils/auth.functions";
-import {
-  getActiveRepos,
-  getClosedIssues,
-  getRepos,
-} from "~/utils/repos.functions";
+import { getActiveRepos, getClosedIssues, getRepos } from "~/utils/repos.functions";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -30,10 +26,7 @@ export const Route = createFileRoute("/")({
   loader: async () => {
     const activeRepos = await getActiveRepos();
 
-    return Promise.all([
-      getRepos({ data: activeRepos }),
-      getClosedIssues({ data: activeRepos }),
-    ]);
+    return Promise.all([getRepos({ data: activeRepos }), getClosedIssues({ data: activeRepos })]);
   },
   component: Home,
 });
@@ -43,10 +36,7 @@ function Home() {
   const [repos, closedIssues] = Route.useLoaderData();
 
   const totalRepos = repos.length;
-  const totalOpenIssues = repos.reduce(
-    (total, repo) => total + repo.openIssues,
-    0,
-  );
+  const totalOpenIssues = repos.reduce((total, repo) => total + repo.openIssues, 0);
   const today = new Date();
 
   async function handleLogout(): Promise<void> {
@@ -67,7 +57,7 @@ function Home() {
         <button
           type="button"
           onClick={handleLogout}
-          className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 py-1 px-2 -my-1 -mx-2 text-mist-500 hover:text-mist-700 focus-visible:text-mist-700 hover:bg-mist-900/5 active:scale-97 transition-transform duration-160 ease-out will-change-transform"
+          className="-mx-2 -my-1 cursor-pointer px-2 py-1 text-mist-500 transition-transform duration-160 ease-out will-change-transform hover:bg-mist-900/5 hover:text-mist-700 focus-visible:text-mist-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-97"
         >
           Logout
         </button>
@@ -75,54 +65,37 @@ function Home() {
 
       <main className="flex flex-col gap-4">
         <dl className="flex gap-2">
-          <div className="border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Projects</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {totalRepos}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{totalRepos}</dd>
           </div>
 
-          <div className="border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Open issues</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {totalOpenIssues}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{totalOpenIssues}</dd>
           </div>
 
-          <div className="border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Issues closed this week</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {closedIssues.total}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{closedIssues.total}</dd>
           </div>
 
-          <div className="border-mist-200 border py-1 px-2 flex gap-2">
+          <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Today</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {closedIssues.today}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{closedIssues.today}</dd>
           </div>
         </dl>
 
-        <table className="w-full border border-mist-200 border-separate border-spacing-0 overflow-hidden">
+        <table className="w-full border-separate border-spacing-0 overflow-hidden border border-mist-200">
           <thead className="bg-mist-50">
             <tr>
-              <th
-                scope="col"
-                className="border-b border-mist-200 font-medium text-left px-6 py-3"
-              >
+              <th scope="col" className="border-b border-mist-200 px-6 py-3 text-left font-medium">
                 Repo
               </th>
-              <th
-                scope="col"
-                className="border-b border-mist-200 font-medium text-left px-6 py-3"
-              >
+              <th scope="col" className="border-b border-mist-200 px-6 py-3 text-left font-medium">
                 Last updated
               </th>
-              <th
-                scope="col"
-                className="border-b border-mist-200 font-medium text-right px-6 py-3"
-              >
+              <th scope="col" className="border-b border-mist-200 px-6 py-3 text-right font-medium">
                 Open issues
               </th>
             </tr>
@@ -131,24 +104,22 @@ function Home() {
             {repos.map((repo) => {
               return (
                 <tr key={repo.id}>
-                  <th scope="row" className="text-left px-6 py-4">
+                  <th scope="row" className="px-6 py-4 text-left">
                     <a
                       href={repo.url}
-                      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      className="focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
                     >
                       {repo.name}
                     </a>
                   </th>
-                  <td className="text-left px-6 py-4">
+                  <td className="px-6 py-4 text-left">
                     <time dateTime={repo.updatedAt.toISOString()}>
                       {intlFormatDistance(repo.updatedAt, today, {
                         locale: "en-US",
                       })}
                     </time>
                   </td>
-                  <td className="text-right px-6 py-4 tabular-nums">
-                    {repo.openIssues}
-                  </td>
+                  <td className="px-6 py-4 text-right tabular-nums">{repo.openIssues}</td>
                 </tr>
               );
             })}

@@ -1,9 +1,4 @@
-import {
-  HeadContent,
-  Outlet,
-  Scripts,
-  createRootRoute,
-} from "@tanstack/react-router";
+import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 import * as React from "react";
 
 import appCss from "~/styles/app.css?url";
@@ -54,9 +49,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
 
       <body className="px-6 py-12 text-mist-700 selection:bg-mist-900 selection:text-white">
-        <div className="mx-auto flex max-w-prose flex-col gap-8">
-          {children}
-        </div>
+        <div className="mx-auto flex max-w-prose flex-col gap-8">{children}</div>
         <Scripts />
       </body>
     </html>

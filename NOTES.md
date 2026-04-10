@@ -428,37 +428,16 @@ magick -density 288 /System/Library/Frameworks/ApplicationServices.framework/Ver
 >
   <thead class="bg-gray-100">
     <tr>
-      <th
-        scope="col"
-        class="rounded-tl-lg border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap"
-      >
-        Name
-      </th>
-      <th
-        scope="col"
-        class="border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap"
-      >
-        Role
-      </th>
-      <th
-        scope="col"
-        class="rounded-tr-lg border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap"
-      >
-        Email
-      </th>
+      <th scope="col" class="rounded-tl-lg border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap">Name</th>
+      <th scope="col" class="border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap">Role</th>
+      <th scope="col" class="rounded-tr-lg border-b border-gray-300 px-6 py-4 font-medium whitespace-nowrap">Email</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">
-        Alice Johnson
-      </td>
-      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">
-        Developer
-      </td>
-      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">
-        alice@example.com
-      </td>
+      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">Alice Johnson</td>
+      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">Developer</td>
+      <td class="border-b border-gray-200 px-6 py-4 whitespace-nowrap">alice@example.com</td>
     </tr>
     <tr>
       <td class="rounded-bl-lg px-6 py-4 whitespace-nowrap">Bob Smith</td>
@@ -479,9 +458,7 @@ import { env } from "./src/env";
 
 function getLocalD1DB() {
   try {
-    const basePath = path.resolve(
-      ".wrangler/state/v3/d1/miniflare-D1DatabaseObject",
-    );
+    const basePath = path.resolve(".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
     const dbFile = fs.readdirSync(basePath).find((x) => x.endsWith(".sqlite"));
 
     if (!dbFile) {
@@ -526,13 +503,7 @@ const testConfig = {
   },
 } satisfies Config;
 
-export default defineConfig(
-  env.NODE_ENV === "test"
-    ? testConfig
-    : env.NODE_ENV === "dev"
-      ? devConfig
-      : prodConfig,
-);
+export default defineConfig(env.NODE_ENV === "test" ? testConfig : env.NODE_ENV === "dev" ? devConfig : prodConfig);
 ```
 
 - https://github.com/stolinski/graffiti/blob/b949842b74d7a5f7a58467e7f185143d18b41af0/src/lib/drop-in.css#L218-L227
@@ -557,11 +528,7 @@ export default defineConfig(
 
 ```css
 --timeline-marker-color: var(--success);
-background: linear-gradient(
-  to bottom,
-  oklch(from var(--success) calc(l + 0.08) c h),
-  var(--success)
-);
+background: linear-gradient(to bottom, oklch(from var(--success) calc(l + 0.08) c h), var(--success));
 border-color: oklch(from var(--success) calc(l - 0.08) calc(c * 1.1) h);
 color: var(--white);
 box-shadow:
@@ -644,21 +611,12 @@ function Login() {
 
   return (
     <main className="flex min-h-screen items-center justify-center">
-      <form
-        action={handleSignIn}
-        className="flex w-full max-w-xs flex-col gap-4 rounded-lg border p-6"
-      >
+      <form action={handleSignIn} className="flex w-full max-w-xs flex-col gap-4 rounded-lg border p-6">
         <h1 className="text-2xl font-bold">Login</h1>
 
         <div className="flex flex-col gap-1">
           <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="rounded border p-2"
-          />
+          <input id="email" name="email" type="email" required className="rounded border p-2" />
         </div>
 
         <div className="flex flex-col gap-1">
@@ -745,21 +703,12 @@ function Login() {
 
   return (
     <main className="flex min-h-screen items-center justify-center">
-      <form
-        action={handleSignIn}
-        className="flex w-full max-w-xs flex-col gap-4 rounded-lg border p-6"
-      >
+      <form action={handleSignIn} className="flex w-full max-w-xs flex-col gap-4 rounded-lg border p-6">
         <h1 className="text-2xl font-bold">Login</h1>
 
         <div className="flex flex-col gap-1">
           <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="rounded border p-2"
-          />
+          <input id="email" name="email" type="email" required className="rounded border p-2" />
         </div>
 
         <div className="flex flex-col gap-1">
@@ -876,10 +825,7 @@ export const Route = createFileRoute("/")({
   loader: async () => {
     const activeRepos = await getActiveRepos();
 
-    return Promise.all([
-      getRepos({ data: activeRepos }),
-      getClosedIssues({ data: activeRepos }),
-    ]);
+    return Promise.all([getRepos({ data: activeRepos }), getClosedIssues({ data: activeRepos })]);
   },
   component: Home,
   pendingComponent: () => (
@@ -1067,35 +1013,22 @@ function Login() {
   /* utility that creates a button-like element, which can be optionally selected */
   .button-base {
     --button-color: var(--tint);
-    --button-background: oklch(
-      from var(--button-color) var(--lightness-100) var(--chroma-100) h
-    );
-    --button-gradient: oklch(
-      from var(--button-color) var(--lightness-200) var(--chroma-200) h
-    );
-    --button-border: oklch(
-      from var(--button-color) var(--lightness-300) var(--chroma-300) h
-    );
+    --button-background: oklch(from var(--button-color) var(--lightness-100) var(--chroma-100) h);
+    --button-gradient: oklch(from var(--button-color) var(--lightness-200) var(--chroma-200) h);
+    --button-border: oklch(from var(--button-color) var(--lightness-300) var(--chroma-300) h);
     --button-highlight: rgb(255 255 255 / 0.8);
-    --button-shadow: oklch(
-      from var(--button-color) var(--lightness-400) var(--chroma-400) h
-    );
+    --button-shadow: oklch(from var(--button-color) var(--lightness-400) var(--chroma-400) h);
     --button-border-size: 1px;
-    --button-text: oklch(
-      from var(--button-color) var(--lightness-1400) var(--chroma-1400) h
-    );
+    --button-text: oklch(from var(--button-color) var(--lightness-1400) var(--chroma-1400) h);
     --button-gradient-size: 8px;
 
     background: var(--button-background);
     color: var(--button-text);
     box-shadow:
       inset 0 -1px 0 var(--button-shadow),
-      /* bottom shadow */ inset 0 0 0 var(--button-border-size)
-        var(--button-border),
-      /* border */ inset 0px calc(var(--button-border-size) + 1px) 0px
-        var(--button-highlight),
-      /* top specular highlight */ inset 0px
-        calc(-1 * var(--button-gradient-size)) var(--button-gradient-size) -2px
+      /* bottom shadow */ inset 0 0 0 var(--button-border-size) var(--button-border),
+      /* border */ inset 0px calc(var(--button-border-size) + 1px) 0px var(--button-highlight),
+      /* top specular highlight */ inset 0px calc(-1 * var(--button-gradient-size)) var(--button-gradient-size) -2px
         var(--button-gradient); /* inner gradient */
     outline: none;
     transition-property: background, color, scale, box-shadow;
@@ -1105,24 +1038,17 @@ function Login() {
     -webkit-tap-highlight-color: transparent;
 
     @media (prefers-color-scheme: dark) {
-      --button-shadow: oklch(
-        from var(--button-color) var(--lightness-200) var(--chroma-200) h
-      );
+      --button-shadow: oklch(from var(--button-color) var(--lightness-200) var(--chroma-200) h);
       --button-highlight: rgb(255 255 255 / 0.15);
       box-shadow:
         inset 0 var(--button-border-size) 0 var(--button-highlight),
-        /* top specular highlight */ inset 0
-          calc(-1 * var(--button-border-size)) 0 var(--button-shadow),
-        /* bottom shadow */ inset 0 0 0 var(--button-border-size)
-          var(--button-border),
-        /* border */ inset 0 var(--button-gradient-size)
-          var(--button-gradient-size) -2px var(--button-gradient); /* inner gradient */
+        /* top specular highlight */ inset 0 calc(-1 * var(--button-border-size)) 0 var(--button-shadow),
+        /* bottom shadow */ inset 0 0 0 var(--button-border-size) var(--button-border),
+        /* border */ inset 0 var(--button-gradient-size) var(--button-gradient-size) -2px var(--button-gradient); /* inner gradient */
     }
 
     &:where([data-pressed]) {
-      --button-background: oklch(
-        from var(--button-color) var(--lightness-200) var(--chroma-200) h
-      );
+      --button-background: oklch(from var(--button-color) var(--lightness-200) var(--chroma-200) h);
     }
 
     &:where([data-focus-visible]) {
@@ -1158,8 +1084,7 @@ function Login() {
         inset 0 -1px 0 var(--button-shadow),
         /* bottom shadow */ inset 0 0 0 1px var(--button-border),
         /* border */ inset 0 2px 0 var(--button-highlight),
-        /* top specular highlight */ inset 0
-          calc(-1 * var(--button-gradient-size)) var(--button-gradient-size)
+        /* top specular highlight */ inset 0 calc(-1 * var(--button-gradient-size)) var(--button-gradient-size)
           var(--button-gradient); /* inner gradient */
 
       @media (prefers-color-scheme: dark) {
@@ -1168,8 +1093,8 @@ function Login() {
         --button-shadow: var(--button-border);
         box-shadow:
           inset 0 1px 0 var(--button-highlight),
-          /* top specular highlight */ inset 0 var(--button-gradient-size)
-            var(--button-gradient-size) var(--button-gradient),
+          /* top specular highlight */ inset 0 var(--button-gradient-size) var(--button-gradient-size)
+            var(--button-gradient),
           /* inner gradient */ inset 0 0 0 1px var(--button-border); /* border */
       }
 
@@ -1222,20 +1147,15 @@ function Login() {
   /* utility that creates a small indicator, such as a checkbox, radio, switch, or slider thumb */
   .indicator {
     --indicator-color: var(--gray);
-    --indicator-background: oklch(
-      from var(--indicator-color) var(--lightness-100) var(--chroma-100) h
-    );
-    --indicator-border: oklch(
-      from var(--indicator-color) var(--lightness-800) var(--chroma-800) h
-    );
+    --indicator-background: oklch(from var(--indicator-color) var(--lightness-100) var(--chroma-100) h);
+    --indicator-border: oklch(from var(--indicator-color) var(--lightness-800) var(--chroma-800) h);
     --indicator-drop-shadow: 0 0;
 
     background: var(--indicator-background);
     box-shadow:
       inset 0 0 0 1px var(--indicator-border),
       /* border */ inset 0 2px 0 white,
-      /* top specular highlight */ inset 0 -4px 2px
-        oklch(from var(--indicator-color) 30% c h / 0.08),
+      /* top specular highlight */ inset 0 -4px 2px oklch(from var(--indicator-color) 30% c h / 0.08),
       /* inner gradient */ var(--indicator-drop-shadow); /* optional drop shadow */
     will-change: scale;
 
@@ -1319,8 +1239,7 @@ function Login() {
     background: var(--inset-background);
     box-shadow:
       inset 0 0 0 var(--inset-border-size) var(--inset-border),
-      /* border */ inset 0 var(--inset-shadow-offset) var(--inset-shadow-size)
-        rgb(0 0 0 / 0.15),
+      /* border */ inset 0 var(--inset-shadow-offset) var(--inset-shadow-size) rgb(0 0 0 / 0.15),
       /* inner shadow */ 0 1px 0 var(--gray-50); /* bottom specular highlight */
     transition: box-shadow 200ms;
     forced-color-adjust: none;
@@ -1332,8 +1251,7 @@ function Login() {
       --inset-shadow-size: 6px;
       box-shadow:
         inset 0 calc(-1 * var(--inset-border-size)) 0 var(--inset-highlight),
-        /* bottom specular highlight */ inset 0 0 0 var(--inset-border-size)
-          var(--inset-border),
+        /* bottom specular highlight */ inset 0 0 0 var(--inset-border-size) var(--inset-border),
         /* border */ inset 0 1px var(--inset-shadow-size) rgb(0 0 0); /* inner shadow */
     }
 
@@ -1446,11 +1364,7 @@ import { intlFormatDistance } from "date-fns";
 
 import { authClient } from "~/utils/auth-client";
 import { getSession } from "~/utils/auth.functions";
-import {
-  getActiveRepos,
-  getClosedIssues,
-  getRepos,
-} from "~/utils/repos.functions";
+import { getActiveRepos, getClosedIssues, getRepos } from "~/utils/repos.functions";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -1465,10 +1379,7 @@ export const Route = createFileRoute("/")({
   loader: async () => {
     const activeRepos = await getActiveRepos();
 
-    return Promise.all([
-      getRepos({ data: activeRepos }),
-      getClosedIssues({ data: activeRepos }),
-    ]);
+    return Promise.all([getRepos({ data: activeRepos }), getClosedIssues({ data: activeRepos })]);
   },
   component: Home,
 });
@@ -1478,10 +1389,7 @@ function Home() {
   const [repos, closedIssues] = Route.useLoaderData();
 
   const totalRepos = repos.length;
-  const totalOpenIssues = repos.reduce(
-    (total, repo) => total + repo.openIssues,
-    0,
-  );
+  const totalOpenIssues = repos.reduce((total, repo) => total + repo.openIssues, 0);
   const today = new Date();
 
   async function handleLogout(): Promise<void> {
@@ -1512,45 +1420,30 @@ function Home() {
         <dl className="flex gap-2">
           <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
             <dt className="text-mist-500">Projects</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {totalRepos}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{totalRepos}</dd>
           </div>
 
           <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
             <dt className="text-mist-500">Open issues</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {totalOpenIssues}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{totalOpenIssues}</dd>
           </div>
 
           <div className="rounded-md border-mist-200 border py-1 px-2 flex gap-2">
             <dt className="text-mist-500">Issues closed this week</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">
-              {closedIssues.total}
-            </dd>
+            <dd className="border-l border-mist-200 pl-2 tabular-nums">{closedIssues.total}</dd>
           </div>
         </dl>
 
         <table className="w-full border border-mist-200 border-separate border-spacing-0 rounded-lg overflow-hidden shadow-xs">
           <thead className="bg-mist-50">
             <tr>
-              <th
-                scope="col"
-                className="border-b border-mist-200 font-medium text-left px-6 py-3"
-              >
+              <th scope="col" className="border-b border-mist-200 font-medium text-left px-6 py-3">
                 Repo
               </th>
-              <th
-                scope="col"
-                className="border-b border-mist-200 font-medium text-left px-6 py-3"
-              >
+              <th scope="col" className="border-b border-mist-200 font-medium text-left px-6 py-3">
                 Last updated
               </th>
-              <th
-                scope="col"
-                className="border-b border-mist-200 font-medium text-right px-6 py-3"
-              >
+              <th scope="col" className="border-b border-mist-200 font-medium text-right px-6 py-3">
                 Open issues
               </th>
             </tr>
@@ -1574,9 +1467,7 @@ function Home() {
                       })}
                     </time>
                   </td>
-                  <td className="text-right px-6 py-4 tabular-nums">
-                    {repo.openIssues}
-                  </td>
+                  <td className="text-right px-6 py-4 tabular-nums">{repo.openIssues}</td>
                 </tr>
               );
             })}
@@ -1746,10 +1637,7 @@ function reducerAction(previousState, actionPayload) {
 }
 
 function MyCart({ initialState }) {
-  const [state, dispatchAction, isPending] = useActionState(
-    reducerAction,
-    initialState,
-  );
+  const [state, dispatchAction, isPending] = useActionState(reducerAction, initialState);
   // ...
 }
 ```
@@ -1935,23 +1823,16 @@ export default function LoginSignupForm() {
       <div class="w-full max-w-md">
         <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
           <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">
-              {isLogin() ? "Welcome Back" : "Create Account"}
-            </h1>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">{isLogin() ? "Welcome Back" : "Create Account"}</h1>
             <p class="text-gray-600 text-sm">
-              {isLogin()
-                ? "Sign in to continue to your account"
-                : "Get started with your free account"}
+              {isLogin() ? "Sign in to continue to your account" : "Get started with your free account"}
             </p>
           </div>
 
           <form onSubmit={handleSubmit} class="space-y-5">
             {!isLogin() && (
               <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                   Full Name
                 </label>
                 <input
@@ -1967,10 +1848,7 @@ export default function LoginSignupForm() {
             )}
 
             <div>
-              <label
-                for="email"
-                class="block text-sm font-medium text-gray-700 mb-2"
-              >
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
               </label>
               <input
@@ -1985,10 +1863,7 @@ export default function LoginSignupForm() {
             </div>
 
             <div>
-              <label
-                for="password"
-                class="block text-sm font-medium text-gray-700 mb-2"
-              >
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
                 Password
               </label>
               <input
@@ -2004,11 +1879,7 @@ export default function LoginSignupForm() {
 
             {error() && (
               <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fill-rule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
@@ -2030,20 +1901,8 @@ export default function LoginSignupForm() {
             >
               {loading() ? (
                 <span class="flex items-center justify-center gap-2">
-                  <svg
-                    class="animate-spin h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      class="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      stroke-width="4"
-                    ></circle>
+                  <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path
                       class="opacity-75"
                       fill="currentColor"
@@ -2070,13 +1929,11 @@ export default function LoginSignupForm() {
             >
               {isLogin() ? (
                 <>
-                  Don't have an account?{" "}
-                  <span class="text-blue-600 hover:underline">Sign up</span>
+                  Don't have an account? <span class="text-blue-600 hover:underline">Sign up</span>
                 </>
               ) : (
                 <>
-                  Already have an account?{" "}
-                  <span class="text-blue-600 hover:underline">Sign in</span>
+                  Already have an account? <span class="text-blue-600 hover:underline">Sign in</span>
                 </>
               )}
             </button>
