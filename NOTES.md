@@ -334,6 +334,8 @@
   - https://github.com/docker/sbx-releases
 - https://github.com/deckardger/tanstack-agent-skills
   - https://github.com/DeckardGer/tanstack-agent-skills/tree/main/skills/tanstack-start
+- https://oxc.rs/docs/guide/usage/formatter/ignore-files: "Uses `.gitignore` syntax"
+- https://oxc.rs/docs/guide/usage/formatter/embedded-formatting.html
 
 ## Commands
 

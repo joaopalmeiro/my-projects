@@ -26,6 +26,10 @@ npm run cf-typegen
 npm run dev
 ```
 
+```bash
+npm run format
+```
+
 ## Deployment
 
 ```bash

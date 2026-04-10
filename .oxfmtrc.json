@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "sortImports": true,
+  "sortTailwindcss": true,
+  "sortPackageJson": { "sortScripts": true },
+  "ignorePatterns": [
+    "deprecated/",
+    "drizzle/",
+    "src/db/schema.ts",
+    "src/routeTree.gen.ts",
+    "worker-configuration.d.ts"
+  ],
+  "embeddedLanguageFormatting": "auto"
+}

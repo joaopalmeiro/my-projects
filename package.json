@@ -8,8 +8,8 @@
     "email": "joaopalmeiro@proton.me",
     "url": "https://joao.town/"
   },
-  "sideEffects": false,
   "type": "module",
+  "sideEffects": false,
   "scripts": {
     "build": "vite build && tsc --noEmit",
     "cf-typegen": "wrangler types",
@@ -28,7 +28,8 @@
     "db:studio:remote": "NODE_ENV=production drizzle-kit studio --verbose",
     "deploy": "wrangler deploy",
     "dev": "vite dev",
-    "secrets": "wrangler secret put GH_TOKEN && wrangler secret put BETTER_AUTH_SECRET && wrangler secret put BETTER_AUTH_URL"
+    "secrets": "wrangler secret put GH_TOKEN && wrangler secret put BETTER_AUTH_SECRET && wrangler secret put BETTER_AUTH_URL",
+    "format": "oxfmt"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "1.5.4",
@@ -52,6 +53,7 @@
     "auth": "1.5.4",
     "better-sqlite3": "12.6.2",
     "drizzle-kit": "0.31.9",
+    "oxfmt": "0.43.0",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
     "vite": "7.3.1",
