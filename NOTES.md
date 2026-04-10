@@ -264,6 +264,7 @@
 - https://huggingface.co/Tesslate/OmniCoder-9B
 - https://evilmartians.com/chronicles/hire-better-10x-faster-how-we-screen-50-engineers-weekly-with-no-hr
   - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete#token_list_tokens
   - https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
 - https://kittygiraudel.com/2024/03/29/on-disabled-and-aria-disabled-attributes/
   - https://www.stefanjudis.com/notes/disabled-vs-aria-disabled-on-form-elements/

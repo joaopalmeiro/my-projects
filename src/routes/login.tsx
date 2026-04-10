@@ -80,6 +80,7 @@ function Login() {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     placeholder="hello@world.com"
                     required
                     className="w-full py-2 px-3 placeholder:text-mist-400 border focus:border-blue-500 focus:outline focus:outline-blue-500 border-mist-200"
@@ -92,6 +93,7 @@ function Login() {
                     id="password"
                     name="password"
                     type="password"
+                    autoComplete="current-password"
                     placeholder="No 123456, please"
                     minLength={8}
                     maxLength={128}
