@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+// GitHub:
+
 export const ghRepoSchema = z.object({
   id: z.number().int(),
   open_issues_count: z.number().int(),
@@ -24,3 +26,11 @@ const ghIssueSchema = z.object({
 });
 
 export const ghIssuesSchema = z.array(ghIssueSchema);
+
+// GitLab:
+
+export const glRepoSchema = z.object({
+  id: z.number().int(),
+  open_issues_count: z.number().int(),
+  last_activity_at: z.coerce.date(),
+});

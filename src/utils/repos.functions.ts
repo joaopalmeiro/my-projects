@@ -2,12 +2,14 @@ import { createServerFn } from "@tanstack/react-start";
 import { env } from "cloudflare:workers";
 import { startOfDay, startOfWeek } from "date-fns";
 
-import { USER_AGENT } from "./constants";
-import { ghIssuesSchema, ghRepoSchema } from "./schemas";
+import { USER_AGENT, BASE_GH_API_URL, BASE_GL_API_URL } from "./constants";
+import { ghIssuesSchema, ghRepoSchema, glRepoSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
 export const getActiveRepos = createServerFn({ method: "GET" }).handler(async (): Promise<ActiveRepo[]> => {
-  const response = await fetch("https://api.github.com/repos/joaopalmeiro/joaopalmeiro/contents/data.json", {
+  const apiUrl = new URL("repos/joaopalmeiro/joaopalmeiro/contents/data.json", BASE_GH_API_URL);
+
+  const response = await fetch(apiUrl, {
     headers: {
       Accept: "application/vnd.github.raw+json",
       Authorization: `Bearer ${env.GH_TOKEN}`,
@@ -27,7 +29,7 @@ export const getRepos = createServerFn({ method: "GET" })
         const url = new URL(activeRepo.url);
 
         if (url.hostname === "github.com") {
-          const apiUrl = new URL(`repos${url.pathname}`, "https://api.github.com/");
+          const apiUrl = new URL(`repos${url.pathname}`, BASE_GH_API_URL);
 
           const response = await fetch(apiUrl, {
             headers: {
@@ -48,6 +50,27 @@ export const getRepos = createServerFn({ method: "GET" })
             updatedAt: parsedData.pushed_at,
             url: activeRepo.url,
           };
+        } else if (url.hostname === "gitlab.com") {
+          const projectPath = encodeURIComponent(url.pathname.slice(1));
+          const apiUrl = new URL(`projects/${projectPath}`, BASE_GL_API_URL);
+
+          const response = await fetch(apiUrl, {
+            headers: {
+              Authorization: `Bearer ${env.GL_TOKEN}`,
+              "User-Agent": USER_AGENT,
+            },
+          });
+
+          const rawData = await response.json();
+          const parsedData = glRepoSchema.parse(rawData);
+
+          return {
+            id: parsedData.id,
+            name: activeRepo.name,
+            openIssues: parsedData.open_issues_count,
+            updatedAt: parsedData.last_activity_at,
+            url: activeRepo.url,
+          };
         }
 
         throw new Error(`Invalid repo URL: ${activeRepo.url}`);
@@ -66,7 +89,7 @@ export const getClosedIssues = createServerFn({ method: "GET" })
     });
     const dayStart = startOfDay(today);
 
-    const firstApiUrl = new URL("issues", "https://api.github.com/");
+    const firstApiUrl = new URL("issues", BASE_GH_API_URL);
     firstApiUrl.searchParams.set("filter", "assigned");
     firstApiUrl.searchParams.set("state", "closed");
     firstApiUrl.searchParams.set("since", weekStart.toISOString());

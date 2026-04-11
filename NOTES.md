@@ -336,6 +336,11 @@
   - https://github.com/DeckardGer/tanstack-agent-skills/tree/main/skills/tanstack-start
 - https://oxc.rs/docs/guide/usage/formatter/ignore-files: "Uses `.gitignore` syntax"
 - https://oxc.rs/docs/guide/usage/formatter/embedded-formatting.html
+- https://docs.gitlab.com/api/projects/#retrieve-a-project: "Retrieves the specified project. This endpoint can be accessed without authentication if the project is publicly accessible."
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/User-Agent: `User-Agent: <product> / <product-version> <comment>`
+- https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
+  - https://github.com/microsoft/vscode/issues/212029
+  - https://github.com/adamchainz/djade/issues/36
 
 ## Commands
 
