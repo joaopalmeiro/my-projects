@@ -3,7 +3,6 @@ export interface ActiveRepo {
   url: string;
   description: string;
   category: string;
-  subcategory: string | null;
 }
 
 export interface Repo {
