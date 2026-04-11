@@ -341,6 +341,7 @@
 - https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
   - https://github.com/microsoft/vscode/issues/212029
   - https://github.com/adamchainz/djade/issues/36
+- https://docs.gitlab.com/api/rest/#pagination
 
 ## Commands
 

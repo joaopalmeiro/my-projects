@@ -34,3 +34,10 @@ export const glRepoSchema = z.object({
   open_issues_count: z.number().int(),
   last_activity_at: z.coerce.date(),
 });
+
+const glIssueSchema = z.object({
+  closed_at: z.coerce.date(),
+  web_url: z.string(),
+});
+
+export const glIssuesSchema = z.array(glIssueSchema);
