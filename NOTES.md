@@ -342,6 +342,8 @@
   - https://github.com/microsoft/vscode/issues/212029
   - https://github.com/adamchainz/djade/issues/36
 - https://docs.gitlab.com/api/rest/#pagination
+- https://vite.dev/config/shared-options#customlogger
+  - https://github.com/pinojs/pino
 
 ## Commands
 

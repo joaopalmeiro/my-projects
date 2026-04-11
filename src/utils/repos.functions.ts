@@ -3,7 +3,7 @@ import { env } from "cloudflare:workers";
 import { startOfDay, startOfWeek } from "date-fns";
 
 import { USER_AGENT, BASE_GH_API_URL, BASE_GL_API_URL } from "./constants";
-import { ghIssuesSchema, ghRepoSchema, glRepoSchema } from "./schemas";
+import { ghIssuesSchema, ghRepoSchema, glRepoSchema, glIssuesSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
 export const getActiveRepos = createServerFn({ method: "GET" }).handler(async (): Promise<ActiveRepo[]> => {
@@ -89,32 +89,65 @@ export const getClosedIssues = createServerFn({ method: "GET" })
     });
     const dayStart = startOfDay(today);
 
-    const firstApiUrl = new URL("issues", BASE_GH_API_URL);
-    firstApiUrl.searchParams.set("filter", "assigned");
-    firstApiUrl.searchParams.set("state", "closed");
-    firstApiUrl.searchParams.set("since", weekStart.toISOString());
-    firstApiUrl.searchParams.set("per_page", "100");
-    firstApiUrl.searchParams.set("page", "1");
+    const firstGhApiUrl = new URL("issues", BASE_GH_API_URL);
+    firstGhApiUrl.searchParams.set("filter", "assigned");
+    firstGhApiUrl.searchParams.set("state", "closed");
+    firstGhApiUrl.searchParams.set("since", weekStart.toISOString());
+    firstGhApiUrl.searchParams.set("per_page", "100");
+    firstGhApiUrl.searchParams.set("page", "1");
 
-    const firstResponse = await fetch(firstApiUrl, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${env.GH_TOKEN}`,
-        "X-GitHub-Api-Version": "2022-11-28",
-        "User-Agent": USER_AGENT,
-      },
-    });
+    const firstGlApiUrl = new URL("issues", BASE_GL_API_URL);
+    firstGlApiUrl.searchParams.set("scope", "assigned_to_me");
+    firstGlApiUrl.searchParams.set("state", "closed");
+    firstGlApiUrl.searchParams.set("updated_after", weekStart.toISOString());
+    firstGlApiUrl.searchParams.set("per_page", "100");
+    firstGlApiUrl.searchParams.set("page", "1");
 
-    const firstPage = await firstResponse.json();
+    const [firstGhResponse, firstGlResponse] = await Promise.all([
+      fetch(firstGhApiUrl, {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${env.GH_TOKEN}`,
+          "X-GitHub-Api-Version": "2022-11-28",
+          "User-Agent": USER_AGENT,
+        },
+      }),
+      fetch(firstGlApiUrl, {
+        headers: {
+          Authorization: `Bearer ${env.GL_TOKEN}`,
+          "User-Agent": USER_AGENT,
+        },
+      }),
+    ]);
+
+    const [firstGhPage, firstGlPage] = await Promise.all([firstGhResponse.json(), firstGlResponse.json()]);
 
     // TODO
     // const linkHeader = firstResponse.headers.get("Link");
 
-    const issues = ghIssuesSchema.parse(firstPage);
-    const closedThisWeek = issues.filter(
-      (issue) => !issue.pull_request && issue.closed_at >= weekStart && activeRepoUrls.has(issue.repository.html_url),
-    );
-    const closedToday = closedThisWeek.filter((issue) => issue.closed_at >= dayStart);
+    let total = 0;
+    let todayCount = 0;
 
-    return { total: closedThisWeek.length, today: closedToday.length };
+    for (const issue of ghIssuesSchema.parse(firstGhPage)) {
+      if (!issue.pull_request && activeRepoUrls.has(issue.repository.html_url)) {
+        if (issue.closed_at >= dayStart) {
+          total++;
+          todayCount++;
+        } else if (issue.closed_at >= weekStart) {
+          total++;
+        }
+      }
+    }
+
+    for (const issue of glIssuesSchema.parse(firstGlPage)) {
+      if (activeRepoUrls.has(issue.web_url.split("/-/")[0])) {
+        if (issue.closed_at >= dayStart) {
+          total++;
+          todayCount++;
+        } else if (issue.closed_at >= weekStart) {
+          total++;
+        }
+      }
+    }
+    return { total, today: todayCount };
   });

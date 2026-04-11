@@ -37,7 +37,7 @@ export const glRepoSchema = z.object({
 
 const glIssueSchema = z.object({
   closed_at: z.coerce.date(),
-  web_url: z.string(),
+  web_url: z.httpUrl(),
 });
 
 export const glIssuesSchema = z.array(glIssueSchema);
