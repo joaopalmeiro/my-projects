@@ -41,3 +41,11 @@ const glIssueSchema = z.object({
 });
 
 export const glIssuesSchema = z.array(glIssueSchema);
+
+// Codeberg:
+
+export const cbRepoSchema = z.object({
+  id: z.number().int(),
+  open_issues_count: z.number().int(),
+  updated_at: z.coerce.date(),
+});

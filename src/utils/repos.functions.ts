@@ -2,8 +2,8 @@ import { createServerFn } from "@tanstack/react-start";
 import { env } from "cloudflare:workers";
 import { startOfDay, startOfWeek } from "date-fns";
 
-import { USER_AGENT, BASE_GH_API_URL, BASE_GL_API_URL } from "./constants";
-import { ghIssuesSchema, ghRepoSchema, glRepoSchema, glIssuesSchema } from "./schemas";
+import { BASE_CB_API_URL, BASE_GH_API_URL, BASE_GL_API_URL, USER_AGENT } from "./constants";
+import { cbRepoSchema, ghIssuesSchema, ghRepoSchema, glIssuesSchema, glRepoSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
 export const getActiveRepos = createServerFn({ method: "GET" }).handler(async (): Promise<ActiveRepo[]> => {
@@ -69,6 +69,25 @@ export const getRepos = createServerFn({ method: "GET" })
             name: activeRepo.name,
             openIssues: parsedData.open_issues_count,
             updatedAt: parsedData.last_activity_at,
+            url: activeRepo.url,
+          };
+        } else if (url.hostname === "codeberg.org") {
+          const apiUrl = new URL(`repos${url.pathname}`, BASE_CB_API_URL);
+
+          const response = await fetch(apiUrl, {
+            headers: {
+              "User-Agent": USER_AGENT,
+            },
+          });
+
+          const rawData = await response.json();
+          const parsedData = cbRepoSchema.parse(rawData);
+
+          return {
+            id: parsedData.id,
+            name: activeRepo.name,
+            openIssues: parsedData.open_issues_count,
+            updatedAt: parsedData.updated_at,
             url: activeRepo.url,
           };
         }

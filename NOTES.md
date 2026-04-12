@@ -344,6 +344,7 @@
 - https://docs.gitlab.com/api/rest/#pagination
 - https://vite.dev/config/shared-options#customlogger
   - https://github.com/pinojs/pino
+- https://codeberg.org/api/swagger
 
 ## Commands
 
