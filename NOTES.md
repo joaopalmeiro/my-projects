@@ -345,6 +345,7 @@
 - https://vite.dev/config/shared-options#customlogger
   - https://github.com/pinojs/pino
 - https://codeberg.org/api/swagger
+- https://forgejo.org/docs/next/user/api-usage/#authentication
 
 ## Commands
 

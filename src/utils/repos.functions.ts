@@ -3,7 +3,7 @@ import { env } from "cloudflare:workers";
 import { startOfDay, startOfWeek } from "date-fns";
 
 import { BASE_CB_API_URL, BASE_GH_API_URL, BASE_GL_API_URL, USER_AGENT } from "./constants";
-import { cbRepoSchema, ghIssuesSchema, ghRepoSchema, glIssuesSchema, glRepoSchema } from "./schemas";
+import { cbIssuesSchema, cbRepoSchema, ghIssuesSchema, ghRepoSchema, glIssuesSchema, glRepoSchema } from "./schemas";
 import type { ActiveRepo, ClosedIssues, Repo } from "./types";
 
 export const getActiveRepos = createServerFn({ method: "GET" }).handler(async (): Promise<ActiveRepo[]> => {
@@ -76,6 +76,7 @@ export const getRepos = createServerFn({ method: "GET" })
 
           const response = await fetch(apiUrl, {
             headers: {
+              Authorization: `Bearer ${env.CB_TOKEN}`,
               "User-Agent": USER_AGENT,
             },
           });
@@ -122,7 +123,15 @@ export const getClosedIssues = createServerFn({ method: "GET" })
     firstGlApiUrl.searchParams.set("per_page", "100");
     firstGlApiUrl.searchParams.set("page", "1");
 
-    const [firstGhResponse, firstGlResponse] = await Promise.all([
+    const firstCbApiUrl = new URL("repos/issues/search", BASE_CB_API_URL);
+    firstCbApiUrl.searchParams.set("type", "issues");
+    firstCbApiUrl.searchParams.set("state", "closed");
+    firstCbApiUrl.searchParams.set("assigned", "true");
+    firstCbApiUrl.searchParams.set("since", weekStart.toISOString());
+    firstCbApiUrl.searchParams.set("limit", "50");
+    firstCbApiUrl.searchParams.set("page", "1");
+
+    const [firstGhResponse, firstGlResponse, firstCbResponse] = await Promise.all([
       fetch(firstGhApiUrl, {
         headers: {
           Accept: "application/vnd.github+json",
@@ -137,9 +146,19 @@ export const getClosedIssues = createServerFn({ method: "GET" })
           "User-Agent": USER_AGENT,
         },
       }),
+      fetch(firstCbApiUrl, {
+        headers: {
+          Authorization: `Bearer ${env.CB_TOKEN}`,
+          "User-Agent": USER_AGENT,
+        },
+      }),
     ]);
 
-    const [firstGhPage, firstGlPage] = await Promise.all([firstGhResponse.json(), firstGlResponse.json()]);
+    const [firstGhPage, firstGlPage, firstCbPage] = await Promise.all([
+      firstGhResponse.json(),
+      firstGlResponse.json(),
+      firstCbResponse.json(),
+    ]);
 
     // TODO
     // const linkHeader = firstResponse.headers.get("Link");
@@ -168,5 +187,17 @@ export const getClosedIssues = createServerFn({ method: "GET" })
         }
       }
     }
+
+    for (const issue of cbIssuesSchema.parse(firstCbPage)) {
+      if (activeRepoUrls.has(issue.html_url.split("/issues/")[0])) {
+        if (issue.closed_at >= dayStart) {
+          total++;
+          todayCount++;
+        } else if (issue.closed_at >= weekStart) {
+          total++;
+        }
+      }
+    }
+
     return { total, today: todayCount };
   });

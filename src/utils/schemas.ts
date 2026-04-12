@@ -49,3 +49,10 @@ export const cbRepoSchema = z.object({
   open_issues_count: z.number().int(),
   updated_at: z.coerce.date(),
 });
+
+const cbIssueSchema = z.object({
+  closed_at: z.coerce.date(),
+  html_url: z.httpUrl(),
+});
+
+export const cbIssuesSchema = z.array(cbIssueSchema);
