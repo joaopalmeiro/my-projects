@@ -1,6 +1,7 @@
 @import "tailwindcss" source("../");
 
-@import "@fontsource-variable/inter";
+/* TODO */
+/* @import "@fontsource-variable/inter"; */
 
 @layer base {
   th {
@@ -9,5 +10,6 @@
 }
 
 @theme {
-  --font-sans: "Inter Variable", sans-serif;
+  /* TODO */
+  /* --font-sans: "Inter Variable", sans-serif; */
 }

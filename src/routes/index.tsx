@@ -67,22 +67,22 @@ function Home() {
         <dl className="flex gap-2">
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Projects</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">{totalRepos}</dd>
+            <dd className="border-l border-mist-200 pl-2">{totalRepos}</dd>
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Open issues</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">{totalOpenIssues}</dd>
+            <dd className="border-l border-mist-200 pl-2">{totalOpenIssues}</dd>
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Issues closed this week</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">{closedIssues.total}</dd>
+            <dd className="border-l border-mist-200 pl-2">{closedIssues.total}</dd>
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Today</dt>
-            <dd className="border-l border-mist-200 pl-2 tabular-nums">{closedIssues.today}</dd>
+            <dd className="border-l border-mist-200 pl-2">{closedIssues.today}</dd>
           </div>
         </dl>
 
@@ -119,7 +119,7 @@ function Home() {
                       })}
                     </time>
                   </td>
-                  <td className="px-6 py-4 text-right tabular-nums">{repo.openIssues}</td>
+                  <td className="px-6 py-4 text-right">{repo.openIssues}</td>
                 </tr>
               );
             })}
