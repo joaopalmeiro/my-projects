@@ -348,6 +348,7 @@
 - https://forgejo.org/docs/next/user/api-usage/#authentication
 - `<dd className="border-l border-mist-200 pl-2 tabular-nums">{totalRepos}</dd>`
 - `<td className="px-6 py-4 text-right tabular-nums">{repo.openIssues}</td>`
+- https://fontsource.org/fonts/recursive/install
 
 ## Commands
 

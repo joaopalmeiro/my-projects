@@ -1,7 +1,6 @@
 @import "tailwindcss" source("../");
 
-/* TODO */
-/* @import "@fontsource-variable/inter"; */
+@import "@fontsource-variable/recursive/wght.css";
 
 @layer base {
   th {
@@ -11,5 +10,5 @@
 
 @theme {
   /* TODO */
-  /* --font-sans: "Inter Variable", sans-serif; */
+  --font-sans: "Recursive Variable", sans-serif;
 }
