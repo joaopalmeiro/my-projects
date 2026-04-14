@@ -52,7 +52,7 @@ function Home() {
   return (
     <>
       <header className="flex justify-between">
-        <h1 className="font-medium text-mist-900">My Projects</h1>
+        <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
 
         <button
           type="button"
@@ -67,22 +67,22 @@ function Home() {
         <dl className="flex gap-2">
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Projects</dt>
-            <dd className="border-l border-mist-200 pl-2">{totalRepos}</dd>
+            <dd className="border-l border-mist-200 pl-2 font-mono">{totalRepos}</dd>
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Open issues</dt>
-            <dd className="border-l border-mist-200 pl-2">{totalOpenIssues}</dd>
+            <dd className="border-l border-mist-200 pl-2 font-mono">{totalOpenIssues}</dd>
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Issues closed this week</dt>
-            <dd className="border-l border-mist-200 pl-2">{closedIssues.total}</dd>
+            <dd className="border-l border-mist-200 pl-2 font-mono">{closedIssues.total}</dd>
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
             <dt className="text-mist-500">Today</dt>
-            <dd className="border-l border-mist-200 pl-2">{closedIssues.today}</dd>
+            <dd className="border-l border-mist-200 pl-2 font-mono">{closedIssues.today}</dd>
           </div>
         </dl>
 
@@ -119,7 +119,7 @@ function Home() {
                       })}
                     </time>
                   </td>
-                  <td className="px-6 py-4 text-right">{repo.openIssues}</td>
+                  <td className="px-6 py-4 text-right font-mono">{repo.openIssues}</td>
                 </tr>
               );
             })}

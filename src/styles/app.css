@@ -1,6 +1,6 @@
 @import "tailwindcss" source("../");
 
-@import "@fontsource-variable/recursive/wght.css";
+@import "@fontsource-variable/recursive/full.css";
 
 @layer base {
   th {
@@ -9,6 +9,11 @@
 }
 
 @theme {
-  /* TODO */
   --font-sans: "Recursive Variable", sans-serif;
+  --font-heading: "Recursive Variable", sans-serif;
+  --font-mono: "Recursive Variable", monospace;
+
+  --font-sans--font-variation-settings: "MONO" 0, "CASL" 0, "slnt" 0, "CRSV" 0.5;
+  --font-heading--font-variation-settings: "MONO" 0, "CASL" 1, "slnt" 0, "CRSV" 0.5;
+  --font-mono--font-variation-settings: "MONO" 1, "CASL" 1, "slnt" 0, "CRSV" 0.5;
 }

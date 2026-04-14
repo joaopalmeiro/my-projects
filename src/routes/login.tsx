@@ -53,7 +53,7 @@ function Login() {
         match ? (
           <>
             <header className="flex justify-between">
-              <h1 className="font-medium text-mist-900">My Projects</h1>
+              <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
             </header>
 
             <main>
@@ -63,7 +63,7 @@ function Login() {
         ) : (
           <>
             <header className="flex justify-between">
-              <h1 className="font-medium text-mist-900">My Projects</h1>
+              <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
             </header>
 
             <main>
