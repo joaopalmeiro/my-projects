@@ -362,6 +362,16 @@
 - https://tailwindcss.com/docs/display#hidden
   - "Use the `hidden` utility to remove an element from the document:"
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length#lh
+- https://daisyui.com/components/loading/
+- https://www.qodo.ai/
+  - https://docs.qodo.ai/
+  - https://docs.qodo.ai/qodo-gen
+  - https://docs.qodo.ai/qodo-gen/code-review/review-uncommitted-changes: `/review-uncommitted`
+  - https://docs.qodo.ai/qodo-gen/data-sharing
+  - https://docs.qodo.ai/qodo-gen/getting-started/setup-and-installation/vscode-installation
+  - https://status.qodo.ai/
+- https://getbootstrap.com/docs/5.2/components/spinners/#buttons
+  - `<button class="btn btn-primary" type="button" disabled>` + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>` + `<span class="visually-hidden">Loading...</span>`
 
 ## Commands
 

@@ -98,11 +98,11 @@ function Login() {
                   {isPending ? (
                     <>
                       <span className="motion-safe:sr-only">Logging in</span>
-                      <div className="flex min-h-lh items-center justify-center gap-2 motion-reduce:hidden">
+                      <span className="flex min-h-lh items-center justify-center gap-2 motion-reduce:hidden">
                         <span className="size-3 animate-ping rounded-full bg-white"></span>
                         <span className="size-3 animate-ping rounded-full bg-white [animation-delay:0.2s]"></span>
                         <span className="size-3 animate-ping rounded-full bg-white [animation-delay:0.4s]"></span>
-                      </div>
+                      </span>
                     </>
                   ) : (
                     "Login"
