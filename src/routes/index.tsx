@@ -76,7 +76,7 @@ function Home() {
           </div>
 
           <div className="flex gap-2 border border-mist-200 px-2 py-1">
-            <dt className="text-mist-500">Issues closed this week</dt>
+            <dt className="text-mist-500">Closed this week</dt>
             <dd className="border-l border-mist-200 pl-2 font-mono">{closedIssues.total}</dd>
           </div>
 

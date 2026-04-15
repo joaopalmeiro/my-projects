@@ -57,7 +57,37 @@ function Login() {
         <MatchRoute to="/" pending>
           {(match) =>
             match ? (
-              <p>Loading...</p>
+              <>
+                <dl className="flex gap-2">
+                  <div className="flex gap-2 border border-mist-200 px-2 py-1">
+                    <dt className="text-mist-500">Projects</dt>
+                    <dd className="flex items-center border-l border-mist-200 pl-2">
+                      <div aria-hidden="true" className="size-4 bg-mist-400 motion-safe:animate-pulse" />
+                    </dd>
+                  </div>
+
+                  <div className="flex gap-2 border border-mist-200 px-2 py-1">
+                    <dt className="text-mist-500">Open issues</dt>
+                    <dd className="flex items-center border-l border-mist-200 pl-2">
+                      <div aria-hidden="true" className="size-4 bg-mist-400 motion-safe:animate-pulse" />
+                    </dd>
+                  </div>
+
+                  <div className="flex gap-2 border border-mist-200 px-2 py-1">
+                    <dt className="text-mist-500">Closed this week</dt>
+                    <dd className="flex items-center border-l border-mist-200 pl-2">
+                      <div aria-hidden="true" className="size-4 bg-mist-400 motion-safe:animate-pulse" />
+                    </dd>
+                  </div>
+
+                  <div className="flex gap-2 border border-mist-200 px-2 py-1">
+                    <dt className="text-mist-500">Today</dt>
+                    <dd className="flex items-center border-l border-mist-200 pl-2">
+                      <div aria-hidden="true" className="size-4 bg-mist-400 motion-safe:animate-pulse" />
+                    </dd>
+                  </div>
+                </dl>
+              </>
             ) : (
               <form action={formAction} className="flex flex-col gap-4">
                 <h2>Sign in to your account</h2>

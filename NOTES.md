@@ -372,6 +372,11 @@
   - https://status.qodo.ai/
 - https://getbootstrap.com/docs/5.2/components/spinners/#buttons
   - `<button class="btn btn-primary" type="button" disabled>` + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>` + `<span class="visually-hidden">Loading...</span>`
+- https://design-system.agriculture.gov.au/components/skeleton/accessibility
+- https://adrianroselli.com/2020/11/more-accessible-skeletons.html
+  - "Many skeleton patterns do a poor job presenting themselves to screen reader users in any meaningful way. They often stuff `aria-busy` into their widget, set its value to true when the thing is loading, and leave it at that. Except few screen readers honor `aria-busy="true"`."
+  - `.skeleton { cursor: progress; }`
+- From `Issues closed this week` to `Closed this week`
 
 ## Commands
 
