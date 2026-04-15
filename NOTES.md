@@ -272,6 +272,13 @@
   - https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
 - https://kittygiraudel.com/2024/03/29/on-disabled-and-aria-disabled-attributes/
   - https://www.stefanjudis.com/notes/disabled-vs-aria-disabled-on-form-elements/
+  - "If you have a form with plenty fields, and some of them become irrelevant based on the value of other previous fields, using the `disabled` attribute seems like a good option."
+  - "Now, if you have a form submit button that is not ready yet because the form needs to be completed first, then `aria-disabled` attribute is certainly better."
+  - "The `pointer-events: none` declaration disable click events on the receiving element(s). However, it does not account for keyboard events."
+  - https://adamsilver.io/blog/the-problem-with-disabled-buttons-and-what-to-do-instead/
+  - https://css-tricks.com/making-disabled-buttons-more-inclusive/
+- https://adamsilver.io/blog/the-problem-with-live-validation-and-what-to-do-instead/
+  - "Just validate on submit."
 - https://css-tricks.com/making-disabled-buttons-more-inclusive/
 - https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter
 - https://docs.cypress.io/app/guides/accessibility-testing
@@ -2009,4 +2016,126 @@ return (
   <span class="size-3 animate-bounce rounded-full bg-indigo-600 [animation-delay:0.2s]"></span>
   <span class="size-3 animate-bounce rounded-full bg-indigo-600 [animation-delay:0.4s]"></span>
 </div>
+```
+
+```tsx
+import { createFileRoute, MatchRoute, redirect } from "@tanstack/react-router";
+import { useActionState } from "react";
+
+import { authClient } from "~/utils/auth-client";
+import { getSession } from "~/utils/auth.functions";
+
+export const Route = createFileRoute("/login")({
+  beforeLoad: async () => {
+    const session = await getSession();
+
+    if (session) {
+      throw redirect({ to: "/" });
+    }
+  },
+  head: () => ({
+    meta: [
+      {
+        title: "Login | My Projects",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://myprojects.joao.tools/login",
+      },
+    ],
+  }),
+  component: Login,
+});
+
+function Login() {
+  const navigate = Route.useNavigate();
+
+  async function handleLogin(_prevState: string | undefined, formData: FormData): Promise<string | undefined> {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await authClient.signIn.email({
+      email,
+      password,
+      rememberMe: true,
+    });
+    if (error) return error.message;
+
+    navigate({ to: "/" });
+  }
+
+  const [error, formAction, isPending] = useActionState(handleLogin, undefined);
+
+  return (
+    <MatchRoute to="/" pending>
+      {(match) =>
+        match ? (
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <p>Loading...</p>
+            </main>
+          </>
+        ) : (
+          <>
+            <header className="flex justify-between">
+              <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
+            </header>
+
+            <main>
+              <form action={formAction} className="flex flex-col gap-4">
+                <h2>Sign in to your account</h2>
+
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="hello@world.com"
+                    required
+                    className="w-full border border-mist-200 px-3 py-2 placeholder:text-mist-400 focus:border-blue-500 focus:outline focus:outline-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="No 123456, please"
+                    minLength={8}
+                    maxLength={128}
+                    required
+                    className="w-full border border-mist-200 px-3 py-2 placeholder:text-mist-400 focus:border-blue-500 focus:outline focus:outline-blue-500"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="mt-2 w-full cursor-pointer bg-mist-900 py-2 font-medium text-white transition-transform duration-160 ease-out will-change-transform hover:bg-mist-900/95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-97 disabled:cursor-not-allowed"
+                >
+                  {isPending ? "Logging in..." : "Login"}
+                </button>
+
+                <p role="alert" aria-atomic="true" className="text-rose-600">
+                  {error}
+                </p>
+              </form>
+            </main>
+          </>
+        )
+      }
+    </MatchRoute>
+  );
+}
 ```

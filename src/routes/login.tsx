@@ -48,25 +48,17 @@ function Login() {
   const [error, formAction, isPending] = useActionState(handleLogin, undefined);
 
   return (
-    <MatchRoute to="/" pending>
-      {(match) =>
-        match ? (
-          <>
-            <header className="flex justify-between">
-              <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
-            </header>
+    <>
+      <header className="flex justify-between">
+        <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
+      </header>
 
-            <main>
+      <main>
+        <MatchRoute to="/" pending>
+          {(match) =>
+            match ? (
               <p>Loading...</p>
-            </main>
-          </>
-        ) : (
-          <>
-            <header className="flex justify-between">
-              <h1 className="font-heading font-medium text-mist-900">My Projects</h1>
-            </header>
-
-            <main>
+            ) : (
               <form action={formAction} className="flex flex-col gap-4">
                 <h2>Sign in to your account</h2>
 
@@ -110,10 +102,10 @@ function Login() {
                   {error}
                 </p>
               </form>
-            </main>
-          </>
-        )
-      }
-    </MatchRoute>
+            )
+          }
+        </MatchRoute>
+      </main>
+    </>
   );
 }
