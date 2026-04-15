@@ -377,6 +377,8 @@
   - "Many skeleton patterns do a poor job presenting themselves to screen reader users in any meaningful way. They often stuff `aria-busy` into their widget, set its value to true when the thing is loading, and leave it at that. Except few screen readers honor `aria-busy="true"`."
   - `.skeleton { cursor: progress; }`
 - From `Issues closed this week` to `Closed this week`
+- `<span className="sr-only">Loading data</span>`
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/colgroup
 
 ## Commands
 
@@ -450,7 +452,7 @@ rsync -a --exclude={'.git','.DS_Store','.env'} ~/Documents/GitHub/my-projects/ ~
 ```
 
 ```bash
-mkdir -p ~/Documents/kiro-my-projects && rsync -a --exclude={'.git','.DS_Store','.env','NOTES.md'} ~/Documents/GitHub/my-projects/ ~/Documents/kiro-my-projects
+mkdir -p ~/Documents/kiro-my-projects && rsync -a --delete --exclude={'.git','.DS_Store','.env','NOTES.md'} ~/Documents/GitHub/my-projects/ ~/Documents/kiro-my-projects
 ```
 
 ```bash

@@ -57,7 +57,7 @@ function Login() {
         <MatchRoute to="/" pending>
           {(match) =>
             match ? (
-              <>
+              <div className="flex cursor-progress flex-col gap-4">
                 <dl className="flex gap-2">
                   <div className="flex gap-2 border border-mist-200 px-2 py-1">
                     <dt className="text-mist-500">Projects</dt>
@@ -87,7 +87,41 @@ function Login() {
                     </dd>
                   </div>
                 </dl>
-              </>
+
+                <table className="w-full border-separate border-spacing-0 overflow-hidden border border-mist-200">
+                  <colgroup>
+                    <col className="w-1/2" />
+                    <col className="w-1/4" />
+                    <col className="w-1/4" />
+                  </colgroup>
+                  <thead className="bg-mist-50">
+                    <tr>
+                      <th scope="col" className="border-b border-mist-200 px-6 py-3 text-left font-medium">
+                        Repo
+                      </th>
+                      <th scope="col" className="border-b border-mist-200 px-6 py-3 text-left font-medium">
+                        Last updated
+                      </th>
+                      <th scope="col" className="border-b border-mist-200 px-6 py-3 text-right font-medium">
+                        Open issues
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" className="px-6 py-4">
+                        <div className="h-lh w-full bg-mist-400 motion-safe:animate-pulse" />
+                      </th>
+                      <td className="px-6 py-4">
+                        <div className="h-lh w-full bg-mist-400 motion-safe:animate-pulse" />
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="h-lh w-full bg-mist-400 motion-safe:animate-pulse" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             ) : (
               <form action={formAction} className="flex flex-col gap-4">
                 <h2>Sign in to your account</h2>
