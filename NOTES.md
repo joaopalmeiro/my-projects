@@ -1992,3 +1992,21 @@ return (
   --font-sans: "Inter Variable", sans-serif;
 }
 ```
+
+- https://hyperui.dev/components/application/loaders/
+
+```html
+<div class="flex gap-2">
+  <span class="size-3 animate-ping rounded-full bg-indigo-600"></span>
+  <span class="size-3 animate-ping rounded-full bg-indigo-600 [animation-delay:0.2s]"></span>
+  <span class="size-3 animate-ping rounded-full bg-indigo-600 [animation-delay:0.4s]"></span>
+</div>
+```
+
+```html
+<div class="flex gap-2">
+  <span class="size-3 animate-bounce rounded-full bg-indigo-600"></span>
+  <span class="size-3 animate-bounce rounded-full bg-indigo-600 [animation-delay:0.2s]"></span>
+  <span class="size-3 animate-bounce rounded-full bg-indigo-600 [animation-delay:0.4s]"></span>
+</div>
+```
