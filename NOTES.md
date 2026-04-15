@@ -357,6 +357,11 @@
 - `<td className="px-6 py-4 text-right tabular-nums">{repo.openIssues}</td>`
 - https://fontsource.org/fonts/recursive/install
 - https://pixelambacht.nl/2019/fixing-variable-font-inheritance/
+- https://tailwindcss.com/docs/animation#supporting-reduced-motion
+  - "(...) `motion-safe` and `motion-reduce` variants:"
+- https://tailwindcss.com/docs/display#hidden
+  - "Use the `hidden` utility to remove an element from the document:"
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length#lh
 
 ## Commands
 

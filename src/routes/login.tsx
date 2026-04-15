@@ -95,7 +95,18 @@ function Login() {
                   disabled={isPending}
                   className="mt-2 w-full cursor-pointer bg-mist-900 py-2 font-medium text-white transition-transform duration-160 ease-out will-change-transform hover:bg-mist-900/95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-97 disabled:cursor-not-allowed"
                 >
-                  {isPending ? "Logging in..." : "Login"}
+                  {isPending ? (
+                    <>
+                      <span className="motion-safe:sr-only">Logging in</span>
+                      <div className="flex min-h-lh items-center justify-center gap-2 motion-reduce:hidden">
+                        <span className="size-3 animate-ping rounded-full bg-white"></span>
+                        <span className="size-3 animate-ping rounded-full bg-white [animation-delay:0.2s]"></span>
+                        <span className="size-3 animate-ping rounded-full bg-white [animation-delay:0.4s]"></span>
+                      </div>
+                    </>
+                  ) : (
+                    "Login"
+                  )}
                 </button>
 
                 <p role="alert" aria-atomic="true" className="text-rose-600">
