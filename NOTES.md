@@ -379,6 +379,10 @@
 - From `Issues closed this week` to `Closed this week`
 - `<span className="sr-only">Loading data</span>`
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/colgroup
+- https://developers.cloudflare.com/workers/runtime-apis/cache/
+- https://developers.cloudflare.com/workers/examples/cache-using-fetch/
+- `cf: { cacheTtlByStatus: { "200-299": 60, "400-599": 0 }, cacheEverything: true },`
+- https://tanstack.com/start/latest/docs/framework/react/guide/isr#user-specific-pages: `// Private cache, no CDN caching`
 
 ## Commands
 
