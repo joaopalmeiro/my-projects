@@ -160,9 +160,6 @@ export const getClosedIssues = createServerFn({ method: "GET" })
       firstCbResponse.json(),
     ]);
 
-    // TODO
-    // const linkHeader = firstResponse.headers.get("Link");
-
     let total = 0;
     let todayCount = 0;
 
