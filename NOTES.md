@@ -383,6 +383,7 @@
 - https://developers.cloudflare.com/workers/examples/cache-using-fetch/
 - `cf: { cacheTtlByStatus: { "200-299": 60, "400-599": 0 }, cacheEverything: true },`
 - https://tanstack.com/start/latest/docs/framework/react/guide/isr#user-specific-pages: `// Private cache, no CDN caching`
+- https://docs.zen-browser.app/user-manual/split-view for two-page screenshots
 
 ## Commands
 
