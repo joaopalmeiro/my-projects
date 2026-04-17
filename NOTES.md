@@ -351,6 +351,10 @@
 - https://docs.gitlab.com/api/rest/#pagination
 - https://vite.dev/config/shared-options#customlogger
   - https://github.com/pinojs/pino
+- https://github.com/loglayer/loglayer
+  - https://loglayer.dev/
+- https://github.com/kapishdima/remocn
+  - https://www.remocn.dev/
 - https://codeberg.org/api/swagger
 - https://forgejo.org/docs/next/user/api-usage/#authentication
 - `<dd className="border-l border-mist-200 pl-2 tabular-nums">{totalRepos}</dd>`
@@ -384,6 +388,10 @@
 - `cf: { cacheTtlByStatus: { "200-299": 60, "400-599": 0 }, cacheEverything: true },`
 - https://tanstack.com/start/latest/docs/framework/react/guide/isr#user-specific-pages: `// Private cache, no CDN caching`
 - https://docs.zen-browser.app/user-manual/split-view for two-page screenshots
+- https://aejkatappaja.github.io/phantom-ui/
+  - "Accessible — `aria-busy` set automatically on the host element"
+  - https://github.com/Aejkatappaja/phantom-ui/blob/1bd93e9ee0bdd0a2be352d062f9f9ff0bc1d95da/src/phantom-ui.ts#L150
+- https://github.com/0xGF/boneyard
 
 ## Commands
 
@@ -466,6 +474,10 @@ kiro ~/Documents/kiro-my-projects
 
 ```bash
 magick -density 288 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/Resources/cursors/openhand/cursor.pdf ~/Desktop/pointinghand.png
+```
+
+```bash
+magick teaser.png -background white -gravity center -extent 105%x105% teaser_pad.png
 ```
 
 ## Snippets
