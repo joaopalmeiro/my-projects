@@ -309,9 +309,12 @@
   - https://github.com/Mikescops/node-native-keychain
 - https://github.com/dotenvx/dotenvx
 - https://developer.1password.com/docs/cli/secret-references/
+  - https://github.com/lirantal/npm-security-best-practices?tab=readme-ov-file#8-no-plaintext-secrets-in-env-files
+  - https://developer.1password.com/docs/cli/secrets-environment-variables
   - https://github.com/lirantal/npm-security-best-practices?tab=readme-ov-file#7-no-plaintext-secrets-in-env-files
   - https://developer.1password.com/docs/cli/get-started/
   - https://developers.cloudflare.com/workers/configuration/environment-variables/#local-development-with-secrets
+  - https://www.nodejs-security.com/blog/do-not-use-secrets-in-environment-variables-and-here-is-how-to-do-it-better
 - Favicon:
   - https://pinhead.ink/
     - Current: `pixel_three_inch_floppy_disk` (https://github.com/waysidemapping/pinhead/blob/5971004e1534f54260d918b05ec78e2231c369cb/icons/pixel_style/pixel_three_inch_floppy_disk.svg)
@@ -392,6 +395,11 @@
   - "Accessible — `aria-busy` set automatically on the host element"
   - https://github.com/Aejkatappaja/phantom-ui/blob/1bd93e9ee0bdd0a2be352d062f9f9ff0bc1d95da/src/phantom-ui.ts#L150
 - https://github.com/0xGF/boneyard
+- https://vite.dev/config/shared-options#envdir: "`false` will disable the `.env` file loading."
+- https://developers.cloudflare.com/workers/wrangler/configuration/#secrets-configuration-property: "This property is experimental and subject to change."
+- https://github.com/WiseLibs/better-sqlite3/issues/549: `npm rebuild better-sqlite3`
+- [Not working with new nodejs version 24](https://github.com/WiseLibs/better-sqlite3/issues/1376) issue
+- [npm ci install fails when using --ignore-scripts flag](https://github.com/WiseLibs/better-sqlite3/issues/941) issue: `npm explore better-sqlite3 -- npm install`
 
 ## Commands
 

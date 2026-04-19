@@ -27,7 +27,7 @@
     "db:studio:local": "drizzle-kit studio --verbose",
     "db:studio:remote": "NODE_ENV=production drizzle-kit studio --verbose",
     "deploy": "wrangler deploy",
-    "dev": "vite dev",
+    "dev": "op run --env-file=.env -- vite dev",
     "format": "oxfmt",
     "secrets": "wrangler secret put GH_TOKEN && wrangler secret put GL_TOKEN && wrangler secret put CB_TOKEN && wrangler secret put BETTER_AUTH_SECRET && wrangler secret put BETTER_AUTH_URL"
   },
