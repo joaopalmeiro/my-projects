@@ -2186,3 +2186,11 @@ function Login() {
   );
 }
 ```
+
+- https://vercel.com/
+
+Font: Geist Mono
+
+```html
+<span class="inline-flex items-center justify-center w-fit h-[16px] p-[3px] uppercase leading-none font-mono font-semibold text-[8px] text-gray-1000 border border-solid border-gray-1000 rounded-xs">New</span>
+```
