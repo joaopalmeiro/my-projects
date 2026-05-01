@@ -400,6 +400,9 @@
 - https://github.com/WiseLibs/better-sqlite3/issues/549: `npm rebuild better-sqlite3`
 - [Not working with new nodejs version 24](https://github.com/WiseLibs/better-sqlite3/issues/1376) issue
 - [npm ci install fails when using --ignore-scripts flag](https://github.com/WiseLibs/better-sqlite3/issues/941) issue: `npm explore better-sqlite3 -- npm install`
+- https://httpbin.org/headers
+- https://developers.cloudflare.com/workers/configuration/secrets/: `secrets.json`
+- `"secrets": "wrangler secret put GH_TOKEN && wrangler secret put GL_TOKEN && wrangler secret put CB_TOKEN && wrangler secret put BETTER_AUTH_SECRET && wrangler secret put BETTER_AUTH_URL"`
 
 ## Commands
 

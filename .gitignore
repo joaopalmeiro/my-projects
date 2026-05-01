@@ -5,6 +5,7 @@ node_modules/
 
 .DS_Store
 .env
+secrets.json
 
 start-bare/
 start-basic-cloudflare/
