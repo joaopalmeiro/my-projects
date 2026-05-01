@@ -2195,5 +2195,27 @@ function Login() {
 Font: Geist Mono
 
 ```html
-<span class="inline-flex items-center justify-center w-fit h-[16px] p-[3px] uppercase leading-none font-mono font-semibold text-[8px] text-gray-1000 border border-solid border-gray-1000 rounded-xs">New</span>
+<span
+  class="inline-flex items-center justify-center w-fit h-[16px] p-[3px] uppercase leading-none font-mono font-semibold text-[8px] text-gray-1000 border border-solid border-gray-1000 rounded-xs"
+  >New</span
+>
+```
+
+```ts
+export const getActiveRepos = createServerFn({ method: "GET" }).handler(async (): Promise<ActiveRepo[]> => {
+  const apiUrl = new URL("repos/joaopalmeiro/joaopalmeiro/contents/data.json", BASE_GH_API_URL);
+
+  const response = await fetch(apiUrl, {
+    headers: {
+      Accept: "application/vnd.github.raw+json",
+      Authorization: `Bearer ${env.GH_TOKEN}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": USER_AGENT,
+    },
+  });
+
+  const data: ActiveRepo[] = await response.json();
+
+  return data.filter((repo) => !repo.url.includes("codeberg.org"));
+});
 ```
